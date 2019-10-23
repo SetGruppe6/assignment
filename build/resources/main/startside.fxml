@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -10,15 +9,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartsideController">
     <children>
         <Button fx:id="registrerButton" layoutX="38.0" layoutY="281.0" mnemonicParsing="false" text="Registrer" />
-        <TextField fx:id="navnTextField" layoutX="26.0" layoutY="200.0" promptText="Navn" />
-        <PasswordField fx:id="passordPasswordField" layoutX="26.0" layoutY="158.0" promptText="Passord" />
-        <Button fx:id="gjestButton" layoutX="140.0" layoutY="281.0" mnemonicParsing="false" text="Fortsett som gjest" />
-        <TextField fx:id="etternavnTextField" layoutX="26.0" layoutY="234.0" promptText="Etternavn" />
+        <Button layoutX="140.0" layoutY="281.0" mnemonicParsing="false" text="Fortsett som gjest" />
         <TextField fx:id="emailTextField" layoutX="26.0" layoutY="124.0" promptText="Email" />
         <Text layoutX="38.0" layoutY="69.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lag en bruker">
             <font>
                 <Font size="28.0" />
             </font>
         </Text>
+      <TextField fx:id="passordPasswordField" layoutX="28.0" layoutY="175.0" promptText="pass" />
     </children>
 </AnchorPane>

@@ -29,6 +29,9 @@ public class StartsideController {
 
     private ArrayList<Bruker> nyBrukerListe;
 
+    public ArrayList<Bruker> getNyBrukerListe() {
+        return nyBrukerListe;
+    }
 
     @FXML
     public void initialize(){
@@ -36,17 +39,19 @@ public class StartsideController {
         registrerButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
                 String email = emailTextField.getText();
                 String pass = passordPasswordField.getText();
 
-                Bruker nyBruker = new Bruker(email, pass);
+                Bruker bruker = new Bruker(email, pass);
 
-                nyBrukerListe.add(nyBruker);
+                if(!getNyBrukerListe().contains(bruker)){
+                    leggTilBruker(bruker);
+                }
             }
         });
 
-
     }
-
+    public void leggTilBruker(Bruker bruker){
+        nyBrukerListe.add(bruker);
+    }
 }
