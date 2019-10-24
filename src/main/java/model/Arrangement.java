@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class Arrangement {
+public abstract class Arrangement {
 
     private String arrangementNavn;
     private String arrangementSted;
@@ -63,7 +60,7 @@ public class Arrangement {
         }
     }
 
-    public static void scanInfo(){
+    /**public static void scanInfo(){
         String navn;
         String sted;
         String tid;
@@ -88,7 +85,7 @@ public class Arrangement {
 
         //System.out.println(liste);
 
-    }
+    }**/
 
 
 
