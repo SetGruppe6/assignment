@@ -2,47 +2,78 @@ package model;
 
 public abstract class Arrangement {
 
-    private String arrangementNavn;
-    private String arrangementSted;
-    private String arrangementTid;
+    private String navn;
+    private String lokasjon;
+    private String dato;
+    private String startTid;
+    private String sluttTid;
+    private int deltakerKapasitet;
+    private int påmeldingsAvgift;
 
 
     public Arrangement(){}
 
-
-    public Arrangement(String arrangementNavn, String arrangementSted, String arrangementTid) {
-
-        this.arrangementNavn = arrangementNavn;
-        this.arrangementSted = arrangementSted;
-        this.arrangementTid = arrangementTid;
-
+    public Arrangement(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int påmeldingsAvgift) {
+        this.navn = navn;
+        this.lokasjon = lokasjon;
+        this.dato = dato;
+        this.startTid = startTid;
+        this.sluttTid = sluttTid;
+        this.deltakerKapasitet = deltakerKapasitet;
+        this.påmeldingsAvgift = påmeldingsAvgift;
     }
+
 
 
     //GETTER OG SETTER
 
-    public String getArrangementNavn() {
-        return arrangementNavn;
+    public String getNavn() {
+        return navn;
+    }
+    public void setNavn(String navn) {
+        this.navn = navn;
     }
 
-    public void setArrangementNavn(String arrangementNavn) {
-        this.arrangementNavn = arrangementNavn;
+    public String getLokasjon() {
+        return lokasjon;
+    }
+    public void setLokasjon(String lokasjon) {
+        this.lokasjon = lokasjon;
     }
 
-    public String getArrangementSted() {
-        return arrangementSted;
+    public String getDato() {
+        return dato;
+    }
+    public void setDato(String dato) {
+        this.dato = dato;
     }
 
-    public void setArrangementSted(String arrangementSted) {
-        this.arrangementSted = arrangementSted;
+    public String getStartTid() {
+        return startTid;
+    }
+    public void setStartTid(String startTid) {
+        this.startTid = startTid;
     }
 
-    public String getArrangementTid() {
-        return arrangementTid;
+    public String getSluttTid() {
+        return sluttTid;
+    }
+    public void setSluttTid(String sluttTid) {
+        this.sluttTid = sluttTid;
     }
 
-    public void setArrangementTid(String arrangementTid) {
-        this.arrangementTid = arrangementTid;
+    public int getDeltakerKapasitet() {
+        return deltakerKapasitet;
+    }
+    public void setDeltakerKapasitet(int deltakerKapasitet) {
+        this.deltakerKapasitet = deltakerKapasitet;
+    }
+
+    public int getPåmeldingsAvgift() {
+        return påmeldingsAvgift;
+    }
+    public void setPåmeldingsAvgift(int påmeldingsAvgift) {
+        this.påmeldingsAvgift = påmeldingsAvgift;
     }
 
 
@@ -92,7 +123,7 @@ public abstract class Arrangement {
 
     @Override
     public String toString() {
-        return "Arrangementsnavn: " + arrangementNavn + "\nArrangementssted: " + arrangementSted + "\nArrangementstid: " + arrangementTid;
+        return "Arrangementsnavn: " + navn + "\nArrangementssted: " + lokasjon + "\nArrangementstid: " + dato;
     }
 
 }
