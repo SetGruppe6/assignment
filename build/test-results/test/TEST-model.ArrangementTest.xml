@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.ArrangementTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-10-24T09:48:54" hostname="LAPTOP-E8A3NEOF" time="0.017">
+  <properties/>
+  <testcase name="noe()" classname="model.ArrangementTest" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
