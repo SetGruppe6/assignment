@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class StartsideController {
 
+<<<<<<< Updated upstream
     @FXML
     private Button registrerButton;
 
@@ -45,6 +46,16 @@ public class StartsideController {
                 nyBrukerListe.add(nyBruker);
             }
         });
+=======
+    public void byttTilBrukerScene(ActionEvent event) throws IOException {
+        Parent brukerParent = FXMLLoader.load(getClass().getResource("/brukerside.fxml"));
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        
+        vindu.show();
+    }
+>>>>>>> Stashed changes
 
 
     }
