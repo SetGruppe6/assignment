@@ -11,8 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Arrangement;
+import model.Lop;
+import model.Ski;
+import model.Sykkel;
 
 import java.io.IOException;
 
@@ -42,6 +47,9 @@ public class AdminController {
     @FXML
     private Label prisLabel;
 
+    @FXML
+    private ImageView bildeImageView;
+
 
     public void gaaTilbake(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
@@ -69,6 +77,26 @@ public class AdminController {
                     prisLabel.setText(String.valueOf(ny.getPåmeldingsAvgift()));
                     descriptionLabel.setText(ny.getBeskrivelse());
 
+
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            if (ny instanceof Sykkel){
+                                Image image = new Image("https://cdn0.iconfinder.com/data/icons/bicycle-19/64/road-bike-bicycle-bike-riding-512.png");
+                                bildeImageView.setImage(image);
+                            }
+                            else if (ny instanceof Ski){
+                                Image image = new Image("https://image.flaticon.com/icons/png/512/94/94150.png");
+                                bildeImageView.setImage(image);
+                            }
+                            else if (ny instanceof Lop){
+                                Image image = new Image("https://cdn4.iconfinder.com/data/icons/misc-vol-2/512/man_person_run_runner_running-512.png");
+                                bildeImageView.setImage(image);
+                            }
+                        }
+                    };
+                    Thread bilde = new Thread(runnable);
+                    bilde.start();
                 }
             }
         });
