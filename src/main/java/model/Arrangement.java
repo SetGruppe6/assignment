@@ -9,11 +9,12 @@ public abstract class Arrangement {
     private String sluttTid;
     private int deltakerKapasitet;
     private int påmeldingsAvgift;
+    private String beskrivelse;
 
 
     public Arrangement(){}
 
-    public Arrangement(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int påmeldingsAvgift) {
+    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int påmeldingsAvgift) {
         this.navn = navn;
         this.lokasjon = lokasjon;
         this.dato = dato;
@@ -21,6 +22,7 @@ public abstract class Arrangement {
         this.sluttTid = sluttTid;
         this.deltakerKapasitet = deltakerKapasitet;
         this.påmeldingsAvgift = påmeldingsAvgift;
+        this.beskrivelse = beskrivelse;
     }
 
 
@@ -76,8 +78,15 @@ public abstract class Arrangement {
         this.påmeldingsAvgift = påmeldingsAvgift;
     }
 
+    public String getBeskrivelse() {
+        return beskrivelse;
+    }
 
-//METODER
+    public void setBeskrivelse(String beskrivelse) {
+        this.beskrivelse = beskrivelse;
+    }
+
+    //METODER
 
 
     public static String isNameLongEnough (String name){
@@ -123,8 +132,7 @@ public abstract class Arrangement {
 
     @Override
     public String toString() {
-        return "Arrangementsnavn: " + navn + "\nArrangementssted: " + lokasjon + "\nArrangementstid: " + dato;
+        return navn;
     }
-
 }
 
