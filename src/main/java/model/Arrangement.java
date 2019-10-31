@@ -89,16 +89,55 @@ public abstract class Arrangement {
     //METODER
 
 
-    public static String isNameLongEnough (String name){
+    public static String erTittelOk (String tittel){
 
-        if (name.length() >= 5 && name.length() < 65){
+        if (tittel.length() >= 5 && tittel.length() < 65){
             return "name Ok";
-        } else if (name.length() >= 65){
+        } else if (tittel.length() >= 65){
             return "name too long";
         } else {
             return "name too short";
         }
     }
+
+    public static String erLokasjonGitt(String lokasjon){
+
+        if (lokasjon.isEmpty()){
+            return "Lokasjon ikke gitt";
+        }
+        return "Lokasjon OK";
+    }
+
+    public static String erDatoOK (String dato){
+
+        if (dato.isEmpty()){
+            return "Datofelt tomt";
+        }
+        return "Dato OK";
+    }
+
+    public static String erTidsromGitt (String start, String slutt){
+
+        if (start.isEmpty() && slutt.isEmpty()){
+            return "Angi start og sluttid";
+        }
+        if (start.isEmpty() && !slutt.isEmpty()){
+            return "Angi starttid";
+        }
+        if (!start.isEmpty() && slutt.isEmpty()){
+            return "Angi sluttid";
+        }
+        return "Tidsrom OK";
+    }
+
+    public static String erDeltakerKapasitetOk (int kapasitet){
+        if (kapasitet < 1 || kapasitet > 1000){
+            return "Kapasitet under 0 eller over 1000";
+        }
+        return "Kapasitet OK";
+    }
+
+
 
     /**public static void scanInfo(){
         String navn;
