@@ -59,6 +59,14 @@ public class AdminController {
         vindu.show();
     }
 
+    public void opprettArrangement(ActionEvent event) throws IOException {
+        Parent brukerParent = FXMLLoader.load(getClass().getResource("/opprettarrangement.fxml"));
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+    }
+
     @FXML
     private void initialize(){
 

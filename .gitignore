@@ -97,11 +97,5 @@ fabric.properties
 *.gradle/*
 build/classes*
 *build\classes*
-build/test-results/test/TEST-model.ArrangementTest.xml
-build/test-results/test/binary/results.bin
-build/reports/tests/test/packages/model.html
-build/reports/tests/test/js/report.js
-build/reports/tests/test/index.html
-build/reports/tests/test/css/style.css
-build/reports/tests/test/css/base-style.css
-build/reports/tests/test/classes/model.ArrangementTest.html
+*.build*
+

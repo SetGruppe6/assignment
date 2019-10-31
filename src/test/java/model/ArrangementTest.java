@@ -38,6 +38,12 @@ class ArrangementTest {
         assertEquals("Kapasitet OK", Arrangement.erDeltakerKapasitetOk(666));
 
     }
+/*
+    @Test
+    public void erPameldingBetaltTest(){
+        assertTrue();
+
+    }*/
 
 
 }

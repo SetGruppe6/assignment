@@ -14,14 +14,14 @@ public abstract class Arrangement {
 
     public Arrangement(){}
 
-    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int påmeldingsAvgift) {
+    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsavgift) {
         this.navn = navn;
         this.lokasjon = lokasjon;
         this.dato = dato;
         this.startTid = startTid;
         this.sluttTid = sluttTid;
         this.deltakerKapasitet = deltakerKapasitet;
-        this.påmeldingsAvgift = påmeldingsAvgift;
+        this.påmeldingsAvgift = pameldingsavgift;
         this.beskrivelse = beskrivelse;
     }
 
@@ -131,11 +131,21 @@ public abstract class Arrangement {
     }
 
     public static String erDeltakerKapasitetOk (int kapasitet){
+
         if (kapasitet < 1 || kapasitet > 1000){
             return "Kapasitet under 0 eller over 1000";
         }
         return "Kapasitet OK";
     }
+
+    //Trengs denne om det er en tredjepart som tar betalingsdelen for oss?
+    /*public static boolean erPameldingBetalt(int betaling){
+
+        if (betaling == "200") {
+            return true;
+        }
+        return false;
+    }*/
 
 
 
