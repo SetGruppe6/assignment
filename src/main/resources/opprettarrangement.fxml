@@ -28,27 +28,30 @@
           <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="61.0" minHeight="6.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="28.6666259765625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="31.3333740234375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="61.0" minHeight="6.0" prefHeight="35.33335367838541" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="31.33331298828128" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Tittel" />
             <Label text="Type" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="98.0" text="Distanse" GridPane.rowIndex="2" />
             <Label text="Dato" GridPane.rowIndex="3" />
-            <Label text="Starttid" GridPane.rowIndex="4" />
-            <Label text="Slutttid" GridPane.rowIndex="5" />
-            <Label text="Kapasitet" GridPane.rowIndex="6" />
+            <Label text="Sted" GridPane.rowIndex="4" />
+            <Label text="Starttid" GridPane.rowIndex="5" />
+            <Label text="Slutttid" GridPane.rowIndex="6" />
+            <Label text="Kapasitet" GridPane.rowIndex="7" />
             <TextField fx:id="tittelTextField" GridPane.columnIndex="1" />
             <TextField fx:id="typeTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="distanseTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="datoTextField" promptText="dd.mm.yyy" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="startTextField" promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="sluttTextField" promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="kapasitetTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label prefHeight="23.0" prefWidth="54.0" text="Pris" GridPane.rowIndex="7" />
-            <TextField fx:id="prisTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="stedTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="startTextField" promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="sluttTextField" promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="kapasitetTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label prefHeight="23.0" prefWidth="54.0" text="Pris" GridPane.rowIndex="8" />
+            <TextField fx:id="prisTextField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
       <Label layoutX="415.0" layoutY="107.0" text="Beskrivelse" />
