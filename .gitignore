@@ -95,4 +95,4 @@ fabric.properties
 *.idea*
 *.gradle*
 *.gradle/*
-/build/
+build/classes*
