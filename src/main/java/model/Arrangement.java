@@ -91,13 +91,12 @@ public abstract class Arrangement {
 
     public static String erTittelOk (String tittel){
 
-        if (tittel.length() >= 5 && tittel.length() < 65){
-            return "name Ok";
-        } else if (tittel.length() >= 65){
+         if (tittel.length() >= 65){
             return "name too long";
-        } else {
+        } else if (tittel.length() <= 5){
             return "name too short";
         }
+        return "";
     }
 
     public static String erLokasjonGitt(String lokasjon){
@@ -105,7 +104,7 @@ public abstract class Arrangement {
         if (lokasjon.isEmpty()){
             return "Lokasjon ikke gitt";
         }
-        return "Lokasjon OK";
+        return "";
     }
 
     public static String erDatoOK (String dato){
@@ -113,7 +112,7 @@ public abstract class Arrangement {
         if (dato.isEmpty()){
             return "Datofelt tomt";
         }
-        return "Dato OK";
+        return "";
     }
 
     public static String erTidsromGitt (String start, String slutt){
@@ -127,7 +126,7 @@ public abstract class Arrangement {
         if (!start.isEmpty() && slutt.isEmpty()){
             return "Angi sluttid";
         }
-        return "Tidsrom OK";
+        return "";
     }
 
     public static String erDeltakerKapasitetOk (int kapasitet){
@@ -135,10 +134,11 @@ public abstract class Arrangement {
         if (kapasitet < 1 || kapasitet > 1000){
             return "Kapasitet under 0 eller over 1000";
         }
-        return "Kapasitet OK";
+        return "";
     }
 
     //Trengs denne om det er en tredjepart som tar betalingsdelen for oss?
+    //Den er ikke skrevet ferdig ettersom jeg kom på det som står over underveis.
     /*public static boolean erPameldingBetalt(int betaling){
 
         if (betaling == "200") {

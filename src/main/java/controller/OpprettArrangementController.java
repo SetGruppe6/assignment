@@ -45,24 +45,37 @@ public class OpprettArrangementController {
         vindu.show();
     }
 
+
     EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
 
-            /*Ha dette i en if-test som sjekker om returen på erTittelOk*/
-            Arrangement.erTittelOk(tittelTextField.getText());
-            Arrangement.erLokasjonGitt(stedTextField.getText());
-            Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText());
-            Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText()));
+            /*Midlertidig løsning. Burde kanskje bruke stringbuilder her?
+            * Nå får den resultatet fra metodene, og om den går igjennom metoden uten
+            * feil returneres "". Om den ikke går gjennom uten feil, legges
+            * feilmeldingen til og printes i en alert-box så man vet hvilke felter man har misset
+            *
+            * mangler noe implementasjon på feltene.*/
+            String resultat = "";
+            resultat += Arrangement.erTittelOk(tittelTextField.getText());
+            resultat += Arrangement.erLokasjonGitt(stedTextField.getText());
+            resultat += Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText());
+            resultat += Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText()));
 
-            alert.setTitle("Advarsel");
-            alert.setHeaderText("Det er noen feil i skjemaet.");
-            alert.setContentText(Arrangement.erTittelOk(tittelTextField.getText()) + " \n" +
-            Arrangement.erLokasjonGitt(stedTextField.getText()) + " \n" +
-            Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText()) + " \n" +
-            Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText())));
 
-            alert.showAndWait();
+            if (!resultat.equals("")) {
+                alert.setTitle("Advarsel");
+                alert.setHeaderText("Det er noen feil i skjemaet.");
+                alert.setContentText(resultat);
+                alert.showAndWait();
+            }else {
+                alert.setTitle("");
+                alert.setHeaderText("Arrangement Opprettet");
+                alert.setContentText(tittelTextField.getText());
+                alert.showAndWait();
+            }
+
+
 
         }
     };
