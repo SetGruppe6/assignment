@@ -5,13 +5,15 @@ public class Person {
     private String fornavn;
     private String etternavn;
     private String email;
-    private int mobilnr;
+    private String passord;
+    private String tlf;
 
-    public Person(String fornavn, String etternavn, String email, int mobilnr) {
+    public Person(String fornavn, String etternavn, String email, String passord, String mobilnr) {
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.email = email;
-        this.mobilnr = mobilnr;
+        this.passord = passord;
+        this.tlf = mobilnr;
     }
 
     public Person(String fornavn, String etternavn, String email) {
@@ -49,11 +51,52 @@ public class Person {
         this.email = email;
     }
 
-    public int getMobilnr() {
-        return mobilnr;
+    public String getPassord() {
+        return passord;
     }
 
-    public void setMobilnr(int mobilnr) {
-        this.mobilnr = mobilnr;
+    public void setPassord(String passord) {
+        this.passord = passord;
+    }
+
+    public String getTlf() {
+        return tlf;
+    }
+
+    public void setTlf(String tlf) {
+        this.tlf = tlf;
+    }
+
+
+    public static String erNavnGitt(String navn) {
+
+        if (navn.isEmpty()) {
+            return "Fullt navn mangler";
+        }
+        return "";
+    }
+
+    public static String erPassordGitt (String passord) {
+
+        if (passord.isEmpty()) {
+            return "Passord mangler";
+        }
+        return "";
+    }
+
+    public static String erEmailGitt(String email) {
+
+        if (email.isEmpty()) {
+            return "E-post mangler";
+        }
+        return "";
+    }
+
+    public static String erTlfGitt(String tlf) {
+
+        if (tlf.length() != 8){
+            return "Ugyldig telefonnummer";
+        }
+        return "";
     }
 }

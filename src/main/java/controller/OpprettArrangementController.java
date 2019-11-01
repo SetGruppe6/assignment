@@ -35,6 +35,8 @@ public class OpprettArrangementController {
     @FXML
     private TextField kapasitetTextField;
 
+
+
     Alert opprettAlert = new Alert(Alert.AlertType.INFORMATION);
 
     public void tilbakeFraOpprettArrangement(ActionEvent event) throws IOException {
