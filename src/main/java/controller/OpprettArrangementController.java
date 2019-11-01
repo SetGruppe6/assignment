@@ -35,8 +35,7 @@ public class OpprettArrangementController {
     @FXML
     private TextField kapasitetTextField;
 
-    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-    Alert godkjentAlert = new Alert(Alert.AlertType.INFORMATION);
+    Alert opprettAlert = new Alert(Alert.AlertType.INFORMATION);
 
     public void tilbakeFraOpprettArrangement(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
@@ -65,15 +64,15 @@ public class OpprettArrangementController {
 
 
             if (!resultat.equals("")) {
-                errorAlert.setTitle("Advarsel");
-                errorAlert.setHeaderText("Det er noen feil i skjemaet.");
-                errorAlert.setContentText(resultat);
-                errorAlert.showAndWait();
+                opprettAlert.setTitle("Advarsel");
+                opprettAlert.setHeaderText("Det er noen feil i skjemaet.");
+                opprettAlert.setContentText(resultat);
+                opprettAlert.showAndWait();
             }else {
-                godkjentAlert.setTitle("");
-                godkjentAlert.setHeaderText("Arrangement opprettet");
-                godkjentAlert.setContentText("Ditt arrangement:\n" + tittelTextField.getText() + "\ner opprettet");
-                godkjentAlert.showAndWait();
+                opprettAlert.setTitle("");
+                opprettAlert.setHeaderText("Arrangement opprettet");
+                opprettAlert.setContentText("Ditt arrangement:\n" + tittelTextField.getText() + "\ner opprettet");
+                opprettAlert.showAndWait();
             }
 
 

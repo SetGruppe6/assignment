@@ -137,48 +137,7 @@ public abstract class Arrangement {
         return "";
     }
 
-    //Trengs denne om det er en tredjepart som tar betalingsdelen for oss?
-    //Den er ikke skrevet ferdig ettersom jeg kom på det som står over underveis.
-    /*public static boolean erPameldingBetalt(int betaling){
-
-        if (betaling == "200") {
-            return true;
-        }
-        return false;
-    }*/
-
-
-
-    /**public static void scanInfo(){
-        String navn;
-        String sted;
-        String tid;
-
-
-
-        Scanner sjekk = new Scanner(System.in);
-        System.out.println("Skriv navn på arrangement:");
-        navn = sjekk.nextLine();
-        System.out.println("Skriv inn sted:");
-
-        sted =   sjekk.nextLine();
-
-        System.out.println("Når går arrangementet?");
-        tid = sjekk.nextLine();
-
-        //Arrangement hei = new Arrangement (navn, sted, tid);
-
-        ArrayList<Arrangement> liste = new ArrayList<>();
-
-        liste.add(new Arrangement(navn, sted, tid));
-
-        //System.out.println(liste);
-
-    }**/
-
-
-
-
+    
     @Override
     public String toString() {
         return navn;

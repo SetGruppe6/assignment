@@ -35,6 +35,7 @@ class ArrangementTest {
     @Test
     public void erDeltakerKapasitetOkTest(){
         assertEquals("Kapasitet under 0 eller over 1000", Arrangement.erDeltakerKapasitetOk(1001));
+        assertEquals("Kapasitet under 0 eller over 1000", Arrangement.erDeltakerKapasitetOk(-1));
         assertEquals("", Arrangement.erDeltakerKapasitetOk(666));
 
     }
