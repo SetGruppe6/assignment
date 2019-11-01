@@ -12,9 +12,26 @@ public class Bruker {
 
 
 
+    public static String erBrukernavnGitt(String brukernavn){
+
+        if (brukernavn.isEmpty()) {
+            return "Brukernavn mangler";
+        }
+        return "";
+    }
+
+    public static String erPassordGitt(String passord){
+
+        if (passord.isEmpty()) {
+            return "Passord mangler";
+        }
+        return "";
+    }
 
 
-    //////////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////
+
+
+    //////////////////////////////GETTERANDSETTER/////////////////////////////////////////////////////////
 
     public String getBrukernavn() {
         return brukernavn;
@@ -28,5 +45,7 @@ public class Bruker {
         return passord;
     }
 
-    //////////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////
+    //////////////////////////////GETTERANDSETTER/////////////////////////////////////////////////////////
+
+
 }

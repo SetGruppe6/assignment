@@ -82,7 +82,7 @@ public class AdminController {
                     adresseLabel.setText(ny.getLokasjon());
                     tidsromLabel.setText(ny.getStartTid() + " - " + ny.getSluttTid());
                     kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
-                    prisLabel.setText(String.valueOf(ny.getPåmeldingsAvgift()));
+                    prisLabel.setText(String.valueOf(ny.getPameldingsAvgift()));
                     descriptionLabel.setText(ny.getBeskrivelse());
 
 
