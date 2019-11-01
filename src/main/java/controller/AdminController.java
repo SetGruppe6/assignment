@@ -6,22 +6,25 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import model.Arrangement;
-import model.Lop;
-import model.Ski;
-import model.Sykkel;
+import model.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class AdminController {
+public class AdminController implements Initializable {
 
     @FXML
     private ListView<Arrangement> arrangementListView;
@@ -50,6 +53,22 @@ public class AdminController {
     @FXML
     private ImageView bildeImageView;
 
+    @FXML
+    private Label deltakereLabel;
+
+    @FXML
+    private Button meldPaa;
+
+    private Person person;
+
+    @FXML
+    private ComboBox<Person> deltakereComboBox;
+
+    @FXML
+    private ComboBox<Person> personComboBox;
+
+    private ArrayList<Person> personer = new ArrayList<>();
+
 
     public void gaaTilbake(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
@@ -59,11 +78,30 @@ public class AdminController {
         vindu.show();
     }
 
-    @FXML
-    private void initialize(){
 
+
+    public void meldPaa(ActionEvent event) throws IOException {
+
+        Parent brukerParent = FXMLLoader.load(getClass().getResource("/meldpaa.fxml"));
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+    }
+
+    public ArrayList<Person> getPersoner() {
+        return personer;
+    }
+
+    public void function(Person per) {
+        personComboBox.getItems().add(per);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         arrangementListView.setItems(Datahandler.arrangementData());
 
+        personComboBox.getItems().addAll(personer);
 
         arrangementListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
             @Override
@@ -76,6 +114,7 @@ public class AdminController {
                     kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
                     prisLabel.setText(String.valueOf(ny.getPåmeldingsAvgift()));
                     descriptionLabel.setText(ny.getBeskrivelse());
+                    deltakereComboBox.getItems().addAll(ny.getDeltakere());
 
 
                     Runnable runnable = new Runnable() {
@@ -100,10 +139,6 @@ public class AdminController {
                 }
             }
         });
-
         arrangementListView.getSelectionModel().selectFirst();
-
     }
-
-
 }

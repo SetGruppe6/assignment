@@ -56,4 +56,9 @@ public class Person {
     public void setMobilnr(int mobilnr) {
         this.mobilnr = mobilnr;
     }
+
+    @Override
+    public String toString() {
+        return fornavn + " " + etternavn;
+    }
 }
