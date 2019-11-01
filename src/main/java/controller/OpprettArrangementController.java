@@ -56,17 +56,24 @@ public class OpprettArrangementController {
             * feilmeldingen til og printes i en alert-box så man vet hvilke felter man har misset
             *
             * mangler noe implementasjon på feltene.*/
-            String resultat = "";
-            resultat += "\n"+Arrangement.erTittelOk(tittelTextField.getText());
+            StringBuilder resultat = new StringBuilder();
+            //String resultat = "";
+
+            resultat.append("\n").append(Arrangement.erTittelOk(tittelTextField.getText()));
+            resultat.append("\n").append(Arrangement.erLokasjonGitt(stedTextField.getText()));
+            resultat.append("\n").append(Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText()));
+            resultat.append("\n").append(Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText())));
+
+            /**resultat += "\n"+Arrangement.erTittelOk(tittelTextField.getText());
             resultat += "\n"+Arrangement.erLokasjonGitt(stedTextField.getText());
             resultat += "\n"+Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText());
-            resultat += "\n"+Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText()));
+            resultat += "\n"+Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText()));**/
 
 
-            if (!resultat.equals("")) {
+            if (resultat.toString().isEmpty()) {
                 opprettAlert.setTitle("Advarsel");
                 opprettAlert.setHeaderText("Det er noen feil i skjemaet.");
-                opprettAlert.setContentText(resultat);
+                opprettAlert.setContentText(resultat.toString());
                 opprettAlert.showAndWait();
             }else {
                 opprettAlert.setTitle("");
