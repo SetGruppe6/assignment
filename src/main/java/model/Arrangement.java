@@ -14,14 +14,14 @@ public abstract class Arrangement {
 
     public Arrangement(){}
 
-    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int påmeldingsAvgift) {
+    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsavgift) {
         this.navn = navn;
         this.lokasjon = lokasjon;
         this.dato = dato;
         this.startTid = startTid;
         this.sluttTid = sluttTid;
         this.deltakerKapasitet = deltakerKapasitet;
-        this.påmeldingsAvgift = påmeldingsAvgift;
+        this.påmeldingsAvgift = pameldingsavgift;
         this.beskrivelse = beskrivelse;
     }
 
@@ -89,45 +89,58 @@ public abstract class Arrangement {
     //METODER
 
 
-    public static String isNameLongEnough (String name){
+    public static String erTittelOk (String tittel){
 
-        if (name.length() >= 5 && name.length() < 65){
-            return "name Ok";
-        } else if (name.length() >= 65){
-            return "name too long";
-        } else {
-            return "name too short";
+         if (tittel.length() >= 65){
+            return "Tittel for lang";
+        } else if (tittel.length() <= 5){
+            return "Tittel for kort";
         }
+        return "";
     }
 
-    /**public static void scanInfo(){
-        String navn;
-        String sted;
-        String tid;
+    public static String erLokasjonGitt(String lokasjon){
 
+        if (lokasjon.isEmpty()){
+            return "Lokasjon ikke gitt";
+        }
+        return "";
+    }
 
+    public static String erDatoOK (String dato){
 
-        Scanner sjekk = new Scanner(System.in);
-        System.out.println("Skriv navn på arrangement:");
-        navn = sjekk.nextLine();
-        System.out.println("Skriv inn sted:");
+        if (dato.isEmpty()){
+            return "Datofelt tomt";
+        }
+        return "";
+    }
 
-        sted =   sjekk.nextLine();
+    public static String erTidsromGitt (String start, String slutt){
 
-        System.out.println("Når går arrangementet?");
-        tid = sjekk.nextLine();
+        if (start.isEmpty() && slutt.isEmpty()){
+            return "Angi start og sluttid";
+        }
+        if (start.isEmpty() && !slutt.isEmpty()){
+            return "Angi starttid";
+        }
+        if (!start.isEmpty() && slutt.isEmpty()){
+            return "Angi sluttid";
+        }
+        return "";
+    }
 
-        //Arrangement hei = new Arrangement (navn, sted, tid);
+    public static String erDeltakerKapasitetOk (int kapasitet){
 
-        ArrayList<Arrangement> liste = new ArrayList<>();
+        if (kapasitet < 1 || kapasitet > 1000){
+            return "Kapasitet under 0 eller over 1000";
+        }
+        return "";
+    }
 
-        liste.add(new Arrangement(navn, sted, tid));
+    public static String erBeskrivelseGitt (String beskrivelse){
 
-        //System.out.println(liste);
-
-    }**/
-
-
+        if (beskrivelse.isEmpty())
+    }
 
 
     @Override

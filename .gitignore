@@ -97,3 +97,5 @@ fabric.properties
 *.gradle/*
 build/classes*
 *build\classes*
+*.build*
+
