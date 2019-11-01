@@ -134,12 +134,7 @@ public abstract class Arrangement {
         }
         return "";
     }
-
-        if (beskrivelse.isEmpty()) {
-            return "Beskrivelse mangler";
-        }
-        return "";
-    }
+    
 
     public static String erPrisGitt(int betaling){
 
