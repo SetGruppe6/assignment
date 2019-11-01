@@ -73,7 +73,7 @@ public class AdminController implements Initializable {
     public void gaaTilbake(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
         Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
     }
@@ -82,76 +82,67 @@ public class AdminController implements Initializable {
     public void opprettArrangement(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/opprettarrangement.fxml"));
         Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
     }
 
-    @FXML
-    private void initialize(){
 
-
-
-    public void meldPaa(ActionEvent event) throws IOException {
+    public void meldPaa (ActionEvent event) throws IOException {
 
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/meldpaa.fxml"));
         Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
     }
 
-    public ArrayList<Person> getPersoner() {
-        return personer;
-    }
-
-    public void function(Person per) {
+    public void function (Person per){
         personComboBox.getItems().add(per);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        arrangementListView.setItems(Datahandler.arrangementData());
+        @Override
+        public void initialize (URL url, ResourceBundle resourceBundle){
 
-        personComboBox.getItems().addAll(personer);
+            arrangementListView.setItems(Datahandler.arrangementData());
 
-        arrangementListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
-            @Override
-            public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement old, Arrangement ny) {
-                if (arrangementListView != null){
-                    tittelLabel.setText(ny.getNavn());
-                    datoLabel.setText(ny.getDato());
-                    adresseLabel.setText(ny.getLokasjon());
-                    tidsromLabel.setText(ny.getStartTid() + " - " + ny.getSluttTid());
-                    kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
-                    prisLabel.setText(String.valueOf(ny.getPameldingsAvgift()));
-                    descriptionLabel.setText(ny.getBeskrivelse());
-                    deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
-                    deltakereComboBox.getItems().addAll(ny.getDeltakere());
+            personComboBox.getItems().addAll(personer);
+
+            arrangementListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
+                @Override
+                public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement old, Arrangement ny) {
+                    if (arrangementListView != null) {
+                        tittelLabel.setText(ny.getNavn());
+                        datoLabel.setText(ny.getDato());
+                        adresseLabel.setText(ny.getLokasjon());
+                        tidsromLabel.setText(ny.getStartTid() + " - " + ny.getSluttTid());
+                        kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
+                        prisLabel.setText(String.valueOf(ny.getPameldingsAvgift()));
+                        descriptionLabel.setText(ny.getBeskrivelse());
+                        deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
+                        deltakereComboBox.getItems().addAll(ny.getDeltakere());
 
 
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            if (ny instanceof Sykkel){
-                                Image image = new Image("https://cdn0.iconfinder.com/data/icons/bicycle-19/64/road-bike-bicycle-bike-riding-512.png");
-                                bildeImageView.setImage(image);
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                if (ny instanceof Sykkel) {
+                                    Image image = new Image("https://cdn0.iconfinder.com/data/icons/bicycle-19/64/road-bike-bicycle-bike-riding-512.png");
+                                    bildeImageView.setImage(image);
+                                } else if (ny instanceof Ski) {
+                                    Image image = new Image("https://image.flaticon.com/icons/png/512/94/94150.png");
+                                    bildeImageView.setImage(image);
+                                } else if (ny instanceof Lop) {
+                                    Image image = new Image("https://cdn4.iconfinder.com/data/icons/misc-vol-2/512/man_person_run_runner_running-512.png");
+                                    bildeImageView.setImage(image);
+                                }
                             }
-                            else if (ny instanceof Ski){
-                                Image image = new Image("https://image.flaticon.com/icons/png/512/94/94150.png");
-                                bildeImageView.setImage(image);
-                            }
-                            else if (ny instanceof Lop){
-                                Image image = new Image("https://cdn4.iconfinder.com/data/icons/misc-vol-2/512/man_person_run_runner_running-512.png");
-                                bildeImageView.setImage(image);
-                            }
-                        }
-                    };
-                    Thread bilde = new Thread(runnable);
-                    bilde.start();
+                        };
+                        Thread bilde = new Thread(runnable);
+                        bilde.start();
+                    }
                 }
-            }
-        });
-        arrangementListView.getSelectionModel().selectFirst();
+            });
+            arrangementListView.getSelectionModel().selectFirst();
+        }
     }
-}

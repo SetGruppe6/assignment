@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class Ski extends Arrangement {
   private static Distanse[] skiAvstander = new Distanse[4];
 
-    public Ski (String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, ArrayList<Person> deltakere, int påmeldingsAvgift) {
-        super(navn, beskrivelse, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, deltakere, påmeldingsAvgift);
-
+    public Ski(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
+        super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere);
     }
 
     public static Distanse[] getSkiAvstander() {

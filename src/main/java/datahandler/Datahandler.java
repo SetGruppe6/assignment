@@ -14,23 +14,23 @@ public class Datahandler {
 
     public static ObservableList <Person> personData(){
         if(listePersoner.size() == 0){
-            listePersoner.add(new Person("navn1", "etternavn1"));
-            listePersoner.add(new Person("navn2", "etternavn2"));
-            listePersoner.add(new Person("navn3", "etternavn3"));
-            listePersoner.add(new Person("navn4", "etternavn4"));
-            listePersoner.add(new Person("navn5", "etternavn4"));
-            listePersoner.add(new Person("navn6", "etternavn4"));
-            listePersoner.add(new Person("navn7", "etternavn4"));
-            listePersoner.add(new Person("navn8", "etternavn4"));
-            listePersoner.add(new Person("navn9", "etternavn4"));
-            listePersoner.add(new Person("navn10", "etternavn4"));
-            listePersoner.add(new Person("navn11", "etternavn4"));
-            listePersoner.add(new Person("navn12", "etternavn4"));
-            listePersoner.add(new Person("navn13", "etternavn4"));
-            listePersoner.add(new Person("navn14", "etternavn4"));
-            listePersoner.add(new Person("navn15", "etternavn4"));
-            listePersoner.add(new Person("navn16", "etternavn4"));
-            listePersoner.add(new Person("navn17", "etternavn4"));
+            listePersoner.add(new Person("Petter", "Northug"));
+            listePersoner.add(new Person("Daria", "Northug Jr"));
+            listePersoner.add(new Person("Jens", "Juul"));
+            listePersoner.add(new Person("Sander", "Fleece"));
+            listePersoner.add(new Person("Joakim", "Manedskog"));
+            listePersoner.add(new Person("Jarle", "MacMonday"));
+            listePersoner.add(new Person("Polly", "Esther"));
+            listePersoner.add(new Person("Donald", "Stump"));
+            listePersoner.add(new Person("Anne", "Blaa"));
+            listePersoner.add(new Person("Therese", "Dohaug"));
+            listePersoner.add(new Person("Silje", "Stikksag"));
+            listePersoner.add(new Person("Hans", "son-Mbop"));
+            listePersoner.add(new Person("Harald", "Haarfagre"));
+            listePersoner.add(new Person("Putin", "OnAShow"));
+            listePersoner.add(new Person("Henny", "Koppen"));
+            listePersoner.add(new Person("Siri", "Senkesett"));
+            listePersoner.add(new Person("Svein", "Charter"));
         }
         return listePersoner;
     }
@@ -49,9 +49,9 @@ public class Datahandler {
     public static ObservableList<Arrangement> arrangementData(){
         if(arrangementListe.size() == 0 ){
             fyllopp();
-           arrangementListe.add(new Lop("Holmekollen stafetten","dette er et løp", "sted", "26.11.2019", "12:00", "18:00", 123, deltakere, 100));
-           arrangementListe.add(new Sykkel("Tour de halden", "dette er et sykkel kappløp", "annet sted", "12.12.2019", "17:00", "21:00", 200, deltakere,50));
-           arrangementListe.add(new Ski("Birkebeinerne", "dette er en ski konkurranse", "annet annet sted", "24.12.2019", "08:00", "16:00", 50, deltakere, 0));
+           arrangementListe.add(new Lop("Holmeenkollen Stafetten", "Oslo", "12.12.2012", "00:00","01:00", 100, 250, "Dette er et maraton", deltakere));
+          // arrangementListe.add(new Sykkel("Tour de halden", "dette er et sykkel kappløp", "annet sted", "12.12.2019", "17:00", "21:00", 200, deltakere,50));
+          // arrangementListe.add(new Ski("Birkebeinerne", "dette er en ski konkurranse", "annet annet sted", "24.12.2019", "08:00", "16:00", 50, deltakere, 0));
         }
         return arrangementListe;
     }

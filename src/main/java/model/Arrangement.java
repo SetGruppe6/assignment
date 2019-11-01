@@ -21,7 +21,7 @@ public abstract class Arrangement {
     public Arrangement(){}
 
 
-    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, ArrayList<Person> deltakere, int påmeldingsAvgift) {
+    public Arrangement(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
         this.navn = navn;
         this.lokasjon = lokasjon;
@@ -29,7 +29,7 @@ public abstract class Arrangement {
         this.startTid = startTid;
         this.sluttTid = sluttTid;
         this.deltakerKapasitet = deltakerKapasitet;
-        this.pameldingsAvgift = pameldingsavgift;
+        this.pameldingsAvgift = pameldingsAvgift;
         this.beskrivelse = beskrivelse;
         this.deltakere = deltakere;
     }
