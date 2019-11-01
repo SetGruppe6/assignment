@@ -114,6 +114,7 @@ public class AdminController implements Initializable {
                     kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
                     prisLabel.setText(String.valueOf(ny.getPåmeldingsAvgift()));
                     descriptionLabel.setText(ny.getBeskrivelse());
+                    deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
                     deltakereComboBox.getItems().addAll(ny.getDeltakere());
 
 
