@@ -50,8 +50,8 @@ public class Datahandler {
         if(arrangementListe.size() == 0 ){
             fyllopp();
            arrangementListe.add(new Lop("Holmeenkollen Stafetten", "Oslo", "12.12.2012", "00:00","01:00", 100, 250, "Dette er et maraton", deltakere));
-          // arrangementListe.add(new Sykkel("Tour de halden", "dette er et sykkel kappløp", "annet sted", "12.12.2019", "17:00", "21:00", 200, deltakere,50));
-          // arrangementListe.add(new Ski("Birkebeinerne", "dette er en ski konkurranse", "annet annet sted", "24.12.2019", "08:00", "16:00", 50, deltakere, 0));
+           arrangementListe.add(new Sykkel("Tour de Halden", "Halden", "24.12.2019", "12:00", "18:00", 50, 100, "Dette er et sykkelløp", deltakere));
+           arrangementListe.add(new Ski("Birkebeinerne", "et sted", "12.12.2019", "11:00", "16:00", 50, 50, "Dette er et skiløp" , deltakere));
         }
         return arrangementListe;
     }
