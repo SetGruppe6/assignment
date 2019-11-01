@@ -35,7 +35,8 @@ public class OpprettArrangementController {
     @FXML
     private TextField kapasitetTextField;
 
-    Alert alert = new Alert(Alert.AlertType.ERROR);
+    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+    Alert godkjentAlert = new Alert(Alert.AlertType.INFORMATION);
 
     public void tilbakeFraOpprettArrangement(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
@@ -57,22 +58,22 @@ public class OpprettArrangementController {
             *
             * mangler noe implementasjon på feltene.*/
             String resultat = "";
-            resultat += Arrangement.erTittelOk(tittelTextField.getText());
-            resultat += Arrangement.erLokasjonGitt(stedTextField.getText());
-            resultat += Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText());
-            resultat += Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText()));
+            resultat += "\n"+Arrangement.erTittelOk(tittelTextField.getText());
+            resultat += "\n"+Arrangement.erLokasjonGitt(stedTextField.getText());
+            resultat += "\n"+Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText());
+            resultat += "\n"+Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText()));
 
 
             if (!resultat.equals("")) {
-                alert.setTitle("Advarsel");
-                alert.setHeaderText("Det er noen feil i skjemaet.");
-                alert.setContentText(resultat);
-                alert.showAndWait();
+                errorAlert.setTitle("Advarsel");
+                errorAlert.setHeaderText("Det er noen feil i skjemaet.");
+                errorAlert.setContentText(resultat);
+                errorAlert.showAndWait();
             }else {
-                alert.setTitle("");
-                alert.setHeaderText("Arrangement Opprettet");
-                alert.setContentText(tittelTextField.getText());
-                alert.showAndWait();
+                godkjentAlert.setTitle("");
+                godkjentAlert.setHeaderText("Arrangement opprettet");
+                godkjentAlert.setContentText("Ditt arrangement:\n" + tittelTextField.getText() + "\ner opprettet");
+                godkjentAlert.showAndWait();
             }
 
 

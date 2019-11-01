@@ -92,9 +92,9 @@ public abstract class Arrangement {
     public static String erTittelOk (String tittel){
 
          if (tittel.length() >= 65){
-            return "name too long";
+            return "Tittel for lang";
         } else if (tittel.length() <= 5){
-            return "name too short";
+            return "Tittel for kort";
         }
         return "";
     }
