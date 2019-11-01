@@ -59,6 +59,8 @@ public class Person {
         this.passord = passord;
     }
 
+
+
     public String getTlf() {
         return tlf;
     }
@@ -99,4 +101,11 @@ public class Person {
         }
         return "";
     }
+  
+      @Override
+    public String toString() {
+        return fornavn + " " + etternavn;
+    }
 }
+}
+

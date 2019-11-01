@@ -1,11 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Sykkel extends Arrangement {
+  
+private static Distanse[] sykkelAvstander = new Distanse[3];
 
-    private static Distanse[] sykkelAvstander = new Distanse[3];
-
-    public Sykkel(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int påmeldingsAvgift) {
-        super(navn, beskrivelse, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, påmeldingsAvgift);
+    public Sykkel (String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, ArrayList<Person> deltakere, int påmeldingsAvgift) {
+        super(navn, beskrivelse, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, deltakere, påmeldingsAvgift);
     }
 
     public static Distanse[] getSykkelAvstander() {

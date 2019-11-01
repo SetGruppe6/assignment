@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public abstract class Arrangement {
 
     private String navn;
@@ -10,11 +12,17 @@ public abstract class Arrangement {
     private int deltakerKapasitet;
     private int pameldingsAvgift;
     private String beskrivelse;
+    private ArrayList<Person> deltakere = new ArrayList<>();
 
+    public ArrayList<Person> getDeltakere() {
+        return deltakere;
+    }
 
     public Arrangement(){}
 
-    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsavgift) {
+
+    public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, ArrayList<Person> deltakere, int påmeldingsAvgift) {
+
         this.navn = navn;
         this.lokasjon = lokasjon;
         this.dato = dato;
@@ -23,6 +31,12 @@ public abstract class Arrangement {
         this.deltakerKapasitet = deltakerKapasitet;
         this.pameldingsAvgift = pameldingsavgift;
         this.beskrivelse = beskrivelse;
+        this.deltakere = deltakere;
+    }
+
+
+    public Arrangement(String navn){
+        this.navn = navn;
     }
 
     //GETTER OG SETTER
@@ -83,6 +97,7 @@ public abstract class Arrangement {
     public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse = beskrivelse;
     }
+
 
     //METODER
 
@@ -155,7 +170,7 @@ public abstract class Arrangement {
 
     @Override
     public String toString() {
-        return navn;
+        return navn ;
     }
 }
 
