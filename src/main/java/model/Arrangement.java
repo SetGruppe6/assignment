@@ -135,8 +135,6 @@ public abstract class Arrangement {
         return "";
     }
 
-    public static String erBeskrivelseGitt (String beskrivelse){
-
         if (beskrivelse.isEmpty()) {
             return "Beskrivelse mangler";
         }

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Arrangement;
@@ -35,7 +36,11 @@ public class OpprettArrangementController {
     @FXML
     private TextField kapasitetTextField;
 
+    @FXML
+    private ComboBox<Arrangement> typeTextField;
 
+    @FXML
+    private ComboBox<String> distanseTextField;
 
     Alert opprettAlert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -83,9 +88,6 @@ public class OpprettArrangementController {
                 opprettAlert.setContentText("Ditt arrangement:\n" + tittelTextField.getText() + "\ner opprettet");
                 opprettAlert.showAndWait();
             }
-
-
-
         }
     };
 
