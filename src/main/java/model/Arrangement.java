@@ -8,7 +8,7 @@ public abstract class Arrangement {
     private String startTid;
     private String sluttTid;
     private int deltakerKapasitet;
-    private int påmeldingsAvgift;
+    private int pameldingsAvgift;
     private String beskrivelse;
 
 
@@ -21,11 +21,9 @@ public abstract class Arrangement {
         this.startTid = startTid;
         this.sluttTid = sluttTid;
         this.deltakerKapasitet = deltakerKapasitet;
-        this.påmeldingsAvgift = pameldingsavgift;
+        this.pameldingsAvgift = pameldingsavgift;
         this.beskrivelse = beskrivelse;
     }
-
-
 
     //GETTER OG SETTER
 
@@ -71,11 +69,11 @@ public abstract class Arrangement {
         this.deltakerKapasitet = deltakerKapasitet;
     }
 
-    public int getPåmeldingsAvgift() {
-        return påmeldingsAvgift;
+    public int getPameldingsAvgift() {
+        return pameldingsAvgift;
     }
-    public void setPåmeldingsAvgift(int påmeldingsAvgift) {
-        this.påmeldingsAvgift = påmeldingsAvgift;
+    public void setPameldingsAvgift(int pameldingsAvgift) {
+        this.pameldingsAvgift = pameldingsAvgift;
     }
 
     public String getBeskrivelse() {
@@ -110,7 +108,7 @@ public abstract class Arrangement {
     public static String erDatoOK (String dato){
 
         if (dato.isEmpty()){
-            return "Datofelt tomt";
+            return "Vennligst angi dato";
         }
         return "";
     }
@@ -133,6 +131,23 @@ public abstract class Arrangement {
 
         if (kapasitet < 1 || kapasitet > 1000){
             return "Kapasitet under 0 eller over 1000";
+        }
+        return "";
+    }
+    
+
+    public static String erPrisGitt(int betaling){
+
+
+
+        if(betaling == 0){
+            return "Arrangement er gratis";
+        }
+        if(betaling > 600){
+            return "Arrangement er for dyrt";
+        }
+        if(betaling < 0){
+            return "Pris kan ikke være negativ";
         }
         return "";
     }

@@ -37,14 +37,25 @@ class ArrangementTest {
         assertEquals("Kapasitet under 0 eller over 1000", Arrangement.erDeltakerKapasitetOk(1001));
         assertEquals("Kapasitet under 0 eller over 1000", Arrangement.erDeltakerKapasitetOk(-1));
         assertEquals("", Arrangement.erDeltakerKapasitetOk(666));
-
     }
-/*
+
     @Test
-    public void erPameldingBetaltTest(){
-        assertTrue();
+    public void erBeskrivelseGittTest(){
+        assertEquals("Beskrivelse mangler",Arrangement.erBeskrivelseGitt(""));
+        assertEquals("",Arrangement.erBeskrivelseGitt("Tour de la France arrangeres for tusende gang. Delta!"));
+    }
 
-    }*/
+    @Test
+    public void erPrisGittTest(){
+        assertEquals("Arrangement er gratis", Arrangement.erPrisGitt(0));
+        assertEquals("Arrangement er for dyrt", Arrangement.erPrisGitt(666));
+        assertEquals("Pris kan ikke være negativ", Arrangement.erPrisGitt(-100));
+        assertEquals("", Arrangement.erPrisGitt(250));
+    }
 
-
+    @Test
+    public void erDatoGittTest(){
+        assertEquals("Vennligst angi dato", Arrangement.erDatoOK(""));
+        assertEquals("", Arrangement.erDatoOK("12.12.2019"));
+    }
 }
