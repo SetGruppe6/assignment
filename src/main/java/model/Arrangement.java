@@ -138,6 +138,8 @@ public abstract class Arrangement {
 
     public static String erPrisGitt(int betaling){
 
+
+
         if(betaling == 0){
             return "Arrangement er gratis";
         }
