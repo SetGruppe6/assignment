@@ -10,7 +10,7 @@ public abstract class Arrangement {
     private String startTid;
     private String sluttTid;
     private int deltakerKapasitet;
-    private int påmeldingsAvgift;
+    private int pameldingsAvgift;
     private String beskrivelse;
     private ArrayList<Person> deltakere = new ArrayList<>();
 
@@ -20,22 +20,24 @@ public abstract class Arrangement {
 
     public Arrangement(){}
 
+
     public Arrangement(String navn, String beskrivelse, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, ArrayList<Person> deltakere, int påmeldingsAvgift) {
+
         this.navn = navn;
         this.lokasjon = lokasjon;
         this.dato = dato;
         this.startTid = startTid;
         this.sluttTid = sluttTid;
         this.deltakerKapasitet = deltakerKapasitet;
-        this.påmeldingsAvgift = påmeldingsAvgift;
+        this.pameldingsAvgift = pameldingsavgift;
         this.beskrivelse = beskrivelse;
         this.deltakere = deltakere;
     }
 
+
     public Arrangement(String navn){
         this.navn = navn;
     }
-
 
     //GETTER OG SETTER
 
@@ -81,11 +83,11 @@ public abstract class Arrangement {
         this.deltakerKapasitet = deltakerKapasitet;
     }
 
-    public int getPåmeldingsAvgift() {
-        return påmeldingsAvgift;
+    public int getPameldingsAvgift() {
+        return pameldingsAvgift;
     }
-    public void setPåmeldingsAvgift(int påmeldingsAvgift) {
-        this.påmeldingsAvgift = påmeldingsAvgift;
+    public void setPameldingsAvgift(int pameldingsAvgift) {
+        this.pameldingsAvgift = pameldingsAvgift;
     }
 
     public String getBeskrivelse() {
@@ -100,45 +102,70 @@ public abstract class Arrangement {
     //METODER
 
 
-    public static String isNameLongEnough (String name){
+    public static String erTittelOk (String tittel){
 
-        if (name.length() >= 5 && name.length() < 65){
-            return "name Ok";
-        } else if (name.length() >= 65){
-            return "name too long";
-        } else {
-            return "name too short";
+         if (tittel.length() >= 65){
+            return "Tittel for lang";
+        } else if (tittel.length() <= 5){
+            return "Tittel for kort";
         }
+        return "";
     }
 
-    /**public static void scanInfo(){
-        String navn;
-        String sted;
-        String tid;
+    public static String erLokasjonGitt(String lokasjon){
+
+        if (lokasjon.isEmpty()){
+            return "Lokasjon ikke gitt";
+        }
+        return "";
+    }
+
+    public static String erDatoOK (String dato){
+
+        if (dato.isEmpty()){
+            return "Vennligst angi dato";
+        }
+        return "";
+    }
+
+    public static String erTidsromGitt (String start, String slutt){
+
+        if (start.isEmpty() && slutt.isEmpty()){
+            return "Angi start og sluttid";
+        }
+        if (start.isEmpty() && !slutt.isEmpty()){
+            return "Angi starttid";
+        }
+        if (!start.isEmpty() && slutt.isEmpty()){
+            return "Angi sluttid";
+        }
+        return "";
+    }
+
+    public static String erDeltakerKapasitetOk (int kapasitet){
+
+        if (kapasitet < 1 || kapasitet > 1000){
+            return "Kapasitet under 0 eller over 1000";
+        }
+        return "";
+    }
+    
+
+    public static String erPrisGitt(int betaling){
 
 
 
-        Scanner sjekk = new Scanner(System.in);
-        System.out.println("Skriv navn på arrangement:");
-        navn = sjekk.nextLine();
-        System.out.println("Skriv inn sted:");
-
-        sted =   sjekk.nextLine();
-
-        System.out.println("Når går arrangementet?");
-        tid = sjekk.nextLine();
-
-        //Arrangement hei = new Arrangement (navn, sted, tid);
-
-        ArrayList<Arrangement> liste = new ArrayList<>();
-
-        liste.add(new Arrangement(navn, sted, tid));
-
-        //System.out.println(liste);
-
-    }**/
-
-
+        if(betaling == 0){
+            return "Arrangement er gratis";
+        }
+        if(betaling > 600){
+            return "Arrangement er for dyrt";
+        }
+        if(betaling < 0){
+            return "Pris kan ikke være negativ";
+        }
+        return "";
+    }
 
 
     @Override

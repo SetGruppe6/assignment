@@ -79,6 +79,18 @@ public class AdminController implements Initializable {
     }
 
 
+    public void opprettArrangement(ActionEvent event) throws IOException {
+        Parent brukerParent = FXMLLoader.load(getClass().getResource("/opprettarrangement.fxml"));
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+    }
+
+    @FXML
+    private void initialize(){
+
+
 
     public void meldPaa(ActionEvent event) throws IOException {
 
@@ -112,7 +124,7 @@ public class AdminController implements Initializable {
                     adresseLabel.setText(ny.getLokasjon());
                     tidsromLabel.setText(ny.getStartTid() + " - " + ny.getSluttTid());
                     kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
-                    prisLabel.setText(String.valueOf(ny.getPåmeldingsAvgift()));
+                    prisLabel.setText(String.valueOf(ny.getPameldingsAvgift()));
                     descriptionLabel.setText(ny.getBeskrivelse());
                     deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
                     deltakereComboBox.getItems().addAll(ny.getDeltakere());

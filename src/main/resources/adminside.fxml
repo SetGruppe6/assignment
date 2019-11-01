@@ -13,7 +13,7 @@
    <Button layoutX="491.0" layoutY="337.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
    <ListView fx:id="arrangementListView" layoutX="14.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" />
    <ComboBox fx:id="sorteringComboBox" layoutX="14.0" layoutY="60.0" prefHeight="27.0" prefWidth="200.0" />
-   <Button fx:id="opprettButton" layoutX="14.0" layoutY="301.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="153.0" text="Opprett arrangement" />
+   <Button fx:id="opprettButton" layoutX="14.0" layoutY="301.0" mnemonicParsing="false" onAction="#opprettArrangement" prefHeight="27.0" prefWidth="153.0" text="Opprett arrangement" />
    <Label fx:id="tittelLabel" layoutX="238.0" layoutY="53.0" text="Arrangement" underline="true">
       <font>
          <Font size="24.0" />
