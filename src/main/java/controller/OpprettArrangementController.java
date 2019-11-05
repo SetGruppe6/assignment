@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class OpprettArrangementController {
@@ -25,7 +26,7 @@ public class OpprettArrangementController {
     private TextField tittelTextField;
 
     @FXML
-    private TextField datoTextField;
+    private DatePicker datoTextField;
 
     @FXML
     private TextField stedTextField;
@@ -65,7 +66,7 @@ public class OpprettArrangementController {
     void opprettArrangement(ActionEvent event)  {
         String tittel = tittelTextField.getText();
         String sted = stedTextField.getText();
-        String dato = datoTextField.getText();
+        LocalDate dato = datoTextField.getValue();
         String startTid = startTextField.getText();
         String sluttTid = sluttTextField.getText();
         int deltakerKapasitet = Integer.parseInt(kapasitetTextField.getText());

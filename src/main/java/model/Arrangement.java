@@ -1,12 +1,13 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Arrangement {
 
     private String navn;
     private String lokasjon;
-    private String dato;
+    private LocalDate dato;
     private String startTid;
     private String sluttTid;
     private int deltakerKapasitet;
@@ -23,7 +24,7 @@ public abstract class Arrangement {
     public Arrangement(){}
 
 
-    public Arrangement(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
+    public Arrangement(String navn, String lokasjon, LocalDate dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
         this.navn = navn;
         this.lokasjon = lokasjon;
@@ -36,7 +37,7 @@ public abstract class Arrangement {
         this.deltakere = deltakere;
     }
 
-    public Arrangement(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
+    public Arrangement(String navn, String lokasjon, LocalDate dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
         this.navn = navn;
         this.lokasjon = lokasjon;
         this.dato = dato;
@@ -69,10 +70,10 @@ public abstract class Arrangement {
         this.lokasjon = lokasjon;
     }
 
-    public String getDato() {
+    public LocalDate getDato() {
         return dato;
     }
-    public void setDato(String dato) {
+    public void setDato(LocalDate dato) {
         this.dato = dato;
     }
 
