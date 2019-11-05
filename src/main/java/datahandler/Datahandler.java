@@ -35,8 +35,10 @@ public class Datahandler {
         return listePersoner;
     }
 
-    private static ArrayList<Arrangement> listeArrangement = new ArrayList<>();
-    private final static ObservableList<Arrangement> arrangementListe = FXCollections.observableArrayList(listeArrangement);
+
+    //private static ArrayList<Arrangement> listeArrangement = Arrangement.getArrangementer();
+    private static ObservableList<Arrangement> arrangementListe = FXCollections.observableList(Arrangement.getArrangementer());
+
 
     private static ArrayList<Person> deltakere = new ArrayList<>();
 
@@ -47,10 +49,13 @@ public class Datahandler {
            arrangementListe.add(new Sykkel("Tour de Halden", "Halden", "24.12.2019", "12:00", "18:00", 50, 100, "Dette er et sykkelløp", deltakere));
            arrangementListe.add(new Ski("Birkebeinerne", "et sted", "12.12.2019", "11:00", "16:00", 50, 50, "Dette er et skiløp" , deltakere));
         }
+
+
         return arrangementListe;
     }
 
     public static ArrayList<Person> getDeltakere() {
         return deltakere;
     }
+
 }

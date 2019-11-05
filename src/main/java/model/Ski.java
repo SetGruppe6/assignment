@@ -9,6 +9,10 @@ public class Ski extends Arrangement {
         super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere);
     }
 
+    public Ski(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
+        super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere, distanse);
+    }
+
     public static Distanse[] getSkiAvstander() {
         return skiAvstander;
     }
@@ -18,7 +22,7 @@ public class Ski extends Arrangement {
     }
 
     public static void fyllDistanseListe() {
-        String[] kategori = {"Spring", "Langdistanse", "Klassisk", "Fristil"};
+        String[] kategori = {"Sprint", "Langdistanse", "Klassisk", "Fristil"};
         Distanse[] liste = new Distanse[4];
         int k = 0;
 

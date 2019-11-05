@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OpprettArrangementController">
+<AnchorPane fx:id="content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OpprettArrangementController">
    <children>
       <Label layoutX="169.0" layoutY="31.0" text="Opprett Arrangement" underline="true">
          <font>
@@ -44,7 +44,7 @@
             <Label text="Slutttid" GridPane.rowIndex="6" />
             <Label text="Kapasitet" GridPane.rowIndex="7" />
             <TextField fx:id="tittelTextField" GridPane.columnIndex="1" />
-            <TextField fx:id="datoTextField" promptText="dd.mm.yyy" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="datoTextField" promptText="dd.mm.yyyy" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="stedTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="startTextField" promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="sluttTextField" promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -57,7 +57,7 @@
       </GridPane>
       <Label layoutX="415.0" layoutY="107.0" text="Beskrivelse" />
       <TextArea fx:id="beskrivelseTextArea" layoutX="370.0" layoutY="132.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-      <Button fx:id="ferdigButton" layoutX="370.0" layoutY="350.0" mnemonicParsing="false" text="Opprett arrangement" />
-      <Button fx:id="avbrytButton" layoutX="527.0" layoutY="350.0" mnemonicParsing="false" onAction="#tilbakeFraOpprettArrangement" text="Avbryt" />
+      <Button fx:id="ferdigButton" layoutX="370.0" layoutY="350.0" mnemonicParsing="false" onAction="#validerInput" text="Opprett arrangement" />
+      <Button fx:id="avbrytButton" layoutX="527.0" layoutY="350.0" mnemonicParsing="false" onAction="#avbrytOpprettArrangement" text="Avbryt" />
    </children>
 </AnchorPane>

@@ -3,19 +3,23 @@ package controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class OpprettArrangementController {
+
+    @FXML
+    private AnchorPane content;
 
     @FXML
     private TextField tittelTextField;
@@ -55,16 +59,10 @@ public class OpprettArrangementController {
 
     Alert opprettAlert = new Alert(Alert.AlertType.INFORMATION);
 
-    public void tilbakeFraOpprettArrangement(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
-    }
+    public void avbrytOpprettArrangement(ActionEvent event) { returnerTilAdminSide(event); }
 
     @FXML
-    void validerInput(ActionEvent event) {
+    void opprettArrangement(ActionEvent event)  {
         String tittel = tittelTextField.getText();
         String sted = stedTextField.getText();
         String dato = datoTextField.getText();
@@ -73,11 +71,47 @@ public class OpprettArrangementController {
         int deltakerKapasitet = Integer.parseInt(kapasitetTextField.getText());
         int paameldingAvgift = Integer.parseInt(prisTextField.getText());
         String beskrivelse = beskrivelseTextArea.getText();
+        Distanse distanse = distanseTextField.getValue();
 
+        if(typeTextField.getSelectionModel().getSelectedItem() == "Sykkel") {
+            ArrayList<Person> deltaker = new ArrayList<Person>();
+            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,deltaker,distanse);
+            Arrangement.leggTilArrangement(sykkelLop);
+        }
+        else if(typeTextField.getSelectionModel().getSelectedItem() == "Ski") {
+            ArrayList<Person> deltaker = new ArrayList<Person>();
+            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,deltaker,distanse);
+            Arrangement.leggTilArrangement(skiLop);
+        }
+        else if(typeTextField.getSelectionModel().getSelectedItem() == "Springe") {
+            ArrayList<Person> deltaker = new ArrayList<Person>();
+            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,deltaker,distanse);
+            Arrangement.leggTilArrangement(lop);
+        }
+
+        returnerTilAdminSide(event);
     }
 
+    private void returnerTilAdminSide(ActionEvent event)  {
+        Parent brukerParent = null;
 
-    EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            opprettAlert.setTitle("Error: innlasting av adminside feilet");
+            opprettAlert.setHeaderText("Noe gikk galt!");
+            opprettAlert.setContentText("Kunne ikke laste inn adminside! Kontakt systemadministrator");
+            opprettAlert.showAndWait();
+        }
+
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+    }
+
+    /**EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
 
@@ -87,7 +121,7 @@ public class OpprettArrangementController {
             * feilmeldingen til og printes i en alert-box så man vet hvilke felter man har misset
             *
             * mangler noe implementasjon på feltene.*/
-            StringBuilder resultat = new StringBuilder();
+            /**StringBuilder resultat = new StringBuilder();
             //String resultat = "";
 
             //resultat.append("\n").append(this.Arrangement.erTittelOk(tittelTextField.getText()));
@@ -108,11 +142,11 @@ public class OpprettArrangementController {
                 opprettAlert.showAndWait();
             }
         }
-    };
+    };**/
 
     @FXML
     private void initialize(){
-        ferdigButton.setOnAction(event);
+        //ferdigButton.setOnAction(event);
 
         typeTextField.getItems().addAll("Sykkel", "Ski", "Springe");
         typeTextField.valueProperty().addListener(new ChangeListener<String>() {

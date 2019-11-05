@@ -10,6 +10,10 @@ private static Distanse[] sykkelAvstander = new Distanse[3];
         super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere);
     }
 
+    public Sykkel(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
+        super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere, distanse);
+    }
+
     public static Distanse[] getSykkelAvstander() {
         return sykkelAvstander;
     }

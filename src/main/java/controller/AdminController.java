@@ -143,6 +143,8 @@ public class AdminController implements Initializable {
                     }
                 }
             });
+
+
             arrangementListView.getSelectionModel().selectFirst();
         }
     }

@@ -13,6 +13,8 @@ public abstract class Arrangement {
     private int pameldingsAvgift;
     private String beskrivelse;
     private ArrayList<Person> deltakere = new ArrayList<>();
+    private Distanse distanse;
+    private static ArrayList<Arrangement> arrangementer = new ArrayList<>();
 
     public ArrayList<Person> getDeltakere() {
         return deltakere;
@@ -34,6 +36,18 @@ public abstract class Arrangement {
         this.deltakere = deltakere;
     }
 
+    public Arrangement(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
+        this.navn = navn;
+        this.lokasjon = lokasjon;
+        this.dato = dato;
+        this.startTid = startTid;
+        this.sluttTid = sluttTid;
+        this.deltakerKapasitet = deltakerKapasitet;
+        this.pameldingsAvgift = pameldingsAvgift;
+        this.beskrivelse = beskrivelse;
+        this.deltakere = deltakere;
+        this.distanse = distanse;
+    }
 
     public Arrangement(String navn){
         this.navn = navn;
@@ -98,6 +112,25 @@ public abstract class Arrangement {
         this.beskrivelse = beskrivelse;
     }
 
+    public void setDeltakere(ArrayList<Person> deltakere) {
+        this.deltakere = deltakere;
+    }
+
+    public Distanse getDistanse() {
+        return distanse;
+    }
+
+    public void setDistanse(Distanse distanse) {
+        this.distanse = distanse;
+    }
+
+    public static ArrayList<Arrangement> getArrangementer() {
+        return arrangementer;
+    }
+
+    public static void setArrangementer(ArrayList<Arrangement> arrangementer) {
+        Arrangement.arrangementer = arrangementer;
+    }
 
     //METODER
 
@@ -153,8 +186,6 @@ public abstract class Arrangement {
 
     public static String erPrisGitt(int betaling){
 
-
-
         if(betaling == 0){
             return "Arrangement er gratis";
         }
@@ -165,6 +196,10 @@ public abstract class Arrangement {
             return "Pris kan ikke være negativ";
         }
         return "";
+    }
+
+    public static void leggTilArrangement(Arrangement arrangement) {
+        arrangementer.add(arrangement);
     }
 
 
