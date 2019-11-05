@@ -40,15 +40,9 @@ public class Datahandler {
 
     private static ArrayList<Person> deltakere = new ArrayList<>();
 
-    private static void fyllopp(){
-        for (int i = 0; i <5 ; i++) {
-            deltakere.add(new Person("navn"+ i, "etternavn" + i));
-        }
-    }
 
     public static ObservableList<Arrangement> arrangementData(){
         if(arrangementListe.size() == 0 ){
-            fyllopp();
            arrangementListe.add(new Lop("Holmeenkollen Stafetten", "Oslo", "12.12.2012", "00:00","01:00", 100, 250, "Dette er et maraton", deltakere));
            arrangementListe.add(new Sykkel("Tour de Halden", "Halden", "24.12.2019", "12:00", "18:00", 50, 100, "Dette er et sykkelløp", deltakere));
            arrangementListe.add(new Ski("Birkebeinerne", "et sted", "12.12.2019", "11:00", "16:00", 50, 50, "Dette er et skiløp" , deltakere));

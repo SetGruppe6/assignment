@@ -51,15 +51,11 @@ public class MeldPaaController {
     public void selectAllMetode(ActionEvent event) {
         Person lagspiller;
         lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
-        personerListe.add(lagspiller);
 
-        //Metode som legger til meldte personer i listen deltakere i Datahandler klassen våres.
-        for(Person enPerson : personerListe){
-            Datahandler.getDeltakere().add(enPerson);
-        }
+        Datahandler.getDeltakere().add(lagspiller);
 
         String variabel = new String();
-        for (Person enPerson: personerListe) {
+        for (Person enPerson: Datahandler.getDeltakere()) {
             variabel += enPerson.getFornavn()+  " " + enPerson.getEtternavn() + "\n";
         }
         listeTextArea.setText(variabel);
