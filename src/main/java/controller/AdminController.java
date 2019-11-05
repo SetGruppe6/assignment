@@ -69,6 +69,7 @@ public class AdminController implements Initializable {
 
     private ArrayList<Person> personer = new ArrayList<>();
 
+    MeldPaaController meldPaaController = new MeldPaaController();
 
     public void gaaTilbake(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
@@ -78,7 +79,6 @@ public class AdminController implements Initializable {
         vindu.show();
     }
 
-
     public void opprettArrangement(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/opprettarrangement.fxml"));
         Scene brukerScene = new Scene(brukerParent);
@@ -86,7 +86,6 @@ public class AdminController implements Initializable {
         vindu.setScene(brukerScene);
         vindu.show();
     }
-
 
     public void meldPaa (ActionEvent event) throws IOException {
 
@@ -101,10 +100,14 @@ public class AdminController implements Initializable {
         personComboBox.getItems().add(per);
     }
 
+    public void setItems(){
+        arrangementListView.setItems(Datahandler.arrangementData());
+    }
+
         @Override
         public void initialize (URL url, ResourceBundle resourceBundle){
 
-            arrangementListView.setItems(Datahandler.arrangementData());
+            setItems();
 
             personComboBox.getItems().addAll(personer);
 
@@ -122,6 +125,21 @@ public class AdminController implements Initializable {
                         deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
                         deltakereComboBox.getItems().addAll(ny.getDeltakere());
 
+                        if (ny instanceof Lop){
+                            meldPaaController.setLopInstance(true);
+                            meldPaaController.setSykkelInstance(false);
+                            meldPaaController.setSkiInstance(false);
+                        }
+                        if (ny instanceof  Ski) {
+                            meldPaaController.setSkiInstance(true);
+                            meldPaaController.setLopInstance(false);
+                            meldPaaController.setSykkelInstance(false);
+                        }
+                        if (ny instanceof Sykkel){
+                            meldPaaController.setSykkelInstance(true);
+                            meldPaaController.setLopInstance(false);
+                            meldPaaController.setSkiInstance(false);
+                        }
 
                         Runnable runnable = new Runnable() {
                             @Override
@@ -145,4 +163,12 @@ public class AdminController implements Initializable {
             });
             arrangementListView.getSelectionModel().selectFirst();
         }
+
+    public ListView<Arrangement> getArrangementListView() {
+        return arrangementListView;
     }
+
+    public Label getTittelLabel() {
+        return tittelLabel;
+    }
+}

@@ -33,11 +33,21 @@ public class MeldPaaController {
 
     private ArrayList<Person> personerListe = new ArrayList<>();
 
+    private static boolean lopInstance = false;
+    private static boolean skiInstance = false;
+    private static boolean sykkelInstance = false;
+
+
+
     @FXML
     public void initialize(){
 
         lagspillereListView.setItems(Datahandler.personData());
         lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        if(lopInstance || skiInstance || sykkelInstance){
+            selectAllButton.setText("randomtext");
+        }
     }
 
     public void gaaTilbake(ActionEvent event) throws IOException {
@@ -52,7 +62,16 @@ public class MeldPaaController {
         Person lagspiller;
         lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
 
-        Datahandler.getDeltakere().add(lagspiller);
+        if (sykkelInstance && !Datahandler.sykkel.getDeltakere().contains(lagspiller)){
+            Datahandler.sykkel.getDeltakere().add(lagspiller);
+        }
+        if (skiInstance && !Datahandler.ski.getDeltakere().contains(lagspiller)){
+            Datahandler.ski.getDeltakere().add(lagspiller);
+        }
+        if(lopInstance && !Datahandler.lop.getDeltakere().contains(lagspiller)){
+            Datahandler.lop.getDeltakere().add(lagspiller);
+        }
+
 
         String variabel = new String();
         for (Person enPerson: Datahandler.getDeltakere()) {
@@ -64,19 +83,40 @@ public class MeldPaaController {
 
     public void nyMetode(ActionEvent event)  {
         FXMLLoader fxmlLoader = new FXMLLoader();
-
         fxmlLoader.setLocation(getClass().getResource("/adminside.fxml"));
-
         try {
             fxmlLoader.load();
         }catch (IOException e){
             System.out.println(e);
         }
-
         Parent p = fxmlLoader.getRoot();
         Scene scene = new Scene(p);
         Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(scene);
         vindu.show();
+    }
+
+    public boolean isLopInstance() {
+        return lopInstance;
+    }
+
+    public void setLopInstance(boolean lopInstance) {
+        this.lopInstance = lopInstance;
+    }
+
+    public boolean isSkiInstance() {
+        return skiInstance;
+    }
+
+    public void setSkiInstance(boolean skiInstance) {
+        this.skiInstance = skiInstance;
+    }
+
+    public boolean isSykkelInstance() {
+        return sykkelInstance;
+    }
+
+    public void setSykkelInstance(boolean sykkelInstance) {
+        this.sykkelInstance = sykkelInstance;
     }
 }
