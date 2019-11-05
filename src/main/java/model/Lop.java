@@ -7,9 +7,15 @@ public class Lop extends Arrangement {
    private static Distanse[] lopsAvstander = new Distanse[5];
 
 
+    public Lop(String navn) {
+        super(navn);
+    }
+
     public Lop(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
         super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere);
     }
+
+
 
     public static Distanse[] getLopsAvstander() {
         return lopsAvstander;

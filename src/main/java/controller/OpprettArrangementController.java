@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
 
@@ -21,10 +18,10 @@ import java.io.IOException;
 public class OpprettArrangementController {
 
     @FXML
-    private Button ferdigButton;
+    private TextField tittelTextField;
 
     @FXML
-    private TextField tittelTextField;
+    private TextField datoTextField;
 
     @FXML
     private TextField stedTextField;
@@ -37,6 +34,18 @@ public class OpprettArrangementController {
 
     @FXML
     private TextField kapasitetTextField;
+
+    @FXML
+    private TextField prisTextField;
+
+    @FXML
+    private TextArea beskrivelseTextArea;
+
+    @FXML
+    private Button ferdigButton;
+
+    @FXML
+    private Button avbrytButton;
 
     @FXML
     private ComboBox<String> typeTextField;
@@ -54,6 +63,19 @@ public class OpprettArrangementController {
         vindu.show();
     }
 
+    @FXML
+    void validerInput(ActionEvent event) {
+        String tittel = tittelTextField.getText();
+        String sted = stedTextField.getText();
+        String dato = datoTextField.getText();
+        String startTid = startTextField.getText();
+        String sluttTid = sluttTextField.getText();
+        int deltakerKapasitet = Integer.parseInt(kapasitetTextField.getText());
+        int paameldingAvgift = Integer.parseInt(prisTextField.getText());
+        String beskrivelse = beskrivelseTextArea.getText();
+
+    }
+
 
     EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
         @Override
@@ -68,15 +90,10 @@ public class OpprettArrangementController {
             StringBuilder resultat = new StringBuilder();
             //String resultat = "";
 
-            resultat.append("\n").append(Arrangement.erTittelOk(tittelTextField.getText()));
+            //resultat.append("\n").append(this.Arrangement.erTittelOk(tittelTextField.getText()));
             resultat.append("\n").append(Arrangement.erLokasjonGitt(stedTextField.getText()));
             resultat.append("\n").append(Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText()));
             resultat.append("\n").append(Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText())));
-
-            /**resultat += "\n"+Arrangement.erTittelOk(tittelTextField.getText());
-            resultat += "\n"+Arrangement.erLokasjonGitt(stedTextField.getText());
-            resultat += "\n"+Arrangement.erTidsromGitt(startTextField.getText(), sluttTextField.getText());
-            resultat += "\n"+Arrangement.erDeltakerKapasitetOk(Integer.parseInt(kapasitetTextField.getText()));**/
 
 
             if (resultat.toString().isEmpty()) {

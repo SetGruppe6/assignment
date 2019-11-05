@@ -57,7 +57,7 @@
       </GridPane>
       <Label layoutX="415.0" layoutY="107.0" text="Beskrivelse" />
       <TextArea fx:id="beskrivelseTextArea" layoutX="370.0" layoutY="132.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-      <Button fx:id="ferdigButton" layoutX="370.0" layoutY="350.0" mnemonicParsing="false" text="Opprett arrangement" />
+      <Button fx:id="ferdigButton" layoutX="370.0" layoutY="350.0" mnemonicParsing="false" onAction="#validerInput" text="Opprett arrangement" />
       <Button fx:id="avbrytButton" layoutX="527.0" layoutY="350.0" mnemonicParsing="false" onAction="#tilbakeFraOpprettArrangement" text="Avbryt" />
    </children>
 </AnchorPane>

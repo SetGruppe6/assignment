@@ -102,7 +102,7 @@ public abstract class Arrangement {
     //METODER
 
 
-    public static String erTittelOk (String tittel){
+    public String erTittelOk (String tittel){
 
          if (tittel.length() >= 65){
             return "Tittel for lang";
