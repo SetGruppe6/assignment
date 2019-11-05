@@ -15,6 +15,8 @@ import model.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class OpprettArrangementController {
@@ -67,8 +69,8 @@ public class OpprettArrangementController {
         String tittel = tittelTextField.getText();
         String sted = stedTextField.getText();
         LocalDate dato = datoTextField.getValue();
-        String startTid = startTextField.getText();
-        String sluttTid = sluttTextField.getText();
+        LocalTime startTid = LocalTime.parse(startTextField.getText(),DateTimeFormatter.ISO_LOCAL_TIME);
+        LocalTime sluttTid = LocalTime.parse(sluttTextField.getText(),DateTimeFormatter.ISO_LOCAL_TIME);
         int deltakerKapasitet = Integer.parseInt(kapasitetTextField.getText());
         int paameldingAvgift = Integer.parseInt(prisTextField.getText());
         String beskrivelse = beskrivelseTextArea.getText();

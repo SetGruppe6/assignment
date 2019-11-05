@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public abstract class Arrangement {
@@ -8,8 +9,8 @@ public abstract class Arrangement {
     private String navn;
     private String lokasjon;
     private LocalDate dato;
-    private String startTid;
-    private String sluttTid;
+    private LocalTime startTid;
+    private LocalTime sluttTid;
     private int deltakerKapasitet;
     private int pameldingsAvgift;
     private String beskrivelse;
@@ -24,7 +25,7 @@ public abstract class Arrangement {
     public Arrangement(){}
 
 
-    public Arrangement(String navn, String lokasjon, LocalDate dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
+    public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
         this.navn = navn;
         this.lokasjon = lokasjon;
@@ -37,7 +38,7 @@ public abstract class Arrangement {
         this.deltakere = deltakere;
     }
 
-    public Arrangement(String navn, String lokasjon, LocalDate dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
+    public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
         this.navn = navn;
         this.lokasjon = lokasjon;
         this.dato = dato;
@@ -77,17 +78,17 @@ public abstract class Arrangement {
         this.dato = dato;
     }
 
-    public String getStartTid() {
+    public LocalTime getStartTid() {
         return startTid;
     }
-    public void setStartTid(String startTid) {
+    public void setStartTid(LocalTime startTid) {
         this.startTid = startTid;
     }
 
-    public String getSluttTid() {
+    public LocalTime getSluttTid() {
         return sluttTid;
     }
-    public void setSluttTid(String sluttTid) {
+    public void setSluttTid(LocalTime sluttTid) {
         this.sluttTid = sluttTid;
     }
 

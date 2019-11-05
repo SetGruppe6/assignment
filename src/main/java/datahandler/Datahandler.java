@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import model.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Datahandler {
@@ -46,9 +47,9 @@ public class Datahandler {
 
     public static ObservableList<Arrangement> arrangementData(){
         if(arrangementListe.size() == 0 ){
-           arrangementListe.add(new Lop("Holmeenkollen Stafetten", "Oslo", LocalDate.of(2019,12,24), "00:00","01:00", 100, 250, "Dette er et maraton", deltakere));
-           arrangementListe.add(new Sykkel("Tour de Halden", "Halden", LocalDate.of(2019,12,18), "12:00", "18:00", 50, 100, "Dette er et sykkelløp", deltakere));
-           arrangementListe.add(new Ski("Birkebeinerne", "et sted", LocalDate.of(2019,11,28), "11:00", "16:00", 50, 50, "Dette er et skiløp" , deltakere));
+           arrangementListe.add(new Lop("Holmeenkollen Stafetten", "Oslo", LocalDate.of(2019,12,24), LocalTime.of(23,0),LocalTime.of(1, 0), 100, 250, "Dette er et maraton", deltakere));
+           arrangementListe.add(new Sykkel("Tour de Halden", "Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Dette er et sykkelløp", deltakere));
+           arrangementListe.add(new Ski("Birkebeinerne", "et sted", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Dette er et skiløp" , deltakere));
         }
 
 
