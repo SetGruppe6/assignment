@@ -53,6 +53,11 @@ public class MeldPaaController {
         lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
         personerListe.add(lagspiller);
 
+        //Metode som legger til meldte personer i listen deltakere i Datahandler klassen våres.
+        for(Person enPerson : personerListe){
+            Datahandler.getDeltakere().add(enPerson);
+        }
+
         String variabel = new String();
         for (Person enPerson: personerListe) {
             variabel += enPerson.getFornavn()+  " " + enPerson.getEtternavn() + "\n";
@@ -70,12 +75,6 @@ public class MeldPaaController {
             fxmlLoader.load();
         }catch (IOException e){
             System.out.println(e);
-        }
-
-        AdminController adminController = fxmlLoader.getController();
-
-        for(Person enPerson : personerListe){
-            adminController.function(enPerson);
         }
 
         Parent p = fxmlLoader.getRoot();

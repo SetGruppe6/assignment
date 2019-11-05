@@ -56,4 +56,7 @@ public class Datahandler {
         return arrangementListe;
     }
 
+    public static ArrayList<Person> getDeltakere() {
+        return deltakere;
+    }
 }

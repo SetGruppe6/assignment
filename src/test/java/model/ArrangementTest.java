@@ -39,11 +39,14 @@ class ArrangementTest {
         assertEquals("", Arrangement.erDeltakerKapasitetOk(666));
     }
 
+    /*
     @Test
     public void erBeskrivelseGittTest(){
         assertEquals("Beskrivelse mangler",Arrangement.erBeskrivelseGitt(""));
         assertEquals("",Arrangement.erBeskrivelseGitt("Tour de la France arrangeres for tusende gang. Delta!"));
     }
+
+     */
 
     @Test
     public void erPrisGittTest(){
