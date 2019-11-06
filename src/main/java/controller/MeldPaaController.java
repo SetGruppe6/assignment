@@ -39,6 +39,7 @@ public class MeldPaaController {
 
 
 
+
     @FXML
     public void initialize(){
         lagspillereListView.setItems(Datahandler.personData());
@@ -54,10 +55,14 @@ public class MeldPaaController {
     }
 
     public void leggTilValgtePersoner(ActionEvent event) {
-        Person lagspiller;
-        lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
+        Person lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
 
-        if (sykkelInstance && !Datahandler.sykkel.getDeltakere().contains(lagspiller)){
+        ArrayList<Person> deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem().getDeltakere();
+
+        if(!deltakerListe.contains(lagspiller)) {
+            deltakerListe.add(lagspiller);
+        }
+        /**if (sykkelInstance && !Datahandler.sykkel.getDeltakere().contains(lagspiller)){
             Datahandler.sykkel.getDeltakere().add(lagspiller);
         }
         if (skiInstance && !Datahandler.ski.getDeltakere().contains(lagspiller)){
@@ -65,7 +70,7 @@ public class MeldPaaController {
         }
         if(lopInstance && !Datahandler.lop.getDeltakere().contains(lagspiller)){
             Datahandler.lop.getDeltakere().add(lagspiller);
-        }
+        }**/
 
         String variabel = new String();
         for (Person enPerson: Datahandler.getDeltakere()) {

@@ -218,6 +218,10 @@ public abstract class Arrangement {
         arrangementer.add(arrangement);
     }
 
+    public void leggTilDeltaker(Person person) {
+        deltakere.add(person);
+    }
+
 
     @Override
     public String toString() {
