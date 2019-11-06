@@ -44,8 +44,8 @@ public class Datahandler {
 
     // TESTLØP
     public static Lop lop = new Lop("Holmeenkollen Stafetten", "Oslo", LocalDate.of(2019,12,24), LocalTime.of(23,0),LocalTime.of(1, 0), 100, 250, "Dette er et maraton", new ArrayList<>());
-    public static Ski ski = new Sykkel("Tour de Halden", "Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Dette er et sykkelløp", new ArrayList<>());
-    public static Sykkel sykkel = new Ski("Birkebeinerne", "et sted", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Dette er et skiløp" , new ArrayList<>());
+    public static Sykkel sykkel = new Sykkel("Tour de Halden", "Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Dette er et sykkelløp", new ArrayList<>());
+    public static Ski ski = new Ski("Birkebeinerne", "et sted", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Dette er et skiløp" , new ArrayList<>());
 
     private static ObservableList<Arrangement> arrangementListe = FXCollections.observableList(Arrangement.getArrangementer());
 
@@ -66,8 +66,6 @@ public class Datahandler {
         return deltakere;
     }
 
-
-}
 
     public static ObservableList<Arrangement> getArrangementListe() {
         return arrangementListe;
