@@ -41,13 +41,8 @@ public class MeldPaaController {
 
     @FXML
     public void initialize(){
-
         lagspillereListView.setItems(Datahandler.personData());
         lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        if(lopInstance || skiInstance || sykkelInstance){
-            selectAllButton.setText("randomtext");
-        }
     }
 
     public void gaaTilbake(ActionEvent event) throws IOException {
@@ -58,7 +53,7 @@ public class MeldPaaController {
         vindu.show();
     }
 
-    public void selectAllMetode(ActionEvent event) {
+    public void leggTilValgtePersoner(ActionEvent event) {
         Person lagspiller;
         lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
 
@@ -72,7 +67,6 @@ public class MeldPaaController {
             Datahandler.lop.getDeltakere().add(lagspiller);
         }
 
-
         String variabel = new String();
         for (Person enPerson: Datahandler.getDeltakere()) {
             variabel += enPerson.getFornavn()+  " " + enPerson.getEtternavn() + "\n";
@@ -81,7 +75,7 @@ public class MeldPaaController {
     }
 
 
-    public void nyMetode(ActionEvent event)  {
+    public void tilbakeTilAdminside(ActionEvent event)  {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/adminside.fxml"));
         try {

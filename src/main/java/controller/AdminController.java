@@ -124,6 +124,7 @@ public class AdminController implements Initializable {
                         descriptionLabel.setText(ny.getBeskrivelse());
                         deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
                         deltakereComboBox.getItems().addAll(ny.getDeltakere());
+                        deltakereComboBox.getSelectionModel().selectFirst();
 
                         if (ny instanceof Lop){
                             meldPaaController.setLopInstance(true);
