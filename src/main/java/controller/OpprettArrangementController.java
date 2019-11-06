@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
 
@@ -20,9 +19,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class OpprettArrangementController {
-
-    @FXML
-    private AnchorPane content;
 
     @FXML
     private TextField tittelTextField;
@@ -60,6 +56,34 @@ public class OpprettArrangementController {
     @FXML
     private ComboBox<Distanse> distanseTextField;
 
+    @FXML
+    private Label tittelLable;
+
+    @FXML
+    private Label typeLabel;
+
+    @FXML
+    private Label distanseLabel;
+
+    @FXML
+    private Label datoLabel;
+
+    @FXML
+    private Label stedLabel;
+
+    @FXML
+    private Label startLabel;
+
+    @FXML
+    private Label sluttLabel;
+
+    @FXML
+    private Label kapasitetLabel;
+
+    @FXML
+    private Label prisLabel;
+
+
     Alert opprettAlert = new Alert(Alert.AlertType.INFORMATION);
 
     public void avbrytOpprettArrangement(ActionEvent event) { returnerTilAdminSide(event); }
@@ -77,18 +101,15 @@ public class OpprettArrangementController {
         Distanse distanse = distanseTextField.getValue();
 
         if(typeTextField.getSelectionModel().getSelectedItem() == "Sykkel") {
-            ArrayList<Person> deltaker = new ArrayList<Person>();
-            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,deltaker,distanse);
+            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
             Arrangement.leggTilArrangement(sykkelLop);
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Ski") {
-            ArrayList<Person> deltaker = new ArrayList<Person>();
-            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,deltaker,distanse);
+            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
             Arrangement.leggTilArrangement(skiLop);
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Springe") {
-            ArrayList<Person> deltaker = new ArrayList<Person>();
-            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,deltaker,distanse);
+            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
             Arrangement.leggTilArrangement(lop);
         }
 
@@ -112,6 +133,15 @@ public class OpprettArrangementController {
         Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
+    }
+
+    private void intputValidering(Arrangement arrangement) {
+        arrangement.erDatoOK(arrangement.getDato());
+        arrangement.erDeltakerKapasitetOk(arrangement.getDeltakerKapasitet());
+        arrangement.erLokasjonGitt(arrangement.getLokasjon());
+        arrangement.erPrisGitt(arrangement.getPameldingsAvgift());
+        arrangement.erStartTidspunktOk(arrangement.getStartTid(), arrangement.getSluttTid());
+        arrangement.erTittelOk(arrangement.getNavn());
     }
 
     /**EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {

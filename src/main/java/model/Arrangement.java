@@ -147,58 +147,67 @@ public abstract class Arrangement {
         return "";
     }
 
-    public static String erLokasjonGitt(String lokasjon){
+    public String erLokasjonGitt(String lokasjon){
 
         if (lokasjon.isEmpty()){
-            return "Lokasjon ikke gitt";
+            return "Fyll inn lokasjon";
         }
         return "";
     }
 
-    public static String erDatoOK (String dato){
+    public String erDatoOK (LocalDate dato){
+        LocalDate iDag = LocalDate.now();
 
-        if (dato.isEmpty()){
-            return "Vennligst angi dato";
+        //Sjekker om dato til opprettet arrangement er før datoen om 14 dager.
+        if (dato.isBefore(iDag.plusDays(14))){
+            return "Arrangementets dato må tidligst være om 14 dager";
+        }
+        else if(dato.isBefore(iDag)) {
+            return "Arrangementets dato kan ikke være i fortiden";
         }
         return "";
     }
 
-    public static String erTidsromGitt (String start, String slutt){
+    public String erStartTidspunktOk(LocalTime start, LocalTime slutt){
+        LocalTime now = LocalTime.now();
+        String formatet = "hh:mm";
 
-        if (start.isEmpty() && slutt.isEmpty()){
-            return "Angi start og sluttid";
+        if(start.isBefore(slutt)) {
+            return "Starttidspunkt kan ikke være før slutttidspunkt";
         }
-        if (start.isEmpty() && !slutt.isEmpty()){
-            return "Angi starttid";
+        else if(!start.toString().equals(formatet)) {
+            return "Vennligts fyll inn klokkeslett på formatet hh:mm";
         }
-        if (!start.isEmpty() && slutt.isEmpty()){
-            return "Angi sluttid";
-        }
+
         return "";
     }
 
-    public static String erDeltakerKapasitetOk (int kapasitet){
+    public String erDeltakerKapasitetOk (int kapasitet){
 
-        if (kapasitet < 1 || kapasitet > 1000){
+        if(kapasitet == 0) {
+            return "Deltakerkapasitet må være større 0";
+        }
+        else if (kapasitet < 1 || kapasitet > 1000){
             return "Kapasitet under 0 eller over 1000";
         }
         return "";
     }
     
 
-    public static String erPrisGitt(int betaling){
+    public String erPrisGitt(int betaling){
 
         if(betaling == 0){
             return "Arrangement er gratis";
         }
-        if(betaling > 600){
+        else if(betaling > 600){
             return "Arrangement er for dyrt";
         }
-        if(betaling < 0){
+        else if(betaling < 0){
             return "Pris kan ikke være negativ";
         }
         return "";
     }
+
 
     public static void leggTilArrangement(Arrangement arrangement) {
         arrangementer.add(arrangement);

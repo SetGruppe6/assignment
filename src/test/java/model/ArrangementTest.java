@@ -30,10 +30,10 @@ class ArrangementTest {
 
     @Test
     public void erTidsromGittTest(){
-        assertEquals("Angi start og sluttid", Arrangement.erTidsromGitt("", ""));
-        assertEquals("Angi sluttid", Arrangement.erTidsromGitt("00:00",""));
-        assertEquals("Angi starttid", Arrangement.erTidsromGitt("","00:00"));
-        assertEquals("", Arrangement.erTidsromGitt("00:00","00:00"));
+        assertEquals("Angi start og sluttid", Arrangement.erStartTidspunktOk("", ""));
+        assertEquals("Angi sluttid", Arrangement.erStartTidspunktOk("00:00",""));
+        assertEquals("Angi starttid", Arrangement.erStartTidspunktOk("","00:00"));
+        assertEquals("", Arrangement.erStartTidspunktOk("00:00","00:00"));
     }
 
     @Test
