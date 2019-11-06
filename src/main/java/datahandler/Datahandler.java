@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Datahandler {
@@ -36,17 +38,17 @@ public class Datahandler {
         return listePersoner;
     }
 
+
     ////////////////////////////////////TESTPERSONER///////////////////////////////////////////////////////////////////////
 
 
     // TESTLØP
-    public static Lop lop = new Lop("Holmeenkollen Stafetten", "Oslo", "12.12.2012", "00:00","01:00", 100, 250, "Dette er et maraton", new ArrayList<>());
-    public static Ski ski = new Ski("Birkebeinerne", "et sted", "12.12.2019", "11:00", "16:00", 50, 50, "Dette er et skiløp" , new ArrayList<>());
-    public static Sykkel sykkel = new Sykkel("Tour de Halden", "Halden", "24.12.2019", "12:00", "18:00", 50, 100, "Dette er et sykkelløp", new ArrayList<>());
+    public static Lop lop = new Lop("Holmeenkollen Stafetten", "Oslo", LocalDate.of(2019,12,24), LocalTime.of(23,0),LocalTime.of(1, 0), 100, 250, "Dette er et maraton", new ArrayList<>());
+    public static Ski ski = new Sykkel("Tour de Halden", "Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Dette er et sykkelløp", new ArrayList<>());
+    public static Sykkel sykkel = new Ski("Birkebeinerne", "et sted", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Dette er et skiløp" , new ArrayList<>());
 
+    private static ObservableList<Arrangement> arrangementListe = FXCollections.observableList(Arrangement.getArrangementer());
 
-    private static ArrayList<Arrangement> listeArrangement = new ArrayList<>();
-    private static ObservableList<Arrangement> arrangementListe = FXCollections.observableArrayList(listeArrangement);
 
     private static ArrayList<Person> deltakere = new ArrayList<>();
 
@@ -56,6 +58,7 @@ public class Datahandler {
            arrangementListe.add(sykkel);
            arrangementListe.add(ski);
         }
+
         return arrangementListe;
     }
 
@@ -63,7 +66,11 @@ public class Datahandler {
         return deltakere;
     }
 
+
+}
+
     public static ObservableList<Arrangement> getArrangementListe() {
         return arrangementListe;
     }
 }
+

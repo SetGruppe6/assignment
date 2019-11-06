@@ -21,6 +21,7 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -115,8 +116,11 @@ public class AdminController implements Initializable {
                 @Override
                 public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement old, Arrangement ny) {
                     if (arrangementListView != null) {
+                        String formatet = "dd.MM.yyyy";
+                        DateTimeFormatter datoFormatering = DateTimeFormatter.ofPattern(formatet);
+
                         tittelLabel.setText(ny.getNavn());
-                        datoLabel.setText(ny.getDato());
+                        datoLabel.setText(datoFormatering.format(ny.getDato()));
                         adresseLabel.setText(ny.getLokasjon());
                         tidsromLabel.setText(ny.getStartTid() + " - " + ny.getSluttTid());
                         kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
@@ -162,6 +166,8 @@ public class AdminController implements Initializable {
                     }
                 }
             });
+
+
             arrangementListView.getSelectionModel().selectFirst();
         }
 

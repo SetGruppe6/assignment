@@ -7,9 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class ArrangementTest {
     @Test
     public void erTittelOkTest(){
-        assertEquals("", Arrangement.erTittelOk("Vasaloppet"));
-        assertEquals("Tittel for lang", Arrangement.erTittelOk("VasaloppetVasaloppetVasaloppetVasaloppetVasaloppetVasaloppetVasaloppet"));
-        assertEquals("Tittel for kort", Arrangement.erTittelOk("Løp"));
+        Lop holmenkollStafetten = new Lop("Holmenkoll Stafetten");
+        Lop holmenkollStafetten3 = new Lop("Hol");
+        Lop holmenkollStafetten2 = new Lop("Holmenkoll stafetten et helvettes løp som ikke ligner grisen, det er kun for de tøffeste jævlene");
+
+        assertEquals("", holmenkollStafetten.erTittelOk(holmenkollStafetten.getNavn()));
+        assertEquals("Tittel for lang", holmenkollStafetten2.erTittelOk(holmenkollStafetten2.getNavn()));
+        assertEquals("Tittel for kort", holmenkollStafetten3.erTittelOk(holmenkollStafetten3.getNavn()));
     }
 
     @Test
@@ -26,10 +30,10 @@ class ArrangementTest {
 
     @Test
     public void erTidsromGittTest(){
-        assertEquals("Angi start og sluttid", Arrangement.erTidsromGitt("", ""));
-        assertEquals("Angi sluttid", Arrangement.erTidsromGitt("00:00",""));
-        assertEquals("Angi starttid", Arrangement.erTidsromGitt("","00:00"));
-        assertEquals("", Arrangement.erTidsromGitt("00:00","00:00"));
+        assertEquals("Angi start og sluttid", Arrangement.erStartTidspunktOk("", ""));
+        assertEquals("Angi sluttid", Arrangement.erStartTidspunktOk("00:00",""));
+        assertEquals("Angi starttid", Arrangement.erStartTidspunktOk("","00:00"));
+        assertEquals("", Arrangement.erStartTidspunktOk("00:00","00:00"));
     }
 
     @Test

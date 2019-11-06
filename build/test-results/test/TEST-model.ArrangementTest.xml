@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="model.ArrangementTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-10-24T10:48:31" hostname="Blendis-MacBook-Pro.local" time="0.018">
+<testsuite name="model.ArrangementTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-05T10:59:55" hostname="LAPTOP-E8A3NEOF" time="0.018">
   <properties/>
-  <testcase name="noe()" classname="model.ArrangementTest" time="0.018"/>
+  <testcase name="erTittelOkTest()" classname="model.ArrangementTest" time="0.018"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

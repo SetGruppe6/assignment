@@ -1,18 +1,22 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public abstract class Arrangement {
 
     private String navn;
     private String lokasjon;
-    private String dato;
-    private String startTid;
-    private String sluttTid;
+    private LocalDate dato;
+    private LocalTime startTid;
+    private LocalTime sluttTid;
     private int deltakerKapasitet;
     private int pameldingsAvgift;
     private String beskrivelse;
     private ArrayList<Person> deltakere = new ArrayList<>();
+    private Distanse distanse;
+    private static ArrayList<Arrangement> arrangementer = new ArrayList<>();
 
     public ArrayList<Person> getDeltakere() {
         return deltakere;
@@ -21,7 +25,7 @@ public abstract class Arrangement {
     public Arrangement(){}
 
 
-    public Arrangement(String navn, String lokasjon, String dato, String startTid, String sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
+    public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
         this.navn = navn;
         this.lokasjon = lokasjon;
@@ -34,6 +38,18 @@ public abstract class Arrangement {
         this.deltakere = deltakere;
     }
 
+    public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere, Distanse distanse) {
+        this.navn = navn;
+        this.lokasjon = lokasjon;
+        this.dato = dato;
+        this.startTid = startTid;
+        this.sluttTid = sluttTid;
+        this.deltakerKapasitet = deltakerKapasitet;
+        this.pameldingsAvgift = pameldingsAvgift;
+        this.beskrivelse = beskrivelse;
+        this.deltakere = deltakere;
+        this.distanse = distanse;
+    }
 
     public Arrangement(String navn){
         this.navn = navn;
@@ -55,24 +71,24 @@ public abstract class Arrangement {
         this.lokasjon = lokasjon;
     }
 
-    public String getDato() {
+    public LocalDate getDato() {
         return dato;
     }
-    public void setDato(String dato) {
+    public void setDato(LocalDate dato) {
         this.dato = dato;
     }
 
-    public String getStartTid() {
+    public LocalTime getStartTid() {
         return startTid;
     }
-    public void setStartTid(String startTid) {
+    public void setStartTid(LocalTime startTid) {
         this.startTid = startTid;
     }
 
-    public String getSluttTid() {
+    public LocalTime getSluttTid() {
         return sluttTid;
     }
-    public void setSluttTid(String sluttTid) {
+    public void setSluttTid(LocalTime sluttTid) {
         this.sluttTid = sluttTid;
     }
 
@@ -98,10 +114,31 @@ public abstract class Arrangement {
         this.beskrivelse = beskrivelse;
     }
 
+    public void setDeltakere(ArrayList<Person> deltakere) {
+        this.deltakere = deltakere;
+    }
+
+    public Distanse getDistanse() {
+        return distanse;
+    }
+
+    public void setDistanse(Distanse distanse) {
+        this.distanse = distanse;
+    }
+
+    public static ArrayList<Arrangement> getArrangementer() {
+        return arrangementer;
+    }
+
+    public static void setArrangementer(ArrayList<Arrangement> arrangementer) {
+        Arrangement.arrangementer = arrangementer;
+    }
+
+
     //METODER
 
 
-    public static String erTittelOk (String tittel){
+    public String erTittelOk (String tittel){
 
          if (tittel.length() >= 65){
             return "Tittel for lang";
@@ -111,56 +148,62 @@ public abstract class Arrangement {
         return "";
     }
 
-    public static String erLokasjonGitt(String lokasjon){
+    public String erLokasjonGitt(String lokasjon){
 
         if (lokasjon.isEmpty()){
-            return "Lokasjon ikke gitt";
+            return "Fyll inn lokasjon";
         }
         return "";
     }
 
-    public static String erDatoOK (String dato){
+    public String erDatoOK (LocalDate dato){
+        LocalDate iDag = LocalDate.now();
 
-        if (dato.isEmpty()){
-            return "Vennligst angi dato";
+        //Sjekker om dato til opprettet arrangement er før datoen om 14 dager.
+        if (dato.isBefore(iDag.plusDays(14))){
+            return "Arrangementets dato må tidligst være om 14 dager";
+        }
+        else if(dato.isBefore(iDag)) {
+            return "Arrangementets dato kan ikke være i fortiden";
         }
         return "";
     }
 
-    public static String erTidsromGitt (String start, String slutt){
+    public String erStartTidspunktOk(LocalTime start, LocalTime slutt){
+        LocalTime now = LocalTime.now();
+        String formatet = "hh:mm";
 
-        if (start.isEmpty() && slutt.isEmpty()){
-            return "Angi start og sluttid";
+        if(start.isBefore(slutt)) {
+            return "Starttidspunkt kan ikke være før slutttidspunkt";
         }
-        if (start.isEmpty() && !slutt.isEmpty()){
-            return "Angi starttid";
+        else if(!start.toString().equals(formatet)) {
+            return "Vennligts fyll inn klokkeslett på formatet hh:mm";
         }
-        if (!start.isEmpty() && slutt.isEmpty()){
-            return "Angi sluttid";
-        }
+
         return "";
     }
 
-    public static String erDeltakerKapasitetOk (int kapasitet){
+    public String erDeltakerKapasitetOk (int kapasitet){
 
-        if (kapasitet < 1 || kapasitet > 1000){
+        if(kapasitet == 0) {
+            return "Deltakerkapasitet må være større 0";
+        }
+        else if (kapasitet < 1 || kapasitet > 1000){
             return "Kapasitet under 0 eller over 1000";
         }
         return "";
     }
     
 
-    public static String erPrisGitt(int betaling){
-
-
+    public String erPrisGitt(int betaling){
 
         if(betaling == 0){
             return "Arrangement er gratis";
         }
-        if(betaling > 600){
+        else if(betaling > 600){
             return "Arrangement er for dyrt";
         }
-        if(betaling < 0){
+        else if(betaling < 0){
             return "Pris kan ikke være negativ";
         }
         return "";
@@ -168,6 +211,11 @@ public abstract class Arrangement {
 
     public static void meldDegPaa(Arrangement typeArrangement, Person person){
         typeArrangement.getDeltakere().add(person);
+    }
+
+
+    public static void leggTilArrangement(Arrangement arrangement) {
+        arrangementer.add(arrangement);
     }
 
 
