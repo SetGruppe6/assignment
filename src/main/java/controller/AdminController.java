@@ -71,6 +71,8 @@ public class AdminController implements Initializable {
     private ArrayList<Person> personer = new ArrayList<>();
 
     MeldPaaController meldPaaController = new MeldPaaController();
+    public static AdminController adminController;
+    public AdminController() {adminController = this;}
 
     public void gaaTilbake(ActionEvent event) throws IOException {
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
