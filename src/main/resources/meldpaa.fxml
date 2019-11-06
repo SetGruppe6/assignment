@@ -10,8 +10,8 @@
    <children>
       <Button layoutX="467.0" layoutY="253.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
       <ListView fx:id="lagspillereListView" editable="true" layoutX="8.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button fx:id="selectAllButton" layoutX="24.0" layoutY="253.0" mnemonicParsing="false" onAction="#selectAllMetode" text="Legg Til Valgt" />
+      <Button fx:id="selectAllButton" layoutX="24.0" layoutY="253.0" mnemonicParsing="false" onAction="#leggTilValgtePersoner" text="Legg Til Valgt" />
       <TextArea fx:id="listeTextArea" editable="false" layoutX="354.0" layoutY="31.0" prefHeight="200.0" prefWidth="225.0" wrapText="true" />
-      <Button layoutX="354.0" layoutY="240.0" mnemonicParsing="false" onAction="#nyMetode" text="Button" />
+      <Button layoutX="354.0" layoutY="240.0" mnemonicParsing="false" onAction="#tilbakeTilAdminside" text="Button" />
    </children>
 </AnchorPane>

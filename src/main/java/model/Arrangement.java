@@ -134,6 +134,7 @@ public abstract class Arrangement {
         Arrangement.arrangementer = arrangementer;
     }
 
+
     //METODER
 
 
@@ -206,6 +207,10 @@ public abstract class Arrangement {
             return "Pris kan ikke være negativ";
         }
         return "";
+    }
+
+    public static void meldDegPaa(Arrangement typeArrangement, Person person){
+        typeArrangement.getDeltakere().add(person);
     }
 
 
