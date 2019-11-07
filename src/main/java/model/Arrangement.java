@@ -140,7 +140,7 @@ public abstract class Arrangement {
 
     public String erTittelOk (String tittel){
 
-         if (tittel.length() >= 65){
+         if (tittel.length() >= 30){
             return "Tittel for lang";
         } else if (tittel.length() <= 5){
             return "Tittel for kort";
@@ -159,12 +159,13 @@ public abstract class Arrangement {
     public String erDatoOK (LocalDate dato){
         LocalDate iDag = LocalDate.now();
 
-        //Sjekker om dato til opprettet arrangement er før datoen om 14 dager.
-        if (dato.isBefore(iDag.plusDays(14))){
-            return "Arrangementets dato må tidligst være om 14 dager";
-        }
-        else if(dato.isBefore(iDag)) {
+
+        if(dato.isBefore(iDag)) {
             return "Arrangementets dato kan ikke være i fortiden";
+        }
+        //Sjekker om dato til opprettet arrangement er før datoen om 30 dager.
+        else if (dato.isBefore(iDag.plusDays(30))){
+            return "Arrangementets dato må tidligst være om 30 dager";
         }
         return "";
     }
@@ -173,11 +174,14 @@ public abstract class Arrangement {
         LocalTime now = LocalTime.now();
         String formatet = "hh:mm";
 
-        if(start.isBefore(slutt)) {
-            return "Starttidspunkt kan ikke være før slutttidspunkt";
+        if(start.isAfter(slutt)) {
+            return "Starttidspunkt kan ikke være før sluttidspunkt";
         }
-        else if(!start.toString().equals(formatet)) {
+        /*else if(!start.toString().equals(formatet)) {
             return "Vennligts fyll inn klokkeslett på formatet hh:mm";
+        }*/
+        else if(start.equals(slutt)) {
+            return "Start- og sluttidspunkt kan ikke være det samme";
         }
 
         return "";
@@ -186,7 +190,7 @@ public abstract class Arrangement {
     public String erDeltakerKapasitetOk (int kapasitet){
 
         if(kapasitet == 0) {
-            return "Deltakerkapasitet må være større 0";
+            return "Deltakerkapasitet må være større enn 0";
         }
         else if (kapasitet < 1 || kapasitet > 1000){
             return "Kapasitet under 0 eller over 1000";
@@ -197,14 +201,21 @@ public abstract class Arrangement {
 
     public String erPrisGitt(int betaling){
 
-        if(betaling == 0){
+        /* if(betaling == 0){
             return "Arrangement er gratis";
-        }
-        else if(betaling > 600){
+        } */
+        if(betaling > 600){
             return "Arrangement er for dyrt";
         }
         else if(betaling < 0){
             return "Pris kan ikke være negativ";
+        }
+        return "";
+    }
+
+    public String erBeskrivelseGitt (String beskrivelse) {
+        if (beskrivelse.isEmpty()){
+            return "Beskrivelse ikke gitt";
         }
         return "";
     }
