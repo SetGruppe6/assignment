@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Arrangement;
 
 import java.io.IOException;
 
@@ -22,9 +23,8 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        Arrangement.leggTilDummyArrangementer();
     }
-
-
-
 
 }

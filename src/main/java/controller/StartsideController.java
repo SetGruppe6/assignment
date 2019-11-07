@@ -35,4 +35,6 @@ public class StartsideController {
         vindu.show();
     }
 
+
+
 }
