@@ -133,21 +133,6 @@ public class AdminController implements Initializable {
                         deltakereComboBox.getItems().addAll(ny.getDeltakere());
                         deltakereComboBox.getSelectionModel().selectFirst();
 
-                        if (ny instanceof Lop){
-                            meldPaaController.setLopInstance(true);
-                            meldPaaController.setSykkelInstance(false);
-                            meldPaaController.setSkiInstance(false);
-                        }
-                        if (ny instanceof  Ski) {
-                            meldPaaController.setSkiInstance(true);
-                            meldPaaController.setLopInstance(false);
-                            meldPaaController.setSykkelInstance(false);
-                        }
-                        if (ny instanceof Sykkel){
-                            meldPaaController.setSykkelInstance(true);
-                            meldPaaController.setLopInstance(false);
-                            meldPaaController.setSkiInstance(false);
-                        }
 
                         Runnable runnable = new Runnable() {
                             @Override

@@ -224,7 +224,6 @@ public abstract class Arrangement {
         typeArrangement.getDeltakere().add(person);
     }
 
-
     public static void leggTilArrangement(Arrangement arrangement) {
         arrangementer.add(arrangement);
     }
