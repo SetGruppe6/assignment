@@ -2,10 +2,9 @@ package datahandler;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.*;
+import model.Arrangement;
+import model.Person;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Datahandler {
@@ -42,17 +41,6 @@ public class Datahandler {
             listePersoner.add(new Person("Svein", "Charter"));
         }
         return listePersoner;
-    }
-
-    public static ArrayList<Arrangement> leggTilDummyArrangementer(){
-        if(Arrangement.getArrangementer().size() == 0 ){
-
-            Arrangement.getArrangementer().add(new Lop("Holmenkollstafetten", "Underhaugsveien 1, 0354 Oslo", LocalDate.of(2020,5,5), LocalTime.of(10,0),LocalTime.of(18, 0), 2000, 250, "Holmenkollstafetten er et stafett arrangert av Idrettsklubben Tjalve, og blir omtalt som vaarens vakreste eventyr. Et av Norges storste friiddrettsarrangementer i antall paameldte.", new ArrayList<>()));
-            Arrangement.getArrangementer().add(new Sykkel("Tour de Halden", "Festningen, 1748 Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Veldedighetslop over 100km, arrangert av Kvikk Halden. Arrangeres for aa samle inn penger til veldige formaal", new ArrayList<>()));
-            Arrangement.getArrangementer().add(new Ski("Birkebeinerrennet", "Tingstadjordet 3, 2450 Rena", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Birkebeinerrennet er Norges mest tradisjonsrike turrenn paa ski og gaar hvert aar fra Rena til Lillehammer." , new ArrayList<>()));
-        }
-
-        return Arrangement.getArrangementer();
     }
 
     public static ArrayList<Person> getMedlemmer() {

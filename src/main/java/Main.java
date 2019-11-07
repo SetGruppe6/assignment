@@ -1,7 +1,9 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,8 +21,8 @@ public class Main extends Application {
         Parent root;
 
         root = FXMLLoader.load(getClass().getResource("startside.fxml"));
-
-        Scene scene = new Scene(root);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        Scene scene = new Scene(root, screenBounds.getWidth(),screenBounds.getHeight());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
