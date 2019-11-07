@@ -24,6 +24,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        //Legger til noen dummy arrangementer bare for at sidene skal vise noe fra starten av
         Arrangement.leggTilDummyArrangementer();
     }
 
