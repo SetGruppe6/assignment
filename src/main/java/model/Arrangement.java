@@ -209,11 +209,6 @@ public abstract class Arrangement {
         return "";
     }
 
-    public static void meldDegPaa(Arrangement typeArrangement, Person person){
-        typeArrangement.getDeltakere().add(person);
-    }
-
-
     public static void leggTilArrangement(Arrangement arrangement) {
         arrangementer.add(arrangement);
     }

@@ -1,6 +1,7 @@
 package controller;
 
-import datahandler.Datahandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import model.Arrangement;
+import model.Lag;
 import model.Person;
 
 import java.io.IOException;
@@ -33,17 +35,18 @@ public class MeldPaaController {
     private Button leggOverButton;
 
     private ArrayList<Person> personerListe = new ArrayList<>();
+    private Lag tufte = new Lag("Tufte IL", new ArrayList<>());
+    private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.getMedlemmer());
+    private StringBuilder choosenOne = new StringBuilder();
 
-    private static boolean lopInstance = false;
-    private static boolean skiInstance = false;
-    private static boolean sykkelInstance = false;
 
 
 
 
     @FXML
     public void initialize(){
-        lagspillereListView.setItems(Datahandler.personData());
+        tufte.leggTilDummyMedlemmer(tufte.getMedlemmer());
+        lagspillereListView.setItems(medlemmerGui);
         lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -63,21 +66,12 @@ public class MeldPaaController {
         if(!deltakerListe.getDeltakere().contains(lagspiller)) {
             deltakerListe.leggTilDeltaker(lagspiller);
         }
-        /**if (sykkelInstance && !Datahandler.sykkel.getDeltakere().contains(lagspiller)){
-            Datahandler.sykkel.getDeltakere().add(lagspiller);
-        }
-        if (skiInstance && !Datahandler.ski.getDeltakere().contains(lagspiller)){
-            Datahandler.ski.getDeltakere().add(lagspiller);
-        }
-        if(lopInstance && !Datahandler.lop.getDeltakere().contains(lagspiller)){
-            Datahandler.lop.getDeltakere().add(lagspiller);
-        }**/
 
-        String variabel = new String();
-        for (Person enPerson: Datahandler.getMedlemmer()) {
-            variabel += enPerson.getFornavn()+  " " + enPerson.getEtternavn() + "\n";
+        if(!choosenOne.toString().contains(lagspiller.getFornavn())) {
+            choosenOne.append(lagspiller.getFornavn()).append(lagspiller.getEtternavn()).append("\n");
         }
-        listeTextArea.setText(variabel);
+
+        listeTextArea.setText(choosenOne.toString());
     }
 
 
@@ -96,27 +90,5 @@ public class MeldPaaController {
         vindu.show();
     }
 
-    public boolean isLopInstance() {
-        return lopInstance;
-    }
 
-    public void setLopInstance(boolean lopInstance) {
-        this.lopInstance = lopInstance;
-    }
-
-    public boolean isSkiInstance() {
-        return skiInstance;
-    }
-
-    public void setSkiInstance(boolean skiInstance) {
-        this.skiInstance = skiInstance;
-    }
-
-    public boolean isSykkelInstance() {
-        return sykkelInstance;
-    }
-
-    public void setSykkelInstance(boolean sykkelInstance) {
-        this.sykkelInstance = sykkelInstance;
-    }
 }
