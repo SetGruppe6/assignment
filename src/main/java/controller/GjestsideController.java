@@ -91,7 +91,7 @@ public class GjestsideController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        arrangementListView.setItems(Datahandler.arrangementData());
+        arrangementListView.setItems(Datahandler.getArrangementListe());
 
         arrangementListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
             @Override
