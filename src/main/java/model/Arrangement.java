@@ -232,6 +232,10 @@ public abstract class Arrangement {
         deltakere.add(person);
     }
 
+    public void fjernDeltaker(Person person) {
+        deltakere.remove(person);
+    }
+
     public static ArrayList<Arrangement> leggTilDummyArrangementer(){
         if(Arrangement.getArrangementer().size() == 0 ){
 
