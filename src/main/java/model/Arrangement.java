@@ -18,12 +18,12 @@ public abstract class Arrangement {
     private Distanse distanse;
     private static ArrayList<Arrangement> arrangementer = new ArrayList<>();
 
+    public static Arrangement arrangementStatic;
+
+
     public ArrayList<Person> getDeltakere() {
         return deltakere;
     }
-
-    public Arrangement(){}
-
 
     public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
@@ -221,6 +221,8 @@ public abstract class Arrangement {
     public void leggTilDeltaker(Person person) {
         deltakere.add(person);
     }
+
+
 
 
     @Override

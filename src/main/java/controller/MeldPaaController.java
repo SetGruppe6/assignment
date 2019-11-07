@@ -72,11 +72,6 @@ public class MeldPaaController {
             Datahandler.lop.getDeltakere().add(lagspiller);
         }**/
 
-        String variabel = new String();
-        for (Person enPerson: Datahandler.getDeltakere()) {
-            variabel += enPerson.getFornavn()+  " " + enPerson.getEtternavn() + "\n";
-        }
-        listeTextArea.setText(variabel);
     }
 
 
