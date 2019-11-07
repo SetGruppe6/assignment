@@ -50,7 +50,7 @@ public class Datahandler {
     private static ObservableList<Arrangement> arrangementListe = FXCollections.observableList(Arrangement.getArrangementer());
 
 
-    private static ArrayList<Person> deltakere = new ArrayList<>();
+    private static ArrayList<Person> medlemmer = new ArrayList<>();
 
     public static ObservableList<Arrangement> arrangementData(){
         if(arrangementListe.size() == 0 ){
@@ -62,8 +62,8 @@ public class Datahandler {
         return arrangementListe;
     }
 
-    public static ArrayList<Person> getDeltakere() {
-        return deltakere;
+    public static ArrayList<Person> getMedlemmer() {
+        return medlemmer;
     }
 
 

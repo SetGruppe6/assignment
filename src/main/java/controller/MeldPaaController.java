@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import model.Arrangement;
 import model.Person;
 
 import java.io.IOException;
@@ -57,10 +58,10 @@ public class MeldPaaController {
     public void leggTilValgtePersoner(ActionEvent event) {
         Person lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
 
-        ArrayList<Person> deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem().getDeltakere();
+        Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
 
-        if(!deltakerListe.contains(lagspiller)) {
-            deltakerListe.add(lagspiller);
+        if(!deltakerListe.getDeltakere().contains(lagspiller)) {
+            deltakerListe.leggTilDeltaker(lagspiller);
         }
         /**if (sykkelInstance && !Datahandler.sykkel.getDeltakere().contains(lagspiller)){
             Datahandler.sykkel.getDeltakere().add(lagspiller);
@@ -73,7 +74,7 @@ public class MeldPaaController {
         }**/
 
         String variabel = new String();
-        for (Person enPerson: Datahandler.getDeltakere()) {
+        for (Person enPerson: Datahandler.getMedlemmer()) {
             variabel += enPerson.getFornavn()+  " " + enPerson.getEtternavn() + "\n";
         }
         listeTextArea.setText(variabel);
