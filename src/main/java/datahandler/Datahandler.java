@@ -13,8 +13,13 @@ public class Datahandler {
     ////////////////////////////////////TESTPERSONER///////////////////////////////////////////////////////////////////////
     private static ArrayList<Person> personerListe = new ArrayList<>();
 
+    //////////////////////////////////ARRANGEMENTER///////////////////////////////////////////////////////////////////////
+    private static ObservableList<Arrangement> arrangementListe = FXCollections.observableList(Arrangement.getArrangementer());
 
     private final static ObservableList<Person> listePersoner = FXCollections.observableArrayList(personerListe);
+
+
+    private static ArrayList<Person> medlemmer = new ArrayList<>();
 
     public static ObservableList <Person> personData(){
         if(listePersoner.size() == 0){
@@ -39,34 +44,20 @@ public class Datahandler {
         return listePersoner;
     }
 
+    public static ArrayList<Arrangement> leggTilDummyArrangementer(){
+        if(Arrangement.getArrangementer().size() == 0 ){
 
-    ////////////////////////////////////TESTPERSONER///////////////////////////////////////////////////////////////////////
-
-
-    // TESTLØP
-    /**public Lop lop = new Lop("Holmeenkollen Stafetten", "Oslo", LocalDate.of(2019,12,24), LocalTime.of(23,0),LocalTime.of(1, 0), 100, 250, "Dette er et maraton", new ArrayList<>());
-    public static Sykkel sykkel = new Sykkel("Tour de Halden", "Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Dette er et sykkelløp", new ArrayList<>());
-    public static Ski ski = new Ski("Birkebeinerne", "et sted", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Dette er et skiløp" , new ArrayList<>());**/
-
-    private static ObservableList<Arrangement> arrangementListe = FXCollections.observableList(Arrangement.getArrangementer());
-
-
-    private static ArrayList<Person> medlemmer = new ArrayList<>();
-
-    public static ObservableList<Arrangement> arrangementData(){
-        if(arrangementListe.size() == 0 ){
-            arrangementListe.add(new Lop("Holmenkollstafetten", "Underhaugsveien 1, 0354 Oslo", LocalDate.of(2020,5,5), LocalTime.of(10,0),LocalTime.of(18, 0), 2000, 250, "Holmenkollstafetten er et stafett arrangert av Idrettsklubben Tjalve, og blir omtalt som vaarens vakreste eventyr. Et av Norges storste friiddrettsarrangementer i antall paameldte.", new ArrayList<>()));
-            arrangementListe.add(new Sykkel("Tour de Halden", "Festningen, 1748 Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Veldedighetslop over 100km, arrangert av Kvikk Halden. Arrangeres for aa samle inn penger til veldige formaal", new ArrayList<>()));
-            arrangementListe.add(new Ski("Birkebeinerrennet", "Tingstadjordet 3, 2450 Rena", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Birkebeinerrennet er Norges mest tradisjonsrike turrenn paa ski og gaar hvert aar fra Rena til Lillehammer." , new ArrayList<>()));
+            Arrangement.getArrangementer().add(new Lop("Holmenkollstafetten", "Underhaugsveien 1, 0354 Oslo", LocalDate.of(2020,5,5), LocalTime.of(10,0),LocalTime.of(18, 0), 2000, 250, "Holmenkollstafetten er et stafett arrangert av Idrettsklubben Tjalve, og blir omtalt som vaarens vakreste eventyr. Et av Norges storste friiddrettsarrangementer i antall paameldte.", new ArrayList<>()));
+            Arrangement.getArrangementer().add(new Sykkel("Tour de Halden", "Festningen, 1748 Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 100, "Veldedighetslop over 100km, arrangert av Kvikk Halden. Arrangeres for aa samle inn penger til veldige formaal", new ArrayList<>()));
+            Arrangement.getArrangementer().add(new Ski("Birkebeinerrennet", "Tingstadjordet 3, 2450 Rena", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Birkebeinerrennet er Norges mest tradisjonsrike turrenn paa ski og gaar hvert aar fra Rena til Lillehammer." , new ArrayList<>()));
         }
 
-        return arrangementListe;
+        return Arrangement.getArrangementer();
     }
 
     public static ArrayList<Person> getMedlemmer() {
         return medlemmer;
     }
-
 
     public static ObservableList<Arrangement> getArrangementListe() {
         return arrangementListe;

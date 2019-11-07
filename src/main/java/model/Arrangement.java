@@ -223,6 +223,7 @@ public abstract class Arrangement {
     }
 
 
+
     @Override
     public String toString() {
         return navn ;

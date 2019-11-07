@@ -104,7 +104,8 @@ public class AdminController implements Initializable {
     }
 
     public void setItems(){
-        arrangementListView.setItems(Datahandler.arrangementData());
+        Datahandler.leggTilDummyArrangementer();
+        arrangementListView.setItems(Datahandler.getArrangementListe());
     }
 
         @Override
