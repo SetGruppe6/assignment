@@ -2,67 +2,66 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrangementTest {
+
+    Lop TestArrangementKorrekt = new Lop("Oslo Maraton", "Oslo, Rådhusplassen", LocalDate.of(2020, 9, 19), LocalTime.of(13,0), LocalTime.of(19,0), 900, 299, "Oslo Maraton er Norges største maraton og arrangeres hver høst i Oslos gater av Sportsklubben Vidar", new ArrayList<>());
+    Ski TestArrangementFeilVerdier = new Ski("Birk", "", LocalDate.of(2018, 2, 3), LocalTime.of(20,30), LocalTime.of(10,30), 0, -200, "", new ArrayList<>());
+    Sykkel FeilVerdierSykkelTest = new Sykkel("Tour de la France Global Cycling Tour", "", LocalDate.of(2019, 12,1), LocalTime.of(10,30), LocalTime.of(10,30), 2000, 2000, "", new ArrayList<>());
+
     @Test
     public void erTittelOkTest(){
-        Lop holmenkollStafetten = new Lop("Holmenkoll Stafetten");
-        Lop holmenkollStafetten3 = new Lop("Hol");
-        Lop holmenkollStafetten2 = new Lop("Holmenkoll stafetten et helvettes løp som ikke ligner grisen, det er kun for de tøffeste jævlene");
 
-        assertEquals("", holmenkollStafetten.erTittelOk(holmenkollStafetten.getNavn()));
-        assertEquals("Tittel for lang", holmenkollStafetten2.erTittelOk(holmenkollStafetten2.getNavn()));
-        assertEquals("Tittel for kort", holmenkollStafetten3.erTittelOk(holmenkollStafetten3.getNavn()));
+
+        assertEquals("", TestArrangementKorrekt.erTittelOk(TestArrangementKorrekt.getNavn()));
+        assertEquals("Tittel for lang", FeilVerdierSykkelTest.erTittelOk(FeilVerdierSykkelTest.getNavn()));
+        assertEquals("Tittel for kort", TestArrangementFeilVerdier.erTittelOk(TestArrangementFeilVerdier.getNavn()));
     }
 
     @Test
     public void erLokasjonOkTest(){
-        assertEquals("Lokasjon ikke gitt", Arrangement.erLokasjonGitt(""));
-        assertEquals("", Arrangement.erLokasjonGitt("Oslo, Bislett Stadion"));
+        assertEquals("Fyll inn lokasjon", TestArrangementFeilVerdier.erLokasjonGitt(TestArrangementFeilVerdier.getLokasjon()));
+        assertEquals("", TestArrangementKorrekt.erLokasjonGitt(TestArrangementKorrekt.getLokasjon()));
     }
 
     @Test
     public void erDatoOkTest(){
-        assertEquals("Datofelt tomt", Arrangement.erDatoOK(""));
-        assertEquals("", Arrangement.erDatoOK("00.00.0000"));
+        assertEquals("", TestArrangementKorrekt.erDatoOK(TestArrangementKorrekt.getDato()));
+        assertEquals("Arrangementets dato kan ikke være i fortiden", TestArrangementFeilVerdier.erDatoOK(TestArrangementFeilVerdier.getDato()));
+        assertEquals("Arrangementets dato må tidligst være om 30 dager", FeilVerdierSykkelTest.erDatoOK(FeilVerdierSykkelTest.getDato()));
     }
 
     @Test
     public void erTidsromGittTest(){
-        assertEquals("Angi start og sluttid", Arrangement.erStartTidspunktOk("", ""));
-        assertEquals("Angi sluttid", Arrangement.erStartTidspunktOk("00:00",""));
-        assertEquals("Angi starttid", Arrangement.erStartTidspunktOk("","00:00"));
-        assertEquals("", Arrangement.erStartTidspunktOk("00:00","00:00"));
+        //Har ikke test for "vennligst skriv inn på riktig format"
+        assertEquals("Starttidspunkt kan ikke være før sluttidspunkt", TestArrangementFeilVerdier.erStartTidspunktOk(TestArrangementFeilVerdier.getStartTid(), TestArrangementFeilVerdier.getSluttTid()));
+        assertEquals("Start- og sluttidspunkt kan ikke være det samme", FeilVerdierSykkelTest.erStartTidspunktOk(FeilVerdierSykkelTest.getStartTid(), FeilVerdierSykkelTest.getSluttTid()));
+        assertEquals("", TestArrangementKorrekt.erStartTidspunktOk(TestArrangementKorrekt.getStartTid(), TestArrangementKorrekt.getSluttTid()));
     }
 
     @Test
     public void erDeltakerKapasitetOkTest(){
-        assertEquals("Kapasitet under 0 eller over 1000", Arrangement.erDeltakerKapasitetOk(1001));
-        assertEquals("Kapasitet under 0 eller over 1000", Arrangement.erDeltakerKapasitetOk(-1));
-        assertEquals("", Arrangement.erDeltakerKapasitetOk(666));
+        assertEquals("Deltakerkapasitet må være større enn 0", TestArrangementFeilVerdier.erDeltakerKapasitetOk(TestArrangementFeilVerdier.getDeltakerKapasitet()));
+        assertEquals("Kapasitet under 0 eller over 1000", FeilVerdierSykkelTest.erDeltakerKapasitetOk(FeilVerdierSykkelTest.getDeltakerKapasitet()));
+        assertEquals("", TestArrangementKorrekt.erDeltakerKapasitetOk(TestArrangementKorrekt.getDeltakerKapasitet()));
     }
 
-    /*
+
     @Test
     public void erBeskrivelseGittTest(){
-        assertEquals("Beskrivelse mangler",Arrangement.erBeskrivelseGitt(""));
-        assertEquals("",Arrangement.erBeskrivelseGitt("Tour de la France arrangeres for tusende gang. Delta!"));
+        assertEquals("Beskrivelse ikke gitt", FeilVerdierSykkelTest.erBeskrivelseGitt(FeilVerdierSykkelTest.getBeskrivelse()));
+        assertEquals("", TestArrangementKorrekt.erBeskrivelseGitt(TestArrangementKorrekt.getBeskrivelse()));
     }
-
-     */
 
     @Test
     public void erPrisGittTest(){
-        assertEquals("Arrangement er gratis", Arrangement.erPrisGitt(0));
-        assertEquals("Arrangement er for dyrt", Arrangement.erPrisGitt(666));
-        assertEquals("Pris kan ikke være negativ", Arrangement.erPrisGitt(-100));
-        assertEquals("", Arrangement.erPrisGitt(250));
-    }
-
-    @Test
-    public void erDatoGittTest(){
-        assertEquals("Vennligst angi dato", Arrangement.erDatoOK(""));
-        assertEquals("", Arrangement.erDatoOK("12.12.2019"));
+        assertEquals("Arrangement er for dyrt", FeilVerdierSykkelTest.erPrisGitt(FeilVerdierSykkelTest.getPameldingsAvgift()));
+        assertEquals("Pris kan ikke være negativ", TestArrangementFeilVerdier.erPrisGitt(TestArrangementFeilVerdier.getPameldingsAvgift()));
+        assertEquals("", TestArrangementKorrekt.erPrisGitt(TestArrangementKorrekt.getPameldingsAvgift()));
     }
 }

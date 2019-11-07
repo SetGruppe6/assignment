@@ -1,6 +1,7 @@
 package controller;
 
-import datahandler.Datahandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import model.Arrangement;
+import model.Lag;
 import model.Person;
 
 import java.io.IOException;
@@ -23,54 +25,80 @@ public class MeldPaaController {
     private ListView<Person> lagspillereListView;
 
     @FXML
-    private TextArea listeTextArea;
+    private ListView<Person> listeTextArea;
 
     @FXML
-    private Button selectAllButton;
+    private Button leggTilValgtButton;
 
     @FXML
-    private Button leggOverButton;
-
-    private ArrayList<Person> personerListe = new ArrayList<>();
-
-    private static boolean lopInstance = false;
-    private static boolean skiInstance = false;
-    private static boolean sykkelInstance = false;
-
-
-
+    private Button fjernValgtButton;
 
     @FXML
-    public void initialize(){
-        lagspillereListView.setItems(Datahandler.personData());
-        lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    }
+    private Button leggTilFlereButton;
 
-    public void gaaTilbake(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
-    }
+    //Lager en instans av et lag, som opptrer som det laget som er innlogget.
+    private Lag tufte = new Lag("Tufte IL", new ArrayList<>());
+    //ObservableList som holder på alle medlemmene fra tufte.
+    private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.getMedlemmer());
+    //ObservableList som holder på påmeldte personer.
+    private ArrayList<Person> medlemmerTilValgteGui = new ArrayList<>();
+    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableArrayList(medlemmerTilValgteGui);
+
 
     public void leggTilValgtePersoner(ActionEvent event) {
         Person lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
+        Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
 
-        ArrayList<Person> deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem().getDeltakere();
+        if(!deltakerListe.getDeltakere().contains(lagspiller)) {
+            deltakerListe.leggTilDeltaker(lagspiller);
+        }
 
-        if(!deltakerListe.contains(lagspiller)) {
-            deltakerListe.add(lagspiller);
+        if(!valgteMedlemmerGui.contains(lagspiller)) {
+            valgteMedlemmerGui.add(lagspiller);
+            medlemmerGui.remove(lagspiller);
         }
-        /**if (sykkelInstance && !Datahandler.sykkel.getDeltakere().contains(lagspiller)){
-            Datahandler.sykkel.getDeltakere().add(lagspiller);
+
+        lagspillereListView.setItems(medlemmerGui);
+        listeTextArea.setItems(valgteMedlemmerGui);
+    }
+
+    @FXML
+    void fjernValgteMedlem(ActionEvent event) {
+        Person valgtMedlem = listeTextArea.getSelectionModel().getSelectedItem();
+        Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+
+        if(deltakerListe.getDeltakere().contains(valgtMedlem)) {
+            valgteMedlemmerGui.remove(valgtMedlem);
+            deltakerListe.fjernDeltaker(valgtMedlem);
+            medlemmerGui.add(valgtMedlem);
+
         }
-        if (skiInstance && !Datahandler.ski.getDeltakere().contains(lagspiller)){
-            Datahandler.ski.getDeltakere().add(lagspiller);
+
+        lagspillereListView.setItems(medlemmerGui);
+        listeTextArea.setItems(valgteMedlemmerGui);
+    }
+
+
+    @FXML
+    void velgFlereMedlemmer(ActionEvent event) {
+        ObservableList<Person> deltakereGui = lagspillereListView.getSelectionModel().getSelectedItems();
+        Arrangement deltakere = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+
+        for(Person pers: deltakereGui) {
+            if(!valgteMedlemmerGui.contains(pers) && !deltakere.getDeltakere().contains(pers)) {
+                valgteMedlemmerGui.add(pers);
+                deltakere.leggTilDeltaker(pers);
+            }
         }
-        if(lopInstance && !Datahandler.lop.getDeltakere().contains(lagspiller)){
-            Datahandler.lop.getDeltakere().add(lagspiller);
-        }**/
+
+        for(Person pers2: valgteMedlemmerGui) {
+            if(medlemmerGui.contains(pers2)) {
+                medlemmerGui.remove(pers2);
+            }
+        }
+
+        lagspillereListView.setItems(medlemmerGui);
+        listeTextArea.setItems(valgteMedlemmerGui);
 
     }
 
@@ -90,27 +118,22 @@ public class MeldPaaController {
         vindu.show();
     }
 
-    public boolean isLopInstance() {
-        return lopInstance;
+    public void gaaTilbake(ActionEvent event) throws IOException {
+        Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
     }
 
-    public void setLopInstance(boolean lopInstance) {
-        this.lopInstance = lopInstance;
+    @FXML
+    public void initialize(){
+
+        tufte.leggTilDummyMedlemmer(tufte.getMedlemmer());
+        lagspillereListView.setItems(medlemmerGui);
+        lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listeTextArea.setItems(valgteMedlemmerGui);
+
     }
 
-    public boolean isSkiInstance() {
-        return skiInstance;
-    }
-
-    public void setSkiInstance(boolean skiInstance) {
-        this.skiInstance = skiInstance;
-    }
-
-    public boolean isSykkelInstance() {
-        return sykkelInstance;
-    }
-
-    public void setSykkelInstance(boolean sykkelInstance) {
-        this.sykkelInstance = sykkelInstance;
-    }
 }
