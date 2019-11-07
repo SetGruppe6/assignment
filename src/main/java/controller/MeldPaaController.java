@@ -41,7 +41,8 @@ public class MeldPaaController {
     //ObservableList som holder på alle medlemmene fra tufte.
     private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.getMedlemmer());
     //ObservableList som holder på påmeldte personer.
-    private static ObservableList<Person> valgteMedlemmerGui = FXCollections.observableArrayList();
+    private ArrayList<Person> medlemmerTilValgteGui = new ArrayList<>();
+    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableArrayList(medlemmerTilValgteGui);
 
 
     public void leggTilValgtePersoner(ActionEvent event) {
