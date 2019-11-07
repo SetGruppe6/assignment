@@ -99,6 +99,7 @@ public class MeldPaaController {
 
         lagspillereListView.setItems(medlemmerGui);
         listeTextArea.setItems(valgteMedlemmerGui);
+
     }
 
 

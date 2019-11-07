@@ -15,6 +15,7 @@ public class Datahandler {
 
 
     public static ObservableList<Arrangement> getArrangementListe() {
+      
         return arrangementListe;
     }
 

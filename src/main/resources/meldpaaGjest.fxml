@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MeldPaaGjestController">
+   <children>
+      <Label layoutX="208.0" layoutY="41.0" text="Meld deg på her" underline="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <VBox layoutX="220.0" layoutY="100.0" prefHeight="106.0" prefWidth="161.0">
+         <children>
+            <TextField fx:id="fornavnTextField" onKeyReleased="#fornavnKey" promptText="fornavn" />
+            <TextField fx:id="etternavnTextField" onKeyReleased="#etternavnKey" promptText="etternavn" />
+            <TextField fx:id="emailTextField" onKeyReleased="#emailKey" promptText="email" />
+            <Button mnemonicParsing="false" onAction="#gjestErMeldtPaa" text="Utfør" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </VBox>
+      <HBox layoutX="15.0" layoutY="286.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="vippsImageView" fitHeight="82.0" fitWidth="143.0" onMouseClicked="#betaltVipps" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="visaImageView" fitHeight="57.0" fitWidth="143.0" onMouseClicked="#betaltVisa" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <Label fx:id="betalLabel" layoutX="14.0" layoutY="252.0" text="Trykk på din foretrukne betalingsmetode under:" />
+   </children>
+</AnchorPane>

@@ -71,6 +71,7 @@ public class AdminController implements Initializable {
     private ArrayList<Person> personer = new ArrayList<>();
 
     MeldPaaController meldPaaController = new MeldPaaController();
+
     public static AdminController adminController;
     public AdminController() {adminController = this;}
 
@@ -97,10 +98,6 @@ public class AdminController implements Initializable {
         Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
-    }
-
-    public void function (Person per){
-        personComboBox.getItems().add(per);
     }
 
     public void setItems(){
