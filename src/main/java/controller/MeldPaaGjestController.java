@@ -65,8 +65,8 @@ public class MeldPaaGjestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image vipps = new Image("https://www.vipps.no/documents/26/vipps_logo_rgb.png");
-        Image visa = new Image("https://seeklogo.com/images/V/VISA-logo-62D5B26FE1-seeklogo.com.png");
+        Image vipps = new Image("/vipps.png");
+        Image visa = new Image("/visa.png");
         visaImageView.setImage(visa);
         vippsImageView.setImage(vipps);
     }
