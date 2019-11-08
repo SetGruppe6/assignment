@@ -128,11 +128,11 @@ public class OpprettArrangementController {
             opprettAlert.setContentText("Kunne ikke laste inn adminside! Kontakt systemadministrator");
             opprettAlert.showAndWait();
         }
-
         Scene brukerScene = new Scene(brukerParent);
         Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
+
     }
 
     private void intputValidering(Arrangement arrangement) {

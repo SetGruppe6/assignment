@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Arrangement;
 
+import java.util.ArrayList;
+
 public class Datahandler {
 
     public static Datahandler dataHandler;
@@ -19,5 +21,9 @@ public class Datahandler {
         return arrangementListe;
     }
 
+    public static ObservableList<Arrangement> setArrangementListe(ArrayList<Arrangement> arr) {
+        Datahandler.arrangementListe = FXCollections.observableList(arr);
+        return Datahandler.arrangementListe;
+    }
 }
 
