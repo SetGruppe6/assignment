@@ -36,24 +36,24 @@ public class MeldPaaController {
     @FXML
     private Button leggTilFlereButton;
 
+    public static MeldPaaController meldPaaController;
+    public MeldPaaController() {meldPaaController = this;};
+
     //Lager en instans av et lag, som opptrer som det laget som er innlogget.
-    private Lag tufte = new Lag("Tufte IL", new ArrayList<>());
+    private ArrayList<Person> medlemmerITufte = new ArrayList<>();
+    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
+    private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
     //ObservableList som holder på alle medlemmene fra tufte.
     private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.getMedlemmer());
     //ObservableList som holder på påmeldte personer.
-    private ArrayList<Person> medlemmerTilValgteGui = new ArrayList<>();
-    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableArrayList(medlemmerTilValgteGui);
+    private Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(deltakerListe.getDeltakere());;
 
 
     public void leggTilValgtePersoner(ActionEvent event) {
         Person lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
-        Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
 
-        if(!deltakerListe.getDeltakere().contains(lagspiller)) {
-            deltakerListe.leggTilDeltaker(lagspiller);
-        }
-
-        if(!valgteMedlemmerGui.contains(lagspiller)) {
+        if (!deltakerListe.getDeltakere().contains(lagspiller)) {
             valgteMedlemmerGui.add(lagspiller);
             medlemmerGui.remove(lagspiller);
         }
@@ -65,13 +65,11 @@ public class MeldPaaController {
     @FXML
     void fjernValgteMedlem(ActionEvent event) {
         Person valgtMedlem = listeTextArea.getSelectionModel().getSelectedItem();
-        Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
 
         if(deltakerListe.getDeltakere().contains(valgtMedlem)) {
             valgteMedlemmerGui.remove(valgtMedlem);
             deltakerListe.fjernDeltaker(valgtMedlem);
             medlemmerGui.add(valgtMedlem);
-
         }
 
         lagspillereListView.setItems(medlemmerGui);
@@ -82,13 +80,20 @@ public class MeldPaaController {
     @FXML
     void velgFlereMedlemmer(ActionEvent event) {
         ObservableList<Person> deltakereGui = lagspillereListView.getSelectionModel().getSelectedItems();
-        Arrangement deltakere = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
 
         for(Person pers: deltakereGui) {
-            if(!valgteMedlemmerGui.contains(pers) && !deltakere.getDeltakere().contains(pers)) {
-                valgteMedlemmerGui.add(pers);
-                deltakere.leggTilDeltaker(pers);
+            if(listeTextArea.getItems().isEmpty()) {
+                if (!deltakerListe.getDeltakere().contains(pers)) {
+                    valgteMedlemmerGui.add(pers);
+                }
             }
+            for (Person pers2 : deltakerListe.getDeltakere()) {
+                if (!pers2.getFornavn().equals(pers.getFornavn()) && !pers2.getEtternavn().equals(pers.getEtternavn())) {
+                    deltakerListe.leggTilDeltaker(pers);
+                    valgteMedlemmerGui.add(pers);
+                }
+            }
+
         }
 
         for(Person pers2: valgteMedlemmerGui) {
@@ -103,37 +108,44 @@ public class MeldPaaController {
     }
 
 
-    public void tilbakeTilAdminside(ActionEvent event)  {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/adminside.fxml"));
-        try {
-            fxmlLoader.load();
-        }catch (IOException e){
-            System.out.println(e);
+    public void meldPaaValgte(ActionEvent event)  {
+        Arrangement deltakere = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+
+        for (Person pers : valgteMedlemmerGui) {
+            if (!deltakere.getDeltakere().contains(pers)) {
+                deltakere.leggTilDeltaker(pers);
+            }
         }
-        Parent p = fxmlLoader.getRoot();
-        Scene scene = new Scene(p);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(scene);
-        vindu.show();
+
+        visFXML(event,"/adminside.fxml");
     }
 
-    public void gaaTilbake(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+    public void gaaTilbake(ActionEvent event) {
+        visFXML(event,"/adminside.fxml");
     }
+
+
 
     @FXML
     public void initialize(){
-
-        tufte.leggTilDummyMedlemmer(tufte.getMedlemmer());
+        tufte.leggTilDummyMedlemmer(tufte);
         lagspillereListView.setItems(medlemmerGui);
         lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         listeTextArea.setItems(valgteMedlemmerGui);
+    }
 
+    private void visFXML(ActionEvent event,String fxml) {
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
     }
 
 }

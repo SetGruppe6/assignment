@@ -9,9 +9,8 @@
       <Button layoutX="525.0" layoutY="238.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
       <ListView fx:id="lagspillereListView" editable="true" layoutX="8.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="leggTilValgtButton" layoutX="238.0" layoutY="105.0" mnemonicParsing="false" onAction="#leggTilValgtePersoner" text="Legg Til Valgt" />
-      <Button layoutX="419.0" layoutY="238.0" mnemonicParsing="false" onAction="#tilbakeTilAdminside" text="Meld på valgte" />
+      <Button layoutX="419.0" layoutY="238.0" mnemonicParsing="false" onAction="#meldPaaValgte" text="Meld på valgte" />
       <Button fx:id="fjernValgtButton" layoutX="238.0" layoutY="137.0" mnemonicParsing="false" onAction="#fjernValgteMedlem" prefHeight="25.0" prefWidth="89.0" text="Fjern valgt" />
       <ListView fx:id="listeTextArea" layoutX="352.0" layoutY="31.0" prefHeight="200.0" prefWidth="225.0" />
-      <Button fx:id="leggTilFlereButton" layoutX="238.0" layoutY="73.0" mnemonicParsing="false" onAction="#velgFlereMedlemmer" prefHeight="25.0" prefWidth="89.0" text="Legg til flere" />
    </children>
 </AnchorPane>

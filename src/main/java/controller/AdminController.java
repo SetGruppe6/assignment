@@ -66,9 +66,6 @@ public class AdminController implements Initializable {
     private ComboBox<Person> deltakereComboBox;
 
     @FXML
-    private ComboBox<Person> personComboBox;
-
-    @FXML
     private ComboBox<String> sorteringComboBox;
 
     private ArrayList<Person> personer = new ArrayList<>();
@@ -94,7 +91,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
 
-        personComboBox.getItems().addAll(personer);
+        deltakereComboBox.getItems().addAll(personer);
         sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Arrangementer som jeg er paameldt");
 
         sorteringComboBox.valueProperty().addListener(new ChangeListener<String>() {

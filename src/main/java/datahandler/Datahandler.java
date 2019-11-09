@@ -16,6 +16,9 @@ public class Datahandler {
     private static ObservableList<Arrangement> arrangementListe = FXCollections.observableList(Arrangement.getArrangementer());
 
 
+
+
+
     public static ObservableList<Arrangement> getArrangementListe() {
       
         return arrangementListe;
@@ -25,5 +28,6 @@ public class Datahandler {
         Datahandler.arrangementListe = FXCollections.observableList(arr);
         return Datahandler.arrangementListe;
     }
+
 }
 

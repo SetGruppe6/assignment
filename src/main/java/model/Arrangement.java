@@ -21,10 +21,6 @@ public abstract class Arrangement {
     public static Arrangement arrangementStatic;
 
 
-    public ArrayList<Person> getDeltakere() {
-        return deltakere;
-    }
-
     public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
         this.navn = navn;
@@ -134,6 +130,9 @@ public abstract class Arrangement {
         Arrangement.arrangementer = arrangementer;
     }
 
+    public ArrayList<Person> getDeltakere() {
+        return deltakere;
+    }
 
     //METODER
 
@@ -220,16 +219,19 @@ public abstract class Arrangement {
         return "";
     }
 
-    public static void meldDegPaa(Arrangement typeArrangement, Person person){
-        typeArrangement.getDeltakere().add(person);
-    }
 
     public static void leggTilArrangement(Arrangement arrangement) {
         arrangementer.add(arrangement);
     }
 
+    public void leggTilDeltakere(ArrayList<Person> deltakerene) {
+        deltakere = deltakerene;
+    }
+
     public void leggTilDeltaker(Person person) {
-        deltakere.add(person);
+        if(!deltakere.contains(person)) {
+            deltakere.add(person);
+        }
     }
 
     public void fjernDeltaker(Person person) {

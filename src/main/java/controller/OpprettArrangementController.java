@@ -101,15 +101,15 @@ public class OpprettArrangementController {
         Distanse distanse = distanseTextField.getValue();
 
         if(typeTextField.getSelectionModel().getSelectedItem() == "Sykkel") {
-            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
+            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             Arrangement.leggTilArrangement(sykkelLop);
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Ski") {
-            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
+            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             Arrangement.leggTilArrangement(skiLop);
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Springe") {
-            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
+            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             Arrangement.leggTilArrangement(lop);
         }
 
