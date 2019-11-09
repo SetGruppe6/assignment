@@ -82,4 +82,7 @@ public class Lag {
         this.medlemmer = medlemmer;
     }
 
+    public ArrayList<Arrangement> getArrangementerLagetErPaameldt() {
+        return arrangementerLagetErPaameldt;
+    }
 }

@@ -111,7 +111,9 @@ public class AdminController implements Initializable {
                     arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaAvsluttede()));
                 }
                 else if(newValue == "Paameldte arrangementer") {
+                    MeldPaaController mpc = new MeldPaaController();
                     arrangementListView.setItems(Datahandler.setArrangementListe(MeldPaaController.meldPaaController.getTufte().paameldteArrangementer(Arrangement.getArrangementer())));
+
                 }
                 arrangementListView.getSelectionModel().selectFirst();
             }
