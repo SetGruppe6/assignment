@@ -26,6 +26,17 @@ public class Lag {
         arrangementerLagetErPaameldt.remove(arrangement);
     }
 
+    public ArrayList<Arrangement> paameldteArrangementer(ArrayList<Arrangement> arrangementer) {
+        ArrayList<Arrangement> paameldteArrangement = new ArrayList<>();
+
+        for(Arrangement arr: arrangementer) {
+            if(!arr.getDeltakere().isEmpty()) {
+                paameldteArrangement.add(arr);
+            }
+        }
+
+        return paameldteArrangement;
+    }
 
     public ArrayList<Person> leggTilDummyMedlemmer(Lag laget){
         if(laget.getMedlemmer().size() == 0) {

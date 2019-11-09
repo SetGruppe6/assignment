@@ -92,7 +92,7 @@ public class AdminController implements Initializable {
     public void initialize (URL url, ResourceBundle resourceBundle){
 
         deltakereComboBox.getItems().addAll(personer);
-        sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Arrangementer som jeg er paameldt");
+        sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Paameldte arrangementer");
 
         sorteringComboBox.valueProperty().addListener(new ChangeListener<String>() {
 
@@ -104,6 +104,9 @@ public class AdminController implements Initializable {
                 }
                 else if(newValue == "Avsluttede arrangementer") {
                     arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaAvsluttede()));
+                }
+                else if(newValue == "Paameldte arrangementer") {
+                    arrangementListView.setItems(Datahandler.setArrangementListe(MeldPaaController.meldPaaController.getTufte().paameldteArrangementer(Arrangement.getArrangementer())));
                 }
                 arrangementListView.getSelectionModel().selectFirst();
             }

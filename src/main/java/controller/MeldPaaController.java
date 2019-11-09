@@ -72,49 +72,28 @@ public class MeldPaaController {
             medlemmerGui.add(valgtMedlem);
         }
 
-        lagspillereListView.setItems(medlemmerGui);
-        listeTextArea.setItems(valgteMedlemmerGui);
-    }
-
-
-    @FXML
-    void velgFlereMedlemmer(ActionEvent event) {
-        ObservableList<Person> deltakereGui = lagspillereListView.getSelectionModel().getSelectedItems();
-
-        for(Person pers: deltakereGui) {
-            if(listeTextArea.getItems().isEmpty()) {
-                if (!deltakerListe.getDeltakere().contains(pers)) {
-                    valgteMedlemmerGui.add(pers);
-                }
-            }
-            for (Person pers2 : deltakerListe.getDeltakere()) {
-                if (!pers2.getFornavn().equals(pers.getFornavn()) && !pers2.getEtternavn().equals(pers.getEtternavn())) {
-                    deltakerListe.leggTilDeltaker(pers);
-                    valgteMedlemmerGui.add(pers);
-                }
-            }
-
-        }
-
-        for(Person pers2: valgteMedlemmerGui) {
-            if(medlemmerGui.contains(pers2)) {
-                medlemmerGui.remove(pers2);
-            }
+        /** Avmelding fra arrangement**/
+        if(deltakerListe.getDeltakere().isEmpty()) {
+            tufte.avmeldArrangement(deltakerListe);
         }
 
         lagspillereListView.setItems(medlemmerGui);
         listeTextArea.setItems(valgteMedlemmerGui);
-
     }
-
 
     public void meldPaaValgte(ActionEvent event)  {
-        Arrangement deltakere = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
 
         for (Person pers : valgteMedlemmerGui) {
-            if (!deltakere.getDeltakere().contains(pers)) {
-                deltakere.leggTilDeltaker(pers);
+            if (!deltakerListe.getDeltakere().contains(pers)) {
+                deltakerListe.leggTilDeltaker(pers);
             }
+        }
+
+        /**Siden vi kun illustrer bruk av admin grensesnitt som et lag, blir dette logikken for hvordan man
+         * melder "påloggede" lag på et arrangement
+         */
+        if(!deltakerListe.getDeltakere().isEmpty()) {
+            tufte.meldPaaArrangement(deltakerListe);
         }
 
         visFXML(event,"/adminside.fxml");
@@ -148,4 +127,7 @@ public class MeldPaaController {
         vindu.show();
     }
 
+    public Lag getTufte() {
+        return tufte;
+    }
 }
