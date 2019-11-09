@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
+    @FXML
+    private Label velkommenLbl;
 
     @FXML
     private ListView<Arrangement> arrangementListView;
@@ -69,6 +71,7 @@ public class AdminController implements Initializable {
     private ComboBox<String> sorteringComboBox;
 
     private ArrayList<Person> personer = new ArrayList<>();
+    private Lag tufteIl = new Lag("Tufte IL");
 
 
     public static AdminController adminController;
@@ -90,7 +93,9 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
-
+        StringBuilder velkommen = new StringBuilder();
+        velkommen.append("Velkommen ").append(tufteIl.getNavn());
+        velkommenLbl.setText(velkommen.toString());
         deltakereComboBox.getItems().addAll(personer);
         sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Paameldte arrangementer");
 

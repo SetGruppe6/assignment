@@ -42,7 +42,7 @@ public class MeldPaaController {
     //Lager en instans av et lag, som opptrer som det laget som er innlogget.
     private ArrayList<Person> medlemmerITufte = new ArrayList<>();
     private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
-    private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
+    public Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
     //ObservableList som holder på alle medlemmene fra tufte.
     private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.getMedlemmer());
     //ObservableList som holder på påmeldte personer.

@@ -7,6 +7,10 @@ public class Lag {
     private ArrayList<Person> medlemmer;
     private ArrayList<Arrangement> arrangementerLagetErPaameldt;
 
+    public Lag(String navn) {
+        this.navn = navn;
+    }
+
     public Lag(String navn, ArrayList<Person> medlemmer) {
         this.navn = navn;
         this.medlemmer = medlemmer;

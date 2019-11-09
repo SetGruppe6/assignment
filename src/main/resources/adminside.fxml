@@ -9,7 +9,10 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
-    <Label layoutX="21.0" layoutY="27.0" text="Velkommen admin" />
+    <Label fx:id="velkommenLbl" layoutX="21.0" layoutY="27.0" text="Velkommen admin">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font></Label>
    <Button layoutX="491.0" layoutY="337.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
    <ListView fx:id="arrangementListView" layoutX="14.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" />
    <ComboBox fx:id="sorteringComboBox" layoutX="14.0" layoutY="60.0" prefHeight="27.0" prefWidth="200.0" />
