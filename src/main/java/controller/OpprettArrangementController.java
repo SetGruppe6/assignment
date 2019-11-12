@@ -86,7 +86,9 @@ public class OpprettArrangementController {
 
     Alert opprettAlert = new Alert(Alert.AlertType.INFORMATION);
 
-    public void avbrytOpprettArrangement(ActionEvent event) { returnerTilAdminSide(event); }
+    public void avbrytOpprettArrangement(ActionEvent event) {
+        returnerTilAdminSide(event);
+    }
 
     @FXML
     void opprettArrangement(ActionEvent event)  {
@@ -101,17 +103,20 @@ public class OpprettArrangementController {
         Distanse distanse = distanseTextField.getValue();
 
         if(typeTextField.getSelectionModel().getSelectedItem() == "Sykkel") {
-            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
+            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             Arrangement.leggTilArrangement(sykkelLop);
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Ski") {
-            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
+            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             Arrangement.leggTilArrangement(skiLop);
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Springe") {
-            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<Person>(),distanse);
+            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             Arrangement.leggTilArrangement(lop);
         }
+
+
+        AdminController.adminController.getArrangementListView().getSelectionModel().selectLast();
 
         returnerTilAdminSide(event);
     }
@@ -128,11 +133,11 @@ public class OpprettArrangementController {
             opprettAlert.setContentText("Kunne ikke laste inn adminside! Kontakt systemadministrator");
             opprettAlert.showAndWait();
         }
-
         Scene brukerScene = new Scene(brukerParent);
         Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
+
     }
 
     private void intputValidering(Arrangement arrangement) {

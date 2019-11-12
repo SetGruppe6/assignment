@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import model.Arrangement;
 import model.Lag;
@@ -25,7 +24,7 @@ public class MeldPaaController {
     private ListView<Person> lagspillereListView;
 
     @FXML
-    private ListView<Person> listeTextArea;
+    private ListView<Person> valgteMedlemmerListView;
 
     @FXML
     private Button leggTilValgtButton;
@@ -36,104 +35,114 @@ public class MeldPaaController {
     @FXML
     private Button leggTilFlereButton;
 
+    public static MeldPaaController meldPaaController;
+    public MeldPaaController() {meldPaaController = this;};
+
     //Lager en instans av et lag, som opptrer som det laget som er innlogget.
-    private Lag tufte = new Lag("Tufte IL", new ArrayList<>());
+    private ArrayList<Person> medlemmerITufte = new ArrayList<>();
+    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
+    private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
     //ObservableList som holder på alle medlemmene fra tufte.
     private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.getMedlemmer());
     //ObservableList som holder på påmeldte personer.
-    private ArrayList<Person> medlemmerTilValgteGui = new ArrayList<>();
-    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableArrayList(medlemmerTilValgteGui);
+    private Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(deltakerListe.getDeltakere());;
 
 
     public void leggTilValgtePersoner(ActionEvent event) {
         Person lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
-        Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
 
-        if(!deltakerListe.getDeltakere().contains(lagspiller)) {
-            deltakerListe.leggTilDeltaker(lagspiller);
-        }
-
-        if(!valgteMedlemmerGui.contains(lagspiller)) {
+        if (!deltakerListe.getDeltakere().contains(lagspiller)) {
             valgteMedlemmerGui.add(lagspiller);
             medlemmerGui.remove(lagspiller);
         }
 
         lagspillereListView.setItems(medlemmerGui);
-        listeTextArea.setItems(valgteMedlemmerGui);
+        valgteMedlemmerListView.setItems(valgteMedlemmerGui);
+
     }
 
     @FXML
     void fjernValgteMedlem(ActionEvent event) {
-        Person valgtMedlem = listeTextArea.getSelectionModel().getSelectedItem();
-        Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+        Person valgtMedlem = valgteMedlemmerListView.getSelectionModel().getSelectedItem();
 
         if(deltakerListe.getDeltakere().contains(valgtMedlem)) {
             valgteMedlemmerGui.remove(valgtMedlem);
             deltakerListe.fjernDeltaker(valgtMedlem);
             medlemmerGui.add(valgtMedlem);
+        }
 
+        /** Avmelding fra arrangement**/
+        if(deltakerListe.getDeltakere().isEmpty()) {
+            tufte.avmeldArrangement(deltakerListe);
         }
 
         lagspillereListView.setItems(medlemmerGui);
-        listeTextArea.setItems(valgteMedlemmerGui);
+        valgteMedlemmerListView.setItems(valgteMedlemmerGui);
     }
-
 
     @FXML
-    void velgFlereMedlemmer(ActionEvent event) {
-        ObservableList<Person> deltakereGui = lagspillereListView.getSelectionModel().getSelectedItems();
-        Arrangement deltakere = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+    public void meldPaaValgte(ActionEvent event)  {
 
-        for(Person pers: deltakereGui) {
-            if(!valgteMedlemmerGui.contains(pers) && !deltakere.getDeltakere().contains(pers)) {
-                valgteMedlemmerGui.add(pers);
-                deltakere.leggTilDeltaker(pers);
+        for (Person pers : valgteMedlemmerGui) {
+            if (!deltakerListe.getDeltakere().contains(pers)) {
+                deltakerListe.leggTilDeltaker(pers);
             }
         }
 
-        for(Person pers2: valgteMedlemmerGui) {
-            if(medlemmerGui.contains(pers2)) {
-                medlemmerGui.remove(pers2);
-            }
+        /**Siden vi kun illustrer bruk av admin grensesnitt som et lag, blir dette logikken for hvordan man
+         * melder "påloggede" lag på et arrangement
+         */
+        if(!deltakerListe.getDeltakere().isEmpty()) {
+            tufte.meldPaaArrangement(deltakerListe);
         }
 
-        lagspillereListView.setItems(medlemmerGui);
-        listeTextArea.setItems(valgteMedlemmerGui);
 
+        visFXML(event,"/adminside.fxml");
+        int valgte = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedIndex();
+        AdminController.adminController.getArrangementListView().getSelectionModel().select(valgte);
+    }
+
+    @FXML
+    public void gaaTilbake(ActionEvent event) {
+        visFXML(event,"/adminside.fxml");
     }
 
 
-    public void tilbakeTilAdminside(ActionEvent event)  {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/adminside.fxml"));
-        try {
-            fxmlLoader.load();
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        Parent p = fxmlLoader.getRoot();
-        Scene scene = new Scene(p);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(scene);
-        vindu.show();
-    }
-
-    public void gaaTilbake(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
-    }
 
     @FXML
     public void initialize(){
-
-        tufte.leggTilDummyMedlemmer(tufte.getMedlemmer());
+        tufte.leggTilDummyMedlemmer(tufte);
         lagspillereListView.setItems(medlemmerGui);
-        lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        listeTextArea.setItems(valgteMedlemmerGui);
+        valgteMedlemmerListView.setItems(valgteMedlemmerGui);
+    }
+
+    private void visFXML(ActionEvent event,String fxml) {
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
 
     }
 
+
+
+
+
+    public int getAntallPaameldteArrangementer() {
+        int antall = tufte.getArrangementerLagetErPaameldt().size();
+
+        return antall;
+    }
+
+    public Lag getTufte() {
+        return tufte;
+    }
 }

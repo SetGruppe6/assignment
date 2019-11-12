@@ -21,10 +21,6 @@ public abstract class Arrangement {
     public static Arrangement arrangementStatic;
 
 
-    public ArrayList<Person> getDeltakere() {
-        return deltakere;
-    }
-
     public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
         this.navn = navn;
@@ -134,6 +130,9 @@ public abstract class Arrangement {
         Arrangement.arrangementer = arrangementer;
     }
 
+    public ArrayList<Person> getDeltakere() {
+        return deltakere;
+    }
 
     //METODER
 
@@ -220,16 +219,19 @@ public abstract class Arrangement {
         return "";
     }
 
-    public static void meldDegPaa(Arrangement typeArrangement, Person person){
-        typeArrangement.getDeltakere().add(person);
-    }
 
     public static void leggTilArrangement(Arrangement arrangement) {
         arrangementer.add(arrangement);
     }
 
+    public void leggTilDeltakere(ArrayList<Person> deltakerene) {
+        deltakere = deltakerene;
+    }
+
     public void leggTilDeltaker(Person person) {
-        deltakere.add(person);
+        if(!deltakere.contains(person)) {
+            deltakere.add(person);
+        }
     }
 
     public void fjernDeltaker(Person person) {
@@ -242,12 +244,36 @@ public abstract class Arrangement {
             Arrangement.getArrangementer().add(new Lop("Holmenkollstafetten", "Underhaugsveien 1, 0354 Oslo", LocalDate.of(2020,5,5), LocalTime.of(10,0),LocalTime.of(18, 0), 2000, 250, "Holmenkollstafetten er et stafett arrangert av Idrettsklubben Tjalve, og blir omtalt som vaarens vakreste eventyr. Et av Norges storste friiddrettsarrangementer i antall paameldte.", new ArrayList<>()));
             Arrangement.getArrangementer().add(new Sykkel("Tour de Halden", "Festningen, 1748 Halden", LocalDate.of(2019,12,18),LocalTime.of(16,0), LocalTime.of(18,0), 50, 0, "Veldedighetslop over 100km, arrangert av Kvikk Halden. Arrangeres for aa samle inn penger til veldige formaal", new ArrayList<>()));
             Arrangement.getArrangementer().add(new Ski("Birkebeinerrennet", "Tingstadjordet 3, 2450 Rena", LocalDate.of(2019,11,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Birkebeinerrennet er Norges mest tradisjonsrike turrenn paa ski og gaar hvert aar fra Rena til Lillehammer." , new ArrayList<>()));
+            Arrangement.getArrangementer().add(new Ski("Halden barneskirenn", "Tistedalen, 1748 Halden", LocalDate.of(2019,10,28), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Barneskirenn for alle som onsker aa delta." , new ArrayList<>()));
+            Arrangement.getArrangementer().add(new Sykkel("Sellebakk Oldtids tour", "Oldtidsveien, 1645 Sellebakk", LocalDate.of(2019,9,18), LocalTime.of(13,0), LocalTime.of(16,0), 50, 50, "Terrenlop langs Oldtidsveien, konkurrer blandt gamle runer" , new ArrayList<>()));
         }
 
         return Arrangement.getArrangementer();
     }
 
+    public static ArrayList<Arrangement> filtrerPaaDatoKommende() {
+        LocalDate now = LocalDate.now();
+        ArrayList<Arrangement> kommende = new ArrayList<>();
 
+        for(Arrangement arr: arrangementer) {
+            if(arr.getDato().isAfter(now)) {
+                kommende.add(arr);
+            }
+        }
+        return kommende;
+    }
+
+    public static  ArrayList<Arrangement> filtrerPaaAvsluttede() {
+        LocalDate now = LocalDate.now();
+        ArrayList<Arrangement> avsluttede = new ArrayList<>();
+
+        for(Arrangement arr: arrangementer) {
+            if(arr.getDato().isBefore(now)) {
+                avsluttede.add(arr);
+            }
+        }
+        return avsluttede;
+    }
 
 
     @Override
