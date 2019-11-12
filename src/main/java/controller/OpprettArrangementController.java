@@ -86,7 +86,9 @@ public class OpprettArrangementController {
 
     Alert opprettAlert = new Alert(Alert.AlertType.INFORMATION);
 
-    public void avbrytOpprettArrangement(ActionEvent event) { returnerTilAdminSide(event); }
+    public void avbrytOpprettArrangement(ActionEvent event) {
+        returnerTilAdminSide(event);
+    }
 
     @FXML
     void opprettArrangement(ActionEvent event)  {
@@ -112,6 +114,9 @@ public class OpprettArrangementController {
             Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             Arrangement.leggTilArrangement(lop);
         }
+
+
+        AdminController.adminController.getArrangementListView().getSelectionModel().selectLast();
 
         returnerTilAdminSide(event);
     }

@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import model.Arrangement;
 import model.Lag;
@@ -25,7 +24,7 @@ public class MeldPaaController {
     private ListView<Person> lagspillereListView;
 
     @FXML
-    private ListView<Person> listeTextArea;
+    private ListView<Person> valgteMedlemmerListView;
 
     @FXML
     private Button leggTilValgtButton;
@@ -59,12 +58,13 @@ public class MeldPaaController {
         }
 
         lagspillereListView.setItems(medlemmerGui);
-        listeTextArea.setItems(valgteMedlemmerGui);
+        valgteMedlemmerListView.setItems(valgteMedlemmerGui);
+
     }
 
     @FXML
     void fjernValgteMedlem(ActionEvent event) {
-        Person valgtMedlem = listeTextArea.getSelectionModel().getSelectedItem();
+        Person valgtMedlem = valgteMedlemmerListView.getSelectionModel().getSelectedItem();
 
         if(deltakerListe.getDeltakere().contains(valgtMedlem)) {
             valgteMedlemmerGui.remove(valgtMedlem);
@@ -78,9 +78,10 @@ public class MeldPaaController {
         }
 
         lagspillereListView.setItems(medlemmerGui);
-        listeTextArea.setItems(valgteMedlemmerGui);
+        valgteMedlemmerListView.setItems(valgteMedlemmerGui);
     }
 
+    @FXML
     public void meldPaaValgte(ActionEvent event)  {
 
         for (Person pers : valgteMedlemmerGui) {
@@ -96,9 +97,13 @@ public class MeldPaaController {
             tufte.meldPaaArrangement(deltakerListe);
         }
 
+
         visFXML(event,"/adminside.fxml");
+        int valgte = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedIndex();
+        AdminController.adminController.getArrangementListView().getSelectionModel().select(valgte);
     }
 
+    @FXML
     public void gaaTilbake(ActionEvent event) {
         visFXML(event,"/adminside.fxml");
     }
@@ -109,8 +114,7 @@ public class MeldPaaController {
     public void initialize(){
         tufte.leggTilDummyMedlemmer(tufte);
         lagspillereListView.setItems(medlemmerGui);
-        lagspillereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        listeTextArea.setItems(valgteMedlemmerGui);
+        valgteMedlemmerListView.setItems(valgteMedlemmerGui);
     }
 
     private void visFXML(ActionEvent event,String fxml) {
@@ -125,7 +129,10 @@ public class MeldPaaController {
         Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
+
     }
+
+
 
 
 

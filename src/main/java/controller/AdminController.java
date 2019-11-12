@@ -106,14 +106,17 @@ public class AdminController implements Initializable {
 
                 if(newValue == "Kommende arrangementer") {
                     arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaDatoKommende()));
+                    arrangementListView.refresh();
+
                 }
                 else if(newValue == "Avsluttede arrangementer") {
                     arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaAvsluttede()));
+                    arrangementListView.refresh();
                 }
                 else if(newValue == "Paameldte arrangementer") {
                     MeldPaaController mpc = new MeldPaaController();
                     arrangementListView.setItems(Datahandler.setArrangementListe(MeldPaaController.meldPaaController.getTufte().paameldteArrangementer(Arrangement.getArrangementer())));
-
+                    arrangementListView.refresh();
                 }
                 arrangementListView.getSelectionModel().selectFirst();
             }
@@ -171,6 +174,7 @@ public class AdminController implements Initializable {
         });
 
         sorteringComboBox.getSelectionModel().selectFirst();
+        arrangementListView.refresh();
     }
 
     private void visFXML(ActionEvent event,String fxml) {
@@ -185,6 +189,7 @@ public class AdminController implements Initializable {
         Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
+
     }
 
     public ListView<Arrangement> getArrangementListView() {

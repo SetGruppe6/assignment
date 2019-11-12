@@ -15,14 +15,19 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage)  {
 
         Parent root;
 
-        root = FXMLLoader.load(getClass().getResource("startside.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        try {
+            root = FXMLLoader.load(getClass().getResource("startside.fxml"));
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         //Legger til noen dummy arrangementer bare for at sidene skal vise noe fra starten av
         Arrangement.leggTilDummyArrangementer();
