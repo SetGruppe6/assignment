@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BrukersideController">
     <Label text="BrukerVindu" />
    <Button fx:id="backButton" layoutX="489.0" layoutY="328.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
+   <ListView fx:id="arrangementListView" layoutX="18.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" />
+   <Button layoutX="30.0" layoutY="270.0" mnemonicParsing="false" onAction="#meldpaa_bruker" text="Meld på" />
+   <Label fx:id="tittelLabel" layoutX="226.0" layoutY="55.0" text="Arrangement" underline="true">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+   <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="228.0" layoutY="97.0" lineSpacing="1.5" prefHeight="163.0" prefWidth="138.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." wrapText="true" />
+   <ComboBox fx:id="deltakereComboBox" layoutX="218.0" layoutY="270.0" prefWidth="150.0" promptText="Deltakere" />
+   <Label layoutX="440.0" layoutY="115.0" text="Dato:" />
+   <Label fx:id="datoLabel" layoutX="505.0" layoutY="115.0" text="dd.mm.yyyy" />
+   <Label layoutX="440.0" layoutY="145.0" text="Adresse:" />
+   <Label fx:id="adresseLabel" layoutX="440.0" layoutY="173.0" prefHeight="17.0" prefWidth="170.0" text="&quot;adresse&quot;" />
+   <Label layoutX="440.0" layoutY="199.0" text="Tidsrom:" />
+   <Label fx:id="tidsromLabel" layoutX="508.0" layoutY="199.0" text="00:00 - 00:00" />
+   <Label layoutX="439.0" layoutY="231.0" text="Kapasitet:" />
+   <Label fx:id="kapasitetLabel" layoutX="508.0" layoutY="231.0" text="100" />
+   <Label layoutX="440.0" layoutY="268.0" text="Pris:" />
+   <Label fx:id="prisLabel" layoutX="503.0" layoutY="268.0" text="50 spenn" />
 
 </AnchorPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MeldPaaBrukerController">
+   <children>
+      <HBox layoutX="28.0" layoutY="286.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="vippsImageView" fitHeight="82.0" fitWidth="143.0" onMouseClicked="#betaltVipps" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="visaImageView" fitHeight="57.0" fitWidth="143.0" onMouseClicked="#betaltVisa" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <Label layoutX="218.0" layoutY="51.0" text="Meld deg på her" underline="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="275.0" layoutY="154.0" mnemonicParsing="false" onAction="#brukerErMeldtPaa" text="Utfør" />
+      <Label fx:id="betalLabel" layoutX="24.0" layoutY="262.0" text="Trykk på din foretrukne betalingsmetode under:" />
+   </children>
+</AnchorPane>
