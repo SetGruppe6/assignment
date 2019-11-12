@@ -102,23 +102,58 @@ public class OpprettArrangementController {
         String beskrivelse = beskrivelseTextArea.getText();
         Distanse distanse = distanseTextField.getValue();
 
+
+
         if(typeTextField.getSelectionModel().getSelectedItem() == "Sykkel") {
             Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
-            Arrangement.leggTilArrangement(sykkelLop);
+            if(!intputValidering(sykkelLop).isEmpty()) {
+                tittelLable.setText(sykkelLop.erTittelOk(tittel));
+                //datoLabel.setText(sykkelLop.erDatoOK(dato));
+                kapasitetLabel.setText(sykkelLop.erDeltakerKapasitetOk(deltakerKapasitet));
+                prisLabel.setText(sykkelLop.erPrisGitt(paameldingAvgift));
+                stedLabel.setText(sykkelLop.erLokasjonGitt(sted));
+                beskrivelseTextArea.setText(sykkelLop.erBeskrivelseGitt(beskrivelse));
+                startLabel.setText(sykkelLop.erStartTidspunktOk(startTid,sluttTid));
+            } else {
+                Arrangement.leggTilArrangement(sykkelLop);
+                returnerTilAdminSide(event);
+            }
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Ski") {
             Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
-            Arrangement.leggTilArrangement(skiLop);
+            if(!intputValidering(skiLop).isEmpty()) {
+                tittelLable.setText(skiLop.erTittelOk(tittel));
+                //datoLabel.setText(sykkelLop.erDatoOK(dato));
+                kapasitetLabel.setText(skiLop.erDeltakerKapasitetOk(deltakerKapasitet));
+                prisLabel.setText(skiLop.erPrisGitt(paameldingAvgift));
+                stedLabel.setText(skiLop.erLokasjonGitt(sted));
+                beskrivelseTextArea.setText(skiLop.erBeskrivelseGitt(beskrivelse));
+                startLabel.setText(skiLop.erStartTidspunktOk(startTid,sluttTid));
+            } else {
+                Arrangement.leggTilArrangement(skiLop);
+                returnerTilAdminSide(event);
+            }
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Springe") {
             Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
-            Arrangement.leggTilArrangement(lop);
+            if(!intputValidering(lop).isEmpty()) {
+                tittelLable.setText(lop.erTittelOk(tittel));
+                //datoLabel.setText(lop.erDatoOK(dato));
+                kapasitetLabel.setText(lop.erDeltakerKapasitetOk(deltakerKapasitet));
+                prisLabel.setText(lop.erPrisGitt(paameldingAvgift));
+                stedLabel.setText(lop.erLokasjonGitt(sted));
+                beskrivelseTextArea.setText(lop.erBeskrivelseGitt(beskrivelse));
+                startLabel.setText(lop.erStartTidspunktOk(startTid,sluttTid));
+            } else {
+                Arrangement.leggTilArrangement(lop);
+                returnerTilAdminSide(event);
+            }
         }
 
 
         AdminController.adminController.getArrangementListView().getSelectionModel().selectLast();
 
-        returnerTilAdminSide(event);
+
     }
 
     private void returnerTilAdminSide(ActionEvent event)  {
@@ -140,13 +175,17 @@ public class OpprettArrangementController {
 
     }
 
-    private void intputValidering(Arrangement arrangement) {
-        arrangement.erDatoOK(arrangement.getDato());
-        arrangement.erDeltakerKapasitetOk(arrangement.getDeltakerKapasitet());
-        arrangement.erLokasjonGitt(arrangement.getLokasjon());
-        arrangement.erPrisGitt(arrangement.getPameldingsAvgift());
-        arrangement.erStartTidspunktOk(arrangement.getStartTid(), arrangement.getSluttTid());
-        arrangement.erTittelOk(arrangement.getNavn());
+    private String intputValidering(Arrangement arrangement) {
+        StringBuilder inputResulat = new StringBuilder();
+        //inputResulat.append(arrangement.erDatoOK(arrangement.getDato()));
+        inputResulat.append(arrangement.erDeltakerKapasitetOk(arrangement.getDeltakerKapasitet()));
+        inputResulat.append(arrangement.erLokasjonGitt(arrangement.getLokasjon()));
+        inputResulat.append(arrangement.erPrisGitt(arrangement.getPameldingsAvgift()));
+        inputResulat.append(arrangement.erStartTidspunktOk(arrangement.getStartTid(), arrangement.getSluttTid()));
+        inputResulat.append(arrangement.erTittelOk(arrangement.getNavn()));
+        inputResulat.append(arrangement.erBeskrivelseGitt(arrangement.getBeskrivelse()));
+
+        return inputResulat.toString();
     }
 
     /**EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
@@ -185,7 +224,6 @@ public class OpprettArrangementController {
     @FXML
     private void initialize(){
         //ferdigButton.setOnAction(event);
-
         typeTextField.getItems().addAll("Sykkel", "Ski", "Springe");
         typeTextField.valueProperty().addListener(new ChangeListener<String>() {
             @Override

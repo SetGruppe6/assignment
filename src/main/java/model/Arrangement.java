@@ -160,11 +160,11 @@ public abstract class Arrangement {
 
 
         if(dato.isBefore(iDag)) {
-            return "Arrangementets dato kan ikke være i fortiden";
+            return "Arrangementets dato kan ikke vaere i fortiden";
         }
         //Sjekker om dato til opprettet arrangement er før datoen om 30 dager.
         else if (dato.isBefore(iDag.plusDays(30))){
-            return "Arrangementets dato må tidligst være om 30 dager";
+            return "Arrangementets dato maa tidligst vaere om 30 dager";
         }
         return "";
     }
@@ -174,13 +174,13 @@ public abstract class Arrangement {
         String formatet = "hh:mm";
 
         if(start.isAfter(slutt)) {
-            return "Starttidspunkt kan ikke være før sluttidspunkt";
+            return "Starttidspunkt kan ikke vaere for sluttidspunkt";
         }
         /*else if(!start.toString().equals(formatet)) {
             return "Vennligts fyll inn klokkeslett på formatet hh:mm";
         }*/
         else if(start.equals(slutt)) {
-            return "Start- og sluttidspunkt kan ikke være det samme";
+            return "Start- og sluttidspunkt maa vaere ulik";
         }
 
         return "";
@@ -189,7 +189,7 @@ public abstract class Arrangement {
     public String erDeltakerKapasitetOk (int kapasitet){
 
         if(kapasitet == 0) {
-            return "Deltakerkapasitet må være større enn 0";
+            return "Deltakerkapasitet maa vaere storre enn 0";
         }
         else if (kapasitet < 1 || kapasitet > 1000){
             return "Kapasitet under 0 eller over 1000";
@@ -200,14 +200,11 @@ public abstract class Arrangement {
 
     public String erPrisGitt(int betaling){
 
-        /* if(betaling == 0){
-            return "Arrangement er gratis";
-        } */
         if(betaling > 600){
             return "Arrangement er for dyrt";
         }
         else if(betaling < 0){
-            return "Pris kan ikke være negativ";
+            return "Pris kan ikke vaere negativ";
         }
         return "";
     }
