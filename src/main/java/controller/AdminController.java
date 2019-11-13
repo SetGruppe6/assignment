@@ -87,7 +87,6 @@ public class AdminController implements Initializable {
 
     public void meldPaa (ActionEvent event) {
         visFXML(event,"/meldpaa.fxml");
-
     }
 
 

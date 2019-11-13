@@ -43,7 +43,7 @@ public class MeldPaaController {
     private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
     private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
     //ObservableList som holder på alle medlemmene fra tufte.
-    private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.getMedlemmer());
+    private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.leggTilDummyMedlemmer(tufte));
     //ObservableList som holder på påmeldte personer.
     private Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
     private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(deltakerListe.getDeltakere());;
@@ -51,10 +51,21 @@ public class MeldPaaController {
 
     public void leggTilValgtePersoner(ActionEvent event) {
         Person lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
+        Boolean finnesSpiller = Boolean.FALSE;
 
-        if (!deltakerListe.getDeltakere().contains(lagspiller)) {
-            valgteMedlemmerGui.add(lagspiller);
-            medlemmerGui.remove(lagspiller);
+        if (!deltakerListe.getDeltakere().contains(lagspiller) && lagspiller != null) {
+
+
+            for(Person pers:valgteMedlemmerGui) {
+                if(lagspiller.getFornavn() == pers.getFornavn() && lagspiller.getEtternavn() == pers.getEtternavn()) {
+                    finnesSpiller = Boolean.TRUE;
+                }
+            }
+
+            if(finnesSpiller.equals(Boolean.FALSE)) {
+                valgteMedlemmerGui.add(lagspiller);
+                medlemmerGui.remove(lagspiller);
+            }
         }
 
         lagspillereListView.setItems(medlemmerGui);
@@ -65,11 +76,21 @@ public class MeldPaaController {
     @FXML
     void fjernValgteMedlem(ActionEvent event) {
         Person valgtMedlem = valgteMedlemmerListView.getSelectionModel().getSelectedItem();
+        Boolean finnesSpiller = Boolean.FALSE;
 
         if(deltakerListe.getDeltakere().contains(valgtMedlem)) {
             valgteMedlemmerGui.remove(valgtMedlem);
             deltakerListe.fjernDeltaker(valgtMedlem);
-            medlemmerGui.add(valgtMedlem);
+
+            for(Person pers:medlemmerGui) {
+                if(pers.getFornavn() == valgtMedlem.getFornavn() && valgtMedlem.getEtternavn() == pers.getEtternavn()) {
+                    finnesSpiller = Boolean.TRUE;
+                }
+            }
+
+            if(finnesSpiller.equals(Boolean.FALSE)) {
+                medlemmerGui.add(valgtMedlem);
+            }
         }
 
         /** Avmelding fra arrangement**/
@@ -87,6 +108,7 @@ public class MeldPaaController {
         for (Person pers : valgteMedlemmerGui) {
             if (!deltakerListe.getDeltakere().contains(pers)) {
                 deltakerListe.leggTilDeltaker(pers);
+                medlemmerGui.add(pers);
             }
         }
 
@@ -95,6 +117,7 @@ public class MeldPaaController {
          */
         if(!deltakerListe.getDeltakere().isEmpty()) {
             tufte.meldPaaArrangement(deltakerListe);
+            System.out.println(tufte.getArrangementerLagetErPaameldt());
         }
 
 
@@ -103,18 +126,16 @@ public class MeldPaaController {
         AdminController.adminController.getArrangementListView().getSelectionModel().select(valgte);
     }
 
-    @FXML
-    public void gaaTilbake(ActionEvent event) {
-        visFXML(event,"/adminside.fxml");
-    }
 
 
 
     @FXML
     public void initialize(){
-        tufte.leggTilDummyMedlemmer(tufte);
+
         lagspillereListView.setItems(medlemmerGui);
         valgteMedlemmerListView.setItems(valgteMedlemmerGui);
+
+
     }
 
     private void visFXML(ActionEvent event,String fxml) {
@@ -132,15 +153,6 @@ public class MeldPaaController {
 
     }
 
-
-
-
-
-    public int getAntallPaameldteArrangementer() {
-        int antall = tufte.getArrangementerLagetErPaameldt().size();
-
-        return antall;
-    }
 
     public Lag getTufte() {
         return tufte;
