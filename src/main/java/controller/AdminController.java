@@ -71,7 +71,7 @@ public class AdminController implements Initializable {
     private ComboBox<String> sorteringComboBox;
 
     private ArrayList<Person> personer = new ArrayList<>();
-    private Lag tufteIl = new Lag("Tufte", 2005, "Manglerud, Oslo", "Tufte IL var i utgangspunktet grunnlagt som fotballklubb i gullaaret 2005, men har som aarene har gaatt utvidet horrisonten og begynt aa satse paa ski, sykling og loping. Dette er et lag hvor hver og en mann er velkommen, store som smaa!");
+    private Lag tufteIl = new Lag("Tufte");
 
 
     public static AdminController adminController;
@@ -88,16 +88,6 @@ public class AdminController implements Initializable {
     public void meldPaa (ActionEvent event) {
         visFXML(event,"/meldpaa.fxml");
     }
-
-    @FXML
-    public void gaaTilLagProfil(ActionEvent event) {
-        visFXML(event,"/lagprofil.fxml");
-        LagsideController.lagsideController.getLagTittel().setText(tufteIl.getNavn());
-        LagsideController.lagsideController.getOmoss().setText(tufteIl.getOmOss());
-        LagsideController.lagsideController.getStiftetAar().setText("Stiftet: " + tufteIl.getStiftelsesAar());
-        LagsideController.lagsideController.getTilhorighet().setText("Adresse: " + tufteIl.getTilhorighet());
-    }
-
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){

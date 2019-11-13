@@ -107,7 +107,7 @@ public class OpprettArrangementController {
         Lag laget = new Lag("Tufte");
 
         if(typeTextField.getSelectionModel().getSelectedItem() == "Sykkel") {
-            Sykkel sykkelLop = new Sykkel(laget,tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
+            Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             if(!intputValidering(sykkelLop).isEmpty()) {
                 setFeilMeldinger(sykkelLop);
             } else {
@@ -116,7 +116,7 @@ public class OpprettArrangementController {
             }
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Ski") {
-            Ski skiLop = new Ski(laget,tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
+            Ski skiLop = new Ski(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             if(!intputValidering(skiLop).isEmpty()) {
                 setFeilMeldinger(skiLop);
             } else {
@@ -125,7 +125,7 @@ public class OpprettArrangementController {
             }
         }
         else if(typeTextField.getSelectionModel().getSelectedItem() == "Springe") {
-            Lop lop = new Lop(laget,tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
+            Lop lop = new Lop(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
             if(!intputValidering(lop).isEmpty()) {
                 setFeilMeldinger(lop);
             } else {
