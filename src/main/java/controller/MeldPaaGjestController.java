@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Arrangement;
+import model.Betaling;
 import model.Person;
 
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class MeldPaaGjestController implements Initializable {
     private Label betalLabel;
 
     private boolean betalt = false;
+    Betaling betaling = new Betaling(betalt);
 
     String fornavn;
     String etternavn;
@@ -54,7 +56,7 @@ public class MeldPaaGjestController implements Initializable {
 
 
     public void betaltVipps(MouseEvent mouseEvent) {
-        betalt = true;
+        betaling.harBetalt();
         betaltText();
     }
 
@@ -63,7 +65,7 @@ public class MeldPaaGjestController implements Initializable {
     }
 
     public void betaltVisa(MouseEvent mouseEvent) {
-        betalt = true;
+        betaling.harBetalt();
         betaltText();
     }
 
@@ -79,7 +81,7 @@ public class MeldPaaGjestController implements Initializable {
         gjestMedlem = new Person(fornavn,etternavn,email,new ArrayList<>());
         Arrangement valgtArrangement = GjestsideController.gjestsideController.getArrangementListView().getSelectionModel().getSelectedItem();
 
-        if(betalt == true || GjestsideController.gjestsideController.prisforarr() <= 0) {
+        if(betaling.isBetalt() == true || GjestsideController.gjestsideController.prisforarr() <= 0) {
             if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
                 valgtArrangement.leggTilDeltaker(gjestMedlem);
                 gjestMedlem.setArrangementerPersonErPameldt(valgtArrangement);
