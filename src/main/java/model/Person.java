@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Person {
 
     private String fornavn;
@@ -7,6 +9,7 @@ public class Person {
     private String email;
     private String passord;
     private String tlf;
+    private ArrayList<Arrangement> arrangementerPersonErPameldt = new ArrayList<>();
 
     public Person(String fornavn, String etternavn, String email, String passord, String mobilnr) {
         this.fornavn = fornavn;
@@ -25,6 +28,25 @@ public class Person {
     public Person(String fornavn, String etternavn) {
         this.fornavn = fornavn;
         this.etternavn = etternavn;
+    }
+
+    public Person(String fornavn, String etternavn, String email, ArrayList<Arrangement> arrangementerPersonErPameldt) {
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.email = email;
+        this.arrangementerPersonErPameldt = arrangementerPersonErPameldt;
+    }
+
+    public ArrayList<Arrangement> paameldteArrangementerPerson(ArrayList<Arrangement> arrangementer, Person person) {
+        ArrayList<Arrangement> paameldteArrangement = new ArrayList<>();
+
+        for(Arrangement arr: arrangementer) {
+            if(arr.getDeltakere().contains(person)) {
+                paameldteArrangement.add(arr);
+            }
+        }
+
+        return paameldteArrangement;
     }
 
     public String getFornavn() {
@@ -60,7 +82,6 @@ public class Person {
     }
 
 
-
     public String getTlf() {
         return tlf;
     }
@@ -69,6 +90,13 @@ public class Person {
         this.tlf = tlf;
     }
 
+    public ArrayList<Arrangement> getArrangementerPersonErPameldt() {
+        return arrangementerPersonErPameldt;
+    }
+
+    public void setArrangementerPersonErPameldt(Arrangement arrangement) {
+        arrangementerPersonErPameldt.add(arrangement);
+    }
 
     public static String erNavnGitt(String navn) {
 
