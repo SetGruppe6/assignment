@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -77,8 +78,37 @@ class ArrangementTest {
 
     @Test //Bruke en ny arraylist i testen?
     public void leggTilDeltakerTest(){
+        ArrayList<Person> TestDeltakere = new ArrayList<>();
+        TestDeltakere.add(TestJon);
+        TestDeltakere.add(TestPer);
+        TestDeltakere.add(TestErik);
         TestArrangementKorrekt.leggTilDeltaker(TestJon);
+        TestArrangementKorrekt.leggTilDeltaker(TestPer);
         TestArrangementKorrekt.leggTilDeltaker(TestErik);
-        assertEquals(, TestArrangementKorrekt.getDeltakere());
+        assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
+    }
+
+    @Test
+    public void fjerneDeltakerTest(){
+        ArrayList<Person> TestDeltakere = new ArrayList<>();
+        TestDeltakere.add(TestJon);
+        TestDeltakere.add(TestPer);
+        TestArrangementKorrekt.leggTilDeltaker(TestJon);
+        TestArrangementKorrekt.leggTilDeltaker(TestPer);
+        TestArrangementKorrekt.leggTilDeltaker(TestErik);
+        TestArrangementKorrekt.fjernDeltaker(TestErik);
+        assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
+    }
+
+    @Test
+    public void leggTilDummyArrangementer(){ ///Gjør denne bare det samme som leggtilarrangementer-metoden?
+        ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
+        TestArrangementer.add(TestArrangementKorrekt);
+        TestArrangementer.add(TestArrangementFeilVerdier);
+        TestArrangementer.add(FeilVerdierSykkelTest);
+        Arrangement.leggTilDummyArrangementer().add(TestArrangementKorrekt);
+        Arrangement.leggTilDummyArrangementer().add(TestArrangementFeilVerdier);
+        Arrangement.leggTilDummyArrangementer().add(FeilVerdierSykkelTest);
+        assertEquals(TestArrangementer, Arrangement.getArrangementer());
     }
 }
