@@ -104,7 +104,6 @@ public class OpprettArrangementController {
         int paameldingAvgift = Integer.parseInt(prisTextField.getText());
         String beskrivelse = beskrivelseTextArea.getText();
         Distanse distanse = distanseTextField.getValue();
-        Lag laget = new Lag("Tufte");
 
         if(typeTextField.getSelectionModel().getSelectedItem() == "Sykkel") {
             Sykkel sykkelLop = new Sykkel(tittel,sted,dato,startTid,sluttTid,deltakerKapasitet,paameldingAvgift,beskrivelse,new ArrayList<>(),distanse);
@@ -134,10 +133,7 @@ public class OpprettArrangementController {
             }
         }
 
-
         AdminController.adminController.getArrangementListView().getSelectionModel().selectLast();
-
-
     }
 
     private void returnerTilAdminSide(ActionEvent event)  {
@@ -246,27 +242,35 @@ public class OpprettArrangementController {
 
     @FXML
     private void initialize(){
-        //ferdigButton.setOnAction(event);
         typeTextField.getItems().addAll("Sykkel", "Ski", "Springe");
+        typeTextField.getSelectionModel().selectFirst();
+        Sykkel.fyllDistanseListe();
+
+        for(int i = 0; i < Sykkel.getSykkelAvstander().length; i++) {
+            distanseTextField.getItems().add(Sykkel.getSykkelAvstander()[i]);
+        }
+
         typeTextField.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-                distanseTextField.getItems().removeAll(distanseTextField.getItems());
 
                 if(newValue == "Sykkel") {
+                    distanseTextField.getItems().removeAll(distanseTextField.getItems());
                     Sykkel.fyllDistanseListe();
                     for(int i = 0; i < Sykkel.getSykkelAvstander().length; i++) {
                         distanseTextField.getItems().add(Sykkel.getSykkelAvstander()[i]);
                     }
                     tomFeilmeldinger();
                 } else if(newValue == "Ski") {
+                    distanseTextField.getItems().removeAll(distanseTextField.getItems());
                     Ski.fyllDistanseListe();
                     for(int i = 0; i < Ski.getSkiAvstander().length; i++) {
                         distanseTextField.getItems().add(Ski.getSkiAvstander()[i]);
                     }
                     tomFeilmeldinger();
                 } else if(newValue == "Springe") {
+                    distanseTextField.getItems().removeAll(distanseTextField.getItems());
                     Lop.fyllDistanseListe();
                     for(int i = 0; i < Lop.getLopsAvstander().length; i++) {
                         distanseTextField.getItems().add(Lop.getLopsAvstander()[i]);
