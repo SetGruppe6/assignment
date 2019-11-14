@@ -99,7 +99,7 @@ class ArrangementTest {
         TestArrangementKorrekt.fjernDeltaker(TestErik);
         assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
     }
-
+    /*
     @Test
     public void leggTilDummyArrangementer(){ ///Gjør denne bare det samme som leggtilarrangementer-metoden?
         ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
@@ -110,5 +110,5 @@ class ArrangementTest {
         Arrangement.leggTilDummyArrangementer().add(TestArrangementFeilVerdier);
         Arrangement.leggTilDummyArrangementer().add(FeilVerdierSykkelTest);
         assertEquals(TestArrangementer, Arrangement.getArrangementer());
-    }
+    } */
 }
