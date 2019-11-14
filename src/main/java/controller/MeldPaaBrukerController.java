@@ -83,6 +83,7 @@ public class MeldPaaBrukerController implements Initializable {
             betalLabel.setText("Du må betale før du kan registere deg. Vennligst velg betalingsmetode under :)");
         }
     }
+
     public void gaaTilbake(ActionEvent event) throws IOException {
 
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/brukerside.fxml"));
