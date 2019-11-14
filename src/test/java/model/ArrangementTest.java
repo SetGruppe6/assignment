@@ -35,21 +35,21 @@ class ArrangementTest {
     @Test
     public void erDatoOkTest(){
         assertEquals("", TestArrangementKorrekt.erDatoOK(TestArrangementKorrekt.getDato()));
-        assertEquals("Arrangementets dato kan ikke være i fortiden", TestArrangementFeilVerdier.erDatoOK(TestArrangementFeilVerdier.getDato()));
-        assertEquals("Arrangementets dato må tidligst være om 30 dager", FeilVerdierSykkelTest.erDatoOK(FeilVerdierSykkelTest.getDato()));
+        assertEquals("Arrangementets dato kan ikke vaere i fortiden", TestArrangementFeilVerdier.erDatoOK(TestArrangementFeilVerdier.getDato()));
+        assertEquals("Arrangementets dato maa tidligst vaere om 30 dager", FeilVerdierSykkelTest.erDatoOK(FeilVerdierSykkelTest.getDato()));
     }
 
     @Test
     public void erTidsromGittTest(){
         //Har ikke test for "vennligst skriv inn på riktig format"
-        assertEquals("Starttidspunkt kan ikke være før sluttidspunkt", TestArrangementFeilVerdier.erStartTidspunktOk(TestArrangementFeilVerdier.getStartTid(), TestArrangementFeilVerdier.getSluttTid()));
-        assertEquals("Start- og sluttidspunkt kan ikke være det samme", FeilVerdierSykkelTest.erStartTidspunktOk(FeilVerdierSykkelTest.getStartTid(), FeilVerdierSykkelTest.getSluttTid()));
+        assertEquals("Starttidspunkt kan ikke vaere for sluttidspunkt", TestArrangementFeilVerdier.erStartTidspunktOk(TestArrangementFeilVerdier.getStartTid(), TestArrangementFeilVerdier.getSluttTid()));
+        assertEquals("Start- og sluttidspunkt maa vaere ulik", FeilVerdierSykkelTest.erStartTidspunktOk(FeilVerdierSykkelTest.getStartTid(), FeilVerdierSykkelTest.getSluttTid()));
         assertEquals("", TestArrangementKorrekt.erStartTidspunktOk(TestArrangementKorrekt.getStartTid(), TestArrangementKorrekt.getSluttTid()));
     }
 
     @Test
     public void erDeltakerKapasitetOkTest(){
-        assertEquals("Deltakerkapasitet må være større enn 0", TestArrangementFeilVerdier.erDeltakerKapasitetOk(TestArrangementFeilVerdier.getDeltakerKapasitet()));
+        assertEquals("Deltakerkapasitet maa vaere storre enn 0", TestArrangementFeilVerdier.erDeltakerKapasitetOk(TestArrangementFeilVerdier.getDeltakerKapasitet()));
         assertEquals("Kapasitet under 0 eller over 1000", FeilVerdierSykkelTest.erDeltakerKapasitetOk(FeilVerdierSykkelTest.getDeltakerKapasitet()));
         assertEquals("", TestArrangementKorrekt.erDeltakerKapasitetOk(TestArrangementKorrekt.getDeltakerKapasitet()));
     }
@@ -64,7 +64,7 @@ class ArrangementTest {
     @Test
     public void erPrisGittTest(){
         assertEquals("Arrangement er for dyrt", FeilVerdierSykkelTest.erPrisGitt(FeilVerdierSykkelTest.getPameldingsAvgift()));
-        assertEquals("Pris kan ikke være negativ", TestArrangementFeilVerdier.erPrisGitt(TestArrangementFeilVerdier.getPameldingsAvgift()));
+        assertEquals("Pris kan ikke vaere negativ", TestArrangementFeilVerdier.erPrisGitt(TestArrangementFeilVerdier.getPameldingsAvgift()));
         assertEquals("", TestArrangementKorrekt.erPrisGitt(TestArrangementKorrekt.getPameldingsAvgift()));
     }
 
