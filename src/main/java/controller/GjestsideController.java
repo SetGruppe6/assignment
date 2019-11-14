@@ -19,7 +19,6 @@ import model.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GjestsideController implements Initializable {
@@ -66,10 +65,6 @@ public class GjestsideController implements Initializable {
 
     AdminController adminController = new AdminController();
 
-
-    public ArrayList<Person> getGjester(){
-       return arrangementListView.getSelectionModel().getSelectedItem().getDeltakere();
-    }
 
     public int prisforarr(){
         return arrangementListView.getSelectionModel().getSelectedItem().getPameldingsAvgift();
