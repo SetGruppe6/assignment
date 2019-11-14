@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Arrangement;
@@ -34,6 +35,12 @@ public class MeldPaaController {
 
     @FXML
     private Button leggTilFlereButton;
+
+    @FXML
+    private Label sendFakturaLabel;
+
+    @FXML
+    private Button returnerButton;
 
     public static MeldPaaController meldPaaController;
     public MeldPaaController() {meldPaaController = this;};
@@ -156,5 +163,12 @@ public class MeldPaaController {
 
     public Lag getTufte() {
         return tufte;
+    }
+
+    public void sendFaktura(ActionEvent actionEvent) {
+
+        returnerButton.setDisable(false);
+        sendFakturaLabel.setVisible(true);
+
     }
 }
