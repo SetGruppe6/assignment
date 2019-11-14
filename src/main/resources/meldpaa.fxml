@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -8,8 +9,10 @@
    <children>
       <ListView fx:id="lagspillereListView" editable="true" layoutX="8.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="leggTilValgtButton" layoutX="230.0" layoutY="105.0" mnemonicParsing="false" onAction="#leggTilValgtePersoner" text="&lt;- Meld på valgt" />
-      <Button layoutX="517.0" layoutY="240.0" mnemonicParsing="false" onAction="#meldPaaValgte" text="Returner" />
+      <Button fx:id="returnerButton" disable="true" layoutX="517.0" layoutY="240.0" mnemonicParsing="false" onAction="#meldPaaValgte" text="Returner" />
       <Button fx:id="fjernValgtButton" layoutX="230.0" layoutY="137.0" mnemonicParsing="false" onAction="#fjernValgteMedlem" prefHeight="25.0" prefWidth="105.0" text=" Avmeld valgt -&gt;" />
       <ListView fx:id="valgteMedlemmerListView" layoutX="352.0" layoutY="31.0" prefHeight="200.0" prefWidth="225.0" />
+      <Button fx:id="sendFakturaButton" layoutX="422.0" layoutY="240.0" mnemonicParsing="false" onAction="#sendFaktura" text="Send Faktura" />
+      <Label fx:id="sendFakturaLabel" layoutX="230.0" layoutY="244.0" text="Faktura sendt til idrettslagets leder" visible="false" />
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -13,7 +14,9 @@ class ArrangementTest {
     Lop TestArrangementKorrekt = new Lop("Oslo Maraton", "Oslo, Rådhusplassen", LocalDate.of(2020, 9, 19), LocalTime.of(13,0), LocalTime.of(19,0), 900, 299, "Oslo Maraton er Norges største maraton og arrangeres hver høst i Oslos gater av Sportsklubben Vidar", new ArrayList<>());
     Ski TestArrangementFeilVerdier = new Ski("Birk", "", LocalDate.of(2018, 2, 3), LocalTime.of(20,30), LocalTime.of(10,30), 0, -200, "", new ArrayList<>());
     Sykkel FeilVerdierSykkelTest = new Sykkel("Tour de la France Global Cycling Tour", "", LocalDate.of(2019, 12,1), LocalTime.of(10,30), LocalTime.of(10,30), 2000, 2000, "", new ArrayList<>());
-
+    Person TestJon = new Person("Jon","Jonsen");
+    Person TestPer = new Person("Per", "Persson");
+    Person TestErik = new Person("Erik","Ericcson");
     @Test
     public void erTittelOkTest(){
 
@@ -64,4 +67,48 @@ class ArrangementTest {
         assertEquals("Pris kan ikke være negativ", TestArrangementFeilVerdier.erPrisGitt(TestArrangementFeilVerdier.getPameldingsAvgift()));
         assertEquals("", TestArrangementKorrekt.erPrisGitt(TestArrangementKorrekt.getPameldingsAvgift()));
     }
+
+    @Test // Ikke ferdig. Blir dette riktig måte å sjekke om man legger til et arrangement??? Metoden benyttes.
+    public void leggTilArrangementTest(){
+        ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
+        TestArrangementer.add(TestArrangementKorrekt);
+        Arrangement.leggTilArrangement(TestArrangementKorrekt);
+        assertEquals(TestArrangementer, Arrangement.getArrangementer());
+    }
+
+    @Test //Bruke en ny arraylist i testen?
+    public void leggTilDeltakerTest(){
+        ArrayList<Person> TestDeltakere = new ArrayList<>();
+        TestDeltakere.add(TestJon);
+        TestDeltakere.add(TestPer);
+        TestDeltakere.add(TestErik);
+        TestArrangementKorrekt.leggTilDeltaker(TestJon);
+        TestArrangementKorrekt.leggTilDeltaker(TestPer);
+        TestArrangementKorrekt.leggTilDeltaker(TestErik);
+        assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
+    }
+
+    @Test
+    public void fjerneDeltakerTest(){
+        ArrayList<Person> TestDeltakere = new ArrayList<>();
+        TestDeltakere.add(TestJon);
+        TestDeltakere.add(TestPer);
+        TestArrangementKorrekt.leggTilDeltaker(TestJon);
+        TestArrangementKorrekt.leggTilDeltaker(TestPer);
+        TestArrangementKorrekt.leggTilDeltaker(TestErik);
+        TestArrangementKorrekt.fjernDeltaker(TestErik);
+        assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
+    }
+/*
+    @Test
+    public void leggTilDummyArrangementer(){ ///Gjør denne bare det samme som leggtilarrangementer-metoden?
+        ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
+        TestArrangementer.add(TestArrangementKorrekt);
+        TestArrangementer.add(TestArrangementFeilVerdier);
+        TestArrangementer.add(FeilVerdierSykkelTest);
+        Arrangement.leggTilDummyArrangementer().add(TestArrangementKorrekt);
+        Arrangement.leggTilDummyArrangementer().add(TestArrangementFeilVerdier);
+        Arrangement.leggTilDummyArrangementer().add(FeilVerdierSykkelTest);
+        assertEquals(TestArrangementer, Arrangement.getArrangementer());
+    }*/
 }
