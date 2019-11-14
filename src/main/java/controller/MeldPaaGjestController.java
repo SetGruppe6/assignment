@@ -98,6 +98,15 @@ public class MeldPaaGjestController implements Initializable {
 
     }
 
+    public void gaaTilbake(ActionEvent event) throws IOException {
+
+        Parent brukerParent = FXMLLoader.load(getClass().getResource("/gjestside.fxml"));
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+    }
+
     public void etternavnKey(KeyEvent keyEvent) {
         etternavn = etternavnTextField.getText();
     }

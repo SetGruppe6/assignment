@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MeldPaaGjestController">
    <children>
       <Label layoutX="208.0" layoutY="41.0" text="Meld deg på her" underline="true">
@@ -36,5 +35,6 @@
          </children>
       </HBox>
       <Label fx:id="betalLabel" layoutX="14.0" layoutY="252.0" text="Trykk på din foretrukne betalingsmetode under:" />
+      <Button fx:id="backButton" layoutX="499.0" layoutY="338.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
    </children>
 </AnchorPane>

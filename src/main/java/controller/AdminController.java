@@ -60,7 +60,7 @@ public class AdminController implements Initializable {
     private Label deltakereLabel;
 
     @FXML
-    private Button meldPaa;
+    private Button meldPaaButton;
 
     private Person person;
 
@@ -71,7 +71,7 @@ public class AdminController implements Initializable {
     private ComboBox<String> sorteringComboBox;
 
     private ArrayList<Person> personer = new ArrayList<>();
-    private Lag tufteIl = new Lag("Tufte IL");
+    private Lag tufteIl = new Lag("Tufte");
 
 
     public static AdminController adminController;
@@ -87,9 +87,7 @@ public class AdminController implements Initializable {
 
     public void meldPaa (ActionEvent event) {
         visFXML(event,"/meldpaa.fxml");
-
     }
-
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
@@ -106,17 +104,17 @@ public class AdminController implements Initializable {
 
                 if(newValue == "Kommende arrangementer") {
                     arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaDatoKommende()));
-                    arrangementListView.refresh();
+                    meldPaaButton.setDisable(false);
 
                 }
                 else if(newValue == "Avsluttede arrangementer") {
                     arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaAvsluttede()));
-                    arrangementListView.refresh();
+                    meldPaaButton.setDisable(true);
                 }
                 else if(newValue == "Paameldte arrangementer") {
                     MeldPaaController mpc = new MeldPaaController();
                     arrangementListView.setItems(Datahandler.setArrangementListe(MeldPaaController.meldPaaController.getTufte().paameldteArrangementer(Arrangement.getArrangementer())));
-                    arrangementListView.refresh();
+                    meldPaaButton.setDisable(false);
                 }
                 arrangementListView.getSelectionModel().selectFirst();
             }
