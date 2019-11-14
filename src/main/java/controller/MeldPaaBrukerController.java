@@ -8,10 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Person;
@@ -21,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MeldPaaGjestController implements Initializable {
+public class MeldPaaBrukerController implements Initializable {
 
     @FXML
     private ImageView vippsImageView;
@@ -30,22 +28,9 @@ public class MeldPaaGjestController implements Initializable {
     private ImageView visaImageView;
 
     @FXML
-    private TextField fornavnTextField;
-
-    @FXML
-    private TextField etternavnTextField;
-
-    @FXML
-    private TextField emailTextField;
-
-    @FXML
     private Label betalLabel;
 
     private boolean betalt = false;
-
-    String fornavn;
-    String etternavn;
-    String email;
 
 
     public void betaltVipps(MouseEvent mouseEvent) {
@@ -62,6 +47,8 @@ public class MeldPaaGjestController implements Initializable {
         betaltText();
     }
 
+    Person dummyBruker = new Person("Ola", "Normann");
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -71,17 +58,17 @@ public class MeldPaaGjestController implements Initializable {
         vippsImageView.setImage(vipps);
     }
 
-    public void gjestErMeldtPaa(ActionEvent event) {
-        Person gjestMedlem = new Person(fornavn,etternavn,email);
+    public void brukerErMeldtPaa(ActionEvent event) {
 
-        ArrayList<Person> listeGjest = GjestsideController.gjestsideController.getGjester();
+        ArrayList<Person> listeBruker = BrukersideController.brukersideController.getBrukere();
 
-        if(betalt == true || GjestsideController.gjestsideController.prisforarr() <= 0) {
-            if (!listeGjest.contains(gjestMedlem)) {
-                listeGjest.add(gjestMedlem);
+        if (betalt == true || BrukersideController.brukersideController.prisforBrukerArrangement() <= 0) {
+
+            if (!listeBruker.contains(dummyBruker)) {
+                listeBruker.add(dummyBruker);
             }
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/gjestside.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/brukerside.fxml"));
             try {
                 fxmlLoader.load();
             } catch (IOException e) {
@@ -92,30 +79,16 @@ public class MeldPaaGjestController implements Initializable {
             Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
             vindu.setScene(scene);
             vindu.show();
-        }else {
+        }else{
             betalLabel.setText("Du må betale før du kan registere deg. Vennligst velg betalingsmetode under :)");
         }
-
     }
-
     public void gaaTilbake(ActionEvent event) throws IOException {
 
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/gjestside.fxml"));
+        Parent brukerParent = FXMLLoader.load(getClass().getResource("/brukerside.fxml"));
         Scene brukerScene = new Scene(brukerParent);
         Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
-    }
-
-    public void etternavnKey(KeyEvent keyEvent) {
-        etternavn = etternavnTextField.getText();
-    }
-
-    public void emailKey(KeyEvent keyEvent) {
-        email = emailTextField.getText();
-    }
-
-    public void fornavnKey(KeyEvent keyEvent) {
-        fornavn = fornavnTextField.getText();
     }
 }
