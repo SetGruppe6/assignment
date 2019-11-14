@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.Arrangement;
 import model.Betaling;
 import model.Person;
 
@@ -33,7 +34,12 @@ public class MeldPaaBrukerController implements Initializable {
 
     private boolean betalt = false;
 
+
+    public static MeldPaaBrukerController meldPaaBrukerController;
+    public MeldPaaBrukerController() {meldPaaBrukerController = this; }
+
     Betaling betaling = new Betaling(betalt);
+
 
 
     public void betaltVipps(MouseEvent mouseEvent) {
@@ -62,13 +68,13 @@ public class MeldPaaBrukerController implements Initializable {
     }
 
     public void brukerErMeldtPaa(ActionEvent event) {
-
+        Arrangement deltakere = BrukersideController.brukersideController.getArrangementListView().getSelectionModel().getSelectedItem();
         ArrayList<Person> listeBruker = BrukersideController.brukersideController.getBrukere();
 
         if (betaling.isBetalt() == true || BrukersideController.brukersideController.prisforBrukerArrangement() <= 0) {
 
-            if (!listeBruker.contains(dummyBruker)) {
-                listeBruker.add(dummyBruker);
+            if (!deltakere.getDeltakere().contains(dummyBruker)) {
+                deltakere.leggTilDeltaker(dummyBruker);
             }
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/brukerside.fxml"));
@@ -94,5 +100,9 @@ public class MeldPaaBrukerController implements Initializable {
         Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
+    }
+
+    public ArrayList<Arrangement> getDummyMedlem() {
+        return dummyBruker.getArrangementerPersonErPameldt();
     }
 }

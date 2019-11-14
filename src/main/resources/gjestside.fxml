@@ -4,14 +4,15 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GjestsideController">
     <Label text="gjestevindu" />
    <Button layoutX="480.0" layoutY="340.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
-   <ListView fx:id="arrangementListView" layoutX="8.0" layoutY="52.0" prefHeight="200.0" prefWidth="200.0" />
-   <Button layoutX="20.0" layoutY="260.0" mnemonicParsing="false" onAction="#meldpaa_gjest" text="Meld på" />
+   <ListView fx:id="arrangementListView" layoutX="8.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" />
+   <Button fx:id="meldPaaButton" layoutX="14.0" layoutY="314.0" mnemonicParsing="false" onAction="#meldpaa_gjest" text="Meld på" />
    <ComboBox fx:id="deltakereComboBox" layoutX="208.0" layoutY="260.0" prefWidth="150.0" promptText="Deltakere" />
    <Label fx:id="tittelLabel" layoutX="216.0" layoutY="45.0" text="Arrangement" underline="true">
       <font>
@@ -29,5 +30,7 @@
    <Label fx:id="kapasitetLabel" layoutX="498.0" layoutY="221.0" text="100" />
    <Label layoutX="430.0" layoutY="258.0" text="Pris:" />
    <Label fx:id="prisLabel" layoutX="493.0" layoutY="258.0" text="50 spenn" />
+   <ComboBox fx:id="sorteringComboBox" layoutX="8.0" layoutY="54.0" prefHeight="25.0" prefWidth="200.0" />
+   <ImageView fx:id="bildeImageView" fitHeight="46.0" fitWidth="94.0" layoutX="149.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
 
 </AnchorPane>

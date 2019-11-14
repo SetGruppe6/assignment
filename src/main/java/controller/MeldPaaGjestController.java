@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.Arrangement;
 import model.Person;
 
 import java.io.IOException;
@@ -46,6 +47,10 @@ public class MeldPaaGjestController implements Initializable {
     String fornavn;
     String etternavn;
     String email;
+    Person gjestMedlem;
+
+    public static MeldPaaGjestController meldPaaGjestController;
+    public MeldPaaGjestController() {meldPaaGjestController=this;}
 
 
     public void betaltVipps(MouseEvent mouseEvent) {
@@ -64,7 +69,6 @@ public class MeldPaaGjestController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         Image vipps = new Image("/vipps.png");
         Image visa = new Image("/visa.png");
         visaImageView.setImage(visa);
@@ -72,13 +76,13 @@ public class MeldPaaGjestController implements Initializable {
     }
 
     public void gjestErMeldtPaa(ActionEvent event) {
-        Person gjestMedlem = new Person(fornavn,etternavn,email);
-
-        ArrayList<Person> listeGjest = GjestsideController.gjestsideController.getGjester();
+        gjestMedlem = new Person(fornavn,etternavn,email,new ArrayList<>());
+        Arrangement valgtArrangement = GjestsideController.gjestsideController.getArrangementListView().getSelectionModel().getSelectedItem();
 
         if(betalt == true || GjestsideController.gjestsideController.prisforarr() <= 0) {
-            if (!listeGjest.contains(gjestMedlem)) {
-                listeGjest.add(gjestMedlem);
+            if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
+                valgtArrangement.leggTilDeltaker(gjestMedlem);
+                gjestMedlem.setArrangementerPersonErPameldt(valgtArrangement);
             }
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/gjestside.fxml"));
@@ -118,4 +122,9 @@ public class MeldPaaGjestController implements Initializable {
     public void fornavnKey(KeyEvent keyEvent) {
         fornavn = fornavnTextField.getText();
     }
+
+    public ArrayList<Arrangement> getGjestMedlem() {
+        return gjestMedlem.getArrangementerPersonErPameldt();
+    }
+
 }
