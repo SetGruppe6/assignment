@@ -98,23 +98,25 @@ public class Person {
         arrangementerPersonErPameldt.add(arrangement);
     }
 
-    public static String erNavnGitt(String navn) {
+    public String erFornavnGitt(String fornavn) {
 
-        if (navn.isEmpty()) {
-            return "Fullt navn mangler";
+        if (fornavn.isEmpty()) {
+            return "Fornavn mangler";
         }
         return "";
     }
 
-    public static String erPassordGitt (String passord) {
+    public String erEtternavnGitt(String etternavn) {
 
-        if (passord.isEmpty()) {
-            return "Passord mangler";
+        if (etternavn.isEmpty()) {
+            return "Etternavn mangler";
         }
         return "";
     }
 
-    public static String erEmailGitt(String email) {
+
+
+    public String erEmailGitt(String email) {
 
         if (email.isEmpty()) {
             return "E-post mangler";
@@ -122,13 +124,6 @@ public class Person {
         return "";
     }
 
-    public static String erTlfGitt(String tlf) {
-
-        if (tlf.length() != 8){
-            return "Ugyldig telefonnummer";
-        }
-        return "";
-    }
   
       @Override
     public String toString() {

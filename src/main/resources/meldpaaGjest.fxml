@@ -19,10 +19,9 @@
       </Label>
       <VBox layoutX="220.0" layoutY="100.0" prefHeight="106.0" prefWidth="161.0">
          <children>
-            <TextField fx:id="fornavnTextField" onKeyReleased="#fornavnKey" promptText="fornavn" />
-            <TextField fx:id="etternavnTextField" onKeyReleased="#etternavnKey" promptText="etternavn" />
-            <TextField fx:id="emailTextField" onKeyReleased="#emailKey" promptText="email" />
-            <Button mnemonicParsing="false" onAction="#gjestErMeldtPaa" text="Utfør" />
+            <TextField fx:id="fornavnTextField"  promptText="fornavn" />
+            <TextField fx:id="etternavnTextField"  promptText="etternavn" />
+            <TextField fx:id="emailTextField"  promptText="email" />
          </children>
          <padding>
             <Insets bottom="20.0" />
@@ -36,5 +35,21 @@
       </HBox>
       <Label fx:id="betalLabel" layoutX="14.0" layoutY="252.0" text="Trykk på din foretrukne betalingsmetode under:" />
       <Button fx:id="backButton" layoutX="499.0" layoutY="338.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
+      <Button layoutX="432.0" layoutY="338.0" mnemonicParsing="false" onAction="#gjestErMeldtPaa" text="Meld på" />
+      <Label fx:id="fornavnLabel" layoutX="384.0" layoutY="106.0" textFill="RED">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="etternavnLabel" layoutX="384.0" layoutY="136.0" textFill="RED">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailLabel" layoutX="384.0" layoutY="160.0" textFill="RED">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
