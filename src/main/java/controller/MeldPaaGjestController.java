@@ -115,9 +115,11 @@ public class MeldPaaGjestController implements Initializable {
         gjestMedlem = new Person(fornavn, etternavn, email);
         Arrangement valgtArrangement = GjestsideController.gjestsideController.getArrangementListView().getSelectionModel().getSelectedItem();
 
-        if (!inputValideringGjest(gjestMedlem).isEmpty() || !betaling.isBetalt()) {
+        if (!inputValideringGjest(gjestMedlem).isEmpty()){
             setFeilMeldinger(gjestMedlem);
-            betalLabel.setText("Du maa betale for du kan registere deg. Vennligst velg betalingsmetode under :)");
+         if(betaling.isBetalt()) {
+             betalLabel.setText("Du maa betale for du kan registere deg. Vennligst velg betalingsmetode under :)");
+         }
         } else if (inputValideringGjest(gjestMedlem).isEmpty() && betaling.isBetalt()) {
             if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
                 valgtArrangement.leggTilDeltaker(gjestMedlem);
