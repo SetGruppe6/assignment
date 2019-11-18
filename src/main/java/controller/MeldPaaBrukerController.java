@@ -48,7 +48,7 @@ public class MeldPaaBrukerController implements Initializable {
     }
 
     public void betaltText(){
-        betalLabel.setText("Du har nå betalt for arrangementet!");
+        betalLabel.setText("Du har naa betalt for arrangementet!");
     }
 
     public void betaltVisa(MouseEvent mouseEvent) {
@@ -56,7 +56,7 @@ public class MeldPaaBrukerController implements Initializable {
         betaltText();
     }
 
-    Person dummyBruker = new Person("Ola", "Normann");
+    Person dummyBruker = new Person("Per", "Sandfjeld");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -89,7 +89,7 @@ public class MeldPaaBrukerController implements Initializable {
             vindu.setScene(scene);
             vindu.show();
         }else{
-            betalLabel.setText("Du må betale før du kan registere deg. Vennligst velg betalingsmetode under :)");
+            betalLabel.setText("Du maa betale foer du kan registere deg. Vennligst velg betalingsmetode under:");
         }
     }
 

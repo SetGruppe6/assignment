@@ -75,10 +75,6 @@ public class Lag {
         return navn;
     }
 
-    public void setNavn(String navn) {
-        this.navn = navn;
-    }
-
     public ArrayList<Person> getMedlemmer() {
         return medlemmer;
     }

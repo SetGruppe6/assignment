@@ -73,7 +73,7 @@ public class MeldPaaGjestController implements Initializable {
     }
 
     public void betaltText() {
-        betalLabel.setText("Du har nå betalt for arrangementet!");
+        betalLabel.setText("Du har naa betalt for arrangementet!");
     }
 
     public void betaltVisa(MouseEvent mouseEvent) {
@@ -118,7 +118,7 @@ public class MeldPaaGjestController implements Initializable {
         if (!inputValideringGjest(gjestMedlem).isEmpty()){
             setFeilMeldinger(gjestMedlem);
          if(betaling.isBetalt()) {
-             betalLabel.setText("Du maa betale for du kan registere deg. Vennligst velg betalingsmetode under :)");
+             betalLabel.setText("Du maa betale for du kan registere deg. Vennligst velg betalingsmetode under:");
          }
         } else if (inputValideringGjest(gjestMedlem).isEmpty() && betaling.isBetalt()) {
             if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
@@ -129,35 +129,6 @@ public class MeldPaaGjestController implements Initializable {
 
         }
     }
-
-    /*public void gjestErMeldtPaa(ActionEvent event) {
-        String fornavn = fornavnTextField.getText();
-        String etternavn = etternavnTextField.getText();
-        String email = emailTextField.getText();
-
-        gjestMedlem = new Person(fornavn, etternavn, email, new ArrayList<>());
-        Arrangement valgtArrangement = GjestsideController.gjestsideController.getArrangementListView().getSelectionModel().getSelectedItem();
-
-
-        if (!inputValideringGjest(gjestMedlem).isEmpty())  {
-            setFeilMeldinger(gjestMedlem);
-            if (!betaling.isBetalt() && GjestsideController.gjestsideController.prisforarr() > 0) {
-                betalLabel.setText("Du maa betale for du kan registere deg. Vennligst velg betalingsmetode under :)");
-            }else {
-                System.out.println("else");
-                if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
-                    System.out.println("inne if");
-                    valgtArrangement.leggTilDeltaker(gjestMedlem);
-                } else if(betaling.isBetalt() && !valgtArrangement.getDeltakere().contains(gjestMedlem) && !inputValideringGjest(gjestMedlem).isEmpty()) {
-                    System.out.println("inne i else if");
-                    gjestMedlem.setArrangementerPersonErPameldt(valgtArrangement);
-                    visFXML(event, "/gjestside.fxml");
-                }
-            }
-            }
-        }
-*/
-
 
         private void visFXML (ActionEvent event, String fxml){
             Parent brukerParent = null;

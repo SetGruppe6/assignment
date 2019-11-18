@@ -53,41 +53,12 @@ public class Person {
         return fornavn;
     }
 
-    public void setFornavn(String fornavn) {
-        this.fornavn = fornavn;
-    }
-
     public String getEtternavn() {
         return etternavn;
     }
 
-    public void setEtternavn(String etternavn) {
-        this.etternavn = etternavn;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassord() {
-        return passord;
-    }
-
-    public void setPassord(String passord) {
-        this.passord = passord;
-    }
-
-
-    public String getTlf() {
-        return tlf;
-    }
-
-    public void setTlf(String tlf) {
-        this.tlf = tlf;
     }
 
     public ArrayList<Arrangement> getArrangementerPersonErPameldt() {
@@ -113,7 +84,6 @@ public class Person {
         }
         return "";
     }
-
 
 
     public String erEmailGitt(String email) {
