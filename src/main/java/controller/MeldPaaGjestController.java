@@ -43,6 +43,15 @@ public class MeldPaaGjestController implements Initializable {
     @FXML
     private Label betalLabel;
 
+    @FXML
+    private Label fornavnLabel;
+
+    @FXML
+    private Label etternavnLabel;
+
+    @FXML
+    private Label emailLabel;
+
     private boolean betalt = false;
     Betaling betaling = new Betaling(betalt);
 
@@ -52,7 +61,10 @@ public class MeldPaaGjestController implements Initializable {
     Person gjestMedlem;
 
     public static MeldPaaGjestController meldPaaGjestController;
-    public MeldPaaGjestController() {meldPaaGjestController=this;}
+
+    public MeldPaaGjestController() {
+        meldPaaGjestController = this;
+    }
 
 
     public void betaltVipps(MouseEvent mouseEvent) {
@@ -60,13 +72,31 @@ public class MeldPaaGjestController implements Initializable {
         betaltText();
     }
 
-    public void betaltText(){
-        betalLabel.setText("Du har nå betalt for arrangementet!");
+    public void betaltText() {
+        betalLabel.setText("Du har naa betalt for arrangementet!");
     }
 
     public void betaltVisa(MouseEvent mouseEvent) {
         betaling.harBetalt();
         betaltText();
+    }
+
+    private String inputValideringGjest(Person person) {
+        StringBuilder inputResultat = new StringBuilder();
+        inputResultat.append(person.erFornavnGitt(person.getFornavn()));
+        inputResultat.append(person.erEtternavnGitt(person.getEtternavn()));
+        inputResultat.append(person.erEmailGitt(person.getEmail()));
+        return inputResultat.toString();
+    }
+
+    private void setFeilMeldinger(Person person) {
+        String fornavn = fornavnTextField.getText();
+        String etternavn = etternavnTextField.getText();
+        String email = emailTextField.getText();
+
+        fornavnLabel.setText(person.erFornavnGitt(fornavn));
+        etternavnLabel.setText(person.erEtternavnGitt(etternavn));
+        emailLabel.setText(person.erEmailGitt(email));
     }
 
     @Override
@@ -78,55 +108,56 @@ public class MeldPaaGjestController implements Initializable {
     }
 
     public void gjestErMeldtPaa(ActionEvent event) {
-        gjestMedlem = new Person(fornavn,etternavn,email,new ArrayList<>());
+        String fornavn = fornavnTextField.getText();
+        String etternavn = etternavnTextField.getText();
+        String email = emailTextField.getText();
+
+        gjestMedlem = new Person(fornavn, etternavn, email);
         Arrangement valgtArrangement = GjestsideController.gjestsideController.getArrangementListView().getSelectionModel().getSelectedItem();
 
-        if(betaling.isBetalt() == true || GjestsideController.gjestsideController.prisforarr() <= 0) {
+        if (!inputValideringGjest(gjestMedlem).isEmpty()){
+            setFeilMeldinger(gjestMedlem);
+         if(betaling.isBetalt()) {
+             betalLabel.setText("Du maa betale for du kan registere deg. Vennligst velg betalingsmetode under:");
+         }
+        } else if (inputValideringGjest(gjestMedlem).isEmpty() && betaling.isBetalt()) {
             if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
                 valgtArrangement.leggTilDeltaker(gjestMedlem);
                 gjestMedlem.setArrangementerPersonErPameldt(valgtArrangement);
+                visFXML(event, "/gjestside.fxml");
             }
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/gjestside.fxml"));
+
+        }
+    }
+
+        private void visFXML (ActionEvent event, String fxml){
+            Parent brukerParent = null;
             try {
-                fxmlLoader.load();
+                brukerParent = FXMLLoader.load(getClass().getResource(fxml));
             } catch (IOException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
-            Parent p = fxmlLoader.getRoot();
-            Scene scene = new Scene(p);
+            assert brukerParent != null;
+            Scene brukerScene = new Scene(brukerParent);
             Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            vindu.setScene(scene);
+            vindu.setScene(brukerScene);
             vindu.show();
-        }else {
-            betalLabel.setText("Du må betale før du kan registere deg. Vennligst velg betalingsmetode under :)");
+        }
+
+
+        public void gaaTilbake (ActionEvent event) throws IOException {
+
+            Parent brukerParent = FXMLLoader.load(getClass().getResource("/gjestside.fxml"));
+            Scene brukerScene = new Scene(brukerParent);
+            Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            vindu.setScene(brukerScene);
+            vindu.show();
+        }
+
+
+        public ArrayList<Arrangement> getGjestMedlem () {
+            return gjestMedlem.getArrangementerPersonErPameldt();
         }
 
     }
 
-    public void gaaTilbake(ActionEvent event) throws IOException {
-
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/gjestside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
-    }
-
-    public void etternavnKey(KeyEvent keyEvent) {
-        etternavn = etternavnTextField.getText();
-    }
-
-    public void emailKey(KeyEvent keyEvent) {
-        email = emailTextField.getText();
-    }
-
-    public void fornavnKey(KeyEvent keyEvent) {
-        fornavn = fornavnTextField.getText();
-    }
-
-    public ArrayList<Arrangement> getGjestMedlem() {
-        return gjestMedlem.getArrangementerPersonErPameldt();
-    }
-
-}

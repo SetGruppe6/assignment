@@ -6,30 +6,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
 
+    Person TestJon = new Person("Jon","Jonsen", "JonJonsen@gmail.com");
+    Person TestPer = new Person("", "","");
+
+
     @Test
-    public void erNavnGittTest(){
-        assertEquals("Fullt navn mangler", Person.erNavnGitt(""));
-        assertEquals("", Person.erNavnGitt("JesusLever"));
+    public void erFornavnGittTest(){
+        assertEquals("", TestJon.erFornavnGitt(TestJon.getFornavn()));
+        assertEquals("Fornavn mangler", TestPer.erFornavnGitt(TestPer.getFornavn()));
     }
 
     @Test
-    public void erPassordGittTest(){
-        assertEquals("Passord mangler", Person.erPassordGitt(""));
-        assertEquals("", Person.erPassordGitt("abc123"));
+    public void erEtternavnGittTest(){
+        assertEquals("Etternavn mangler", TestPer.erEtternavnGitt(TestPer.getEtternavn()));
+        assertEquals("", TestJon.erEtternavnGitt(TestJon.getEtternavn()));
     }
 
     @Test
     public void erEmailGittTest(){
-        assertEquals("E-post mangler", Person.erEmailGitt(""));
-        assertEquals("", Person.erEmailGitt("JesusLever@yahoo.com"));
-    }
-
-    @Test
-    public void erTlfGittTest(){
-        assertEquals("Ugyldig telefonnummer", Person.erTlfGitt("12"));
-        assertEquals("Ugyldig telefonnummer", Person.erTlfGitt("125643"));
-        assertEquals("Ugyldig telefonnummer", Person.erTlfGitt("1256432423"));
-        assertEquals("", Person.erTlfGitt("12345678"));
-
+        assertEquals("E-post mangler", TestPer.erEmailGitt(TestPer.getEmail()));
+        assertEquals("", TestJon.erEmailGitt(TestJon.getEmail()));
     }
 }

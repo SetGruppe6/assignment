@@ -13,7 +13,7 @@
       <font>
          <Font name="System Bold" size="14.0" />
       </font></Label>
-   <Button layoutX="491.0" layoutY="337.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
+   <Button layoutX="514.0" layoutY="337.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
    <ListView fx:id="arrangementListView" layoutX="14.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" />
    <ComboBox fx:id="sorteringComboBox" layoutX="14.0" layoutY="60.0" prefHeight="27.0" prefWidth="200.0" />
    <Button fx:id="opprettButton" layoutX="14.0" layoutY="301.0" mnemonicParsing="false" onAction="#opprettArrangement" prefHeight="27.0" prefWidth="153.0" text="Opprett arrangement" />
@@ -22,20 +22,38 @@
          <Font size="24.0" />
       </font>
    </Label>
-   <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="239.0" layoutY="95.0" lineSpacing="1.5" prefHeight="173.0" prefWidth="145.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." wrapText="true" />
+   <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="239.0" layoutY="95.0" lineSpacing="1.5" prefHeight="173.0" prefWidth="145.0" wrapText="true" />
    <Button fx:id="meldPaaButton" layoutX="14.0" layoutY="337.0" mnemonicParsing="false" onAction="#meldPaa" text="Meld på / av" />
    <ImageView fx:id="bildeImageView" fitHeight="48.0" fitWidth="87.0" layoutX="170.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
-   <Label layoutX="420.0" layoutY="95.0" text="Dato:" />
-   <Label fx:id="datoLabel" layoutX="485.0" layoutY="95.0" text="dd.mm.yyyy" />
-   <Label layoutX="420.0" layoutY="125.0" text="Adresse:" />
+   <Label layoutX="420.0" layoutY="95.0" text="Dato:">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
+   <Label fx:id="datoLabel" layoutX="486.0" layoutY="95.0" text="dd.mm.yyyy" />
+   <Label layoutX="420.0" layoutY="125.0" text="Adresse:">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
    <Label fx:id="adresseLabel" layoutX="420.0" layoutY="153.0" prefHeight="17.0" prefWidth="170.0" text="&quot;adresse&quot;" />
-   <Label layoutX="420.0" layoutY="179.0" text="Tidsrom:" />
-   <Label fx:id="tidsromLabel" layoutX="488.0" layoutY="179.0" text="00:00 - 00:00" />
-   <Label layoutX="419.0" layoutY="211.0" text="Kapasitet:" />
-   <Label fx:id="kapasitetLabel" layoutX="488.0" layoutY="211.0" text="100" />
-   <Label layoutX="420.0" layoutY="248.0" text="Pris:" />
-   <Label fx:id="prisLabel" layoutX="483.0" layoutY="248.0" text="50 spenn" />
-   <Label layoutX="420.0" layoutY="287.0" text="Deltakere" />
-   <ComboBox fx:id="deltakereComboBox" layoutX="424.0" layoutY="305.0" prefWidth="150.0" />
+   <Label layoutX="420.0" layoutY="179.0" text="Tidsrom:">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
+   <Label fx:id="tidsromLabel" layoutX="484.0" layoutY="179.0" text="00:00 - 00:00" />
+   <Label layoutX="419.0" layoutY="211.0" text="Kapasitet:">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
+   <Label fx:id="kapasitetLabel" layoutX="489.0" layoutY="211.0" text="100" />
+   <Label layoutX="423.0" layoutY="248.0" text="Pris:">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
+   <Label fx:id="prisLabel" layoutX="492.0" layoutY="248.0" text="50 spenn" />
+   <Label layoutX="420.0" layoutY="287.0" text="Deltakere">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
+   <ComboBox fx:id="deltakereComboBox" layoutX="417.0" layoutY="304.0" prefWidth="150.0" promptText="Deltakere" />
 
 </AnchorPane>

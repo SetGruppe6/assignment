@@ -53,41 +53,12 @@ public class Person {
         return fornavn;
     }
 
-    public void setFornavn(String fornavn) {
-        this.fornavn = fornavn;
-    }
-
     public String getEtternavn() {
         return etternavn;
     }
 
-    public void setEtternavn(String etternavn) {
-        this.etternavn = etternavn;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassord() {
-        return passord;
-    }
-
-    public void setPassord(String passord) {
-        this.passord = passord;
-    }
-
-
-    public String getTlf() {
-        return tlf;
-    }
-
-    public void setTlf(String tlf) {
-        this.tlf = tlf;
     }
 
     public ArrayList<Arrangement> getArrangementerPersonErPameldt() {
@@ -98,23 +69,24 @@ public class Person {
         arrangementerPersonErPameldt.add(arrangement);
     }
 
-    public static String erNavnGitt(String navn) {
+    public String erFornavnGitt(String fornavn) {
 
-        if (navn.isEmpty()) {
-            return "Fullt navn mangler";
+        if (fornavn.isEmpty()) {
+            return "Fornavn mangler";
         }
         return "";
     }
 
-    public static String erPassordGitt (String passord) {
+    public String erEtternavnGitt(String etternavn) {
 
-        if (passord.isEmpty()) {
-            return "Passord mangler";
+        if (etternavn.isEmpty()) {
+            return "Etternavn mangler";
         }
         return "";
     }
 
-    public static String erEmailGitt(String email) {
+
+    public String erEmailGitt(String email) {
 
         if (email.isEmpty()) {
             return "E-post mangler";
@@ -122,13 +94,6 @@ public class Person {
         return "";
     }
 
-    public static String erTlfGitt(String tlf) {
-
-        if (tlf.length() != 8){
-            return "Ugyldig telefonnummer";
-        }
-        return "";
-    }
   
       @Override
     public String toString() {

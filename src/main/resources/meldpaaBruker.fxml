@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MeldPaaBrukerController">
    <children>
       <HBox layoutX="28.0" layoutY="286.0" prefHeight="100.0" prefWidth="200.0">
@@ -21,7 +20,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="275.0" layoutY="154.0" mnemonicParsing="false" onAction="#brukerErMeldtPaa" text="Utfør" />
+      <Button layoutX="447.0" layoutY="338.0" mnemonicParsing="false" onAction="#brukerErMeldtPaa" text="Utfør" />
       <Label fx:id="betalLabel" layoutX="24.0" layoutY="262.0" text="Trykk på din foretrukne betalingsmetode under:" />
       <Button fx:id="backButton" layoutX="499.0" layoutY="338.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
    </children>
