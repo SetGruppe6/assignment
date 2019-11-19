@@ -99,7 +99,7 @@ class ArrangementTest {
         assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
     }
 
-    // Krav 3.2.11
+    // Krav 3.2.12
     @Test
     public void fjerneDeltakerTest(){
         ArrayList<Person> TestDeltakere = new ArrayList<>();

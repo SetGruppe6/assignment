@@ -39,6 +39,7 @@ public class LagTest {
         assertEquals(paameldteArrangement,TestLag.getArrangementerLagetErPaameldt());
     }
 
+    // Krav 3.5.5
     @Test
     public void paameldteArrangementerTest(){
         ArrayList<Arrangement> paameldteArrangementTest = new ArrayList<>();
