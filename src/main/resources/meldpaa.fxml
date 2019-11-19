@@ -13,6 +13,6 @@
       <Button fx:id="fjernValgtButton" layoutX="230.0" layoutY="137.0" mnemonicParsing="false" onAction="#fjernValgteMedlem" prefHeight="25.0" prefWidth="105.0" text=" Avmeld valgt -&gt;" />
       <ListView fx:id="valgteMedlemmerListView" layoutX="352.0" layoutY="31.0" prefHeight="200.0" prefWidth="225.0" />
       <Button fx:id="sendFakturaButton" layoutX="422.0" layoutY="240.0" mnemonicParsing="false" onAction="#sendFaktura" text="Send Faktura" />
-      <Label fx:id="sendFakturaLabel" layoutX="230.0" layoutY="244.0" text="Faktura sendt til idrettslagets leder" visible="false" />
+      <Label fx:id="sendFakturaLabel" layoutX="7.0" layoutY="244.0" prefHeight="17.0" prefWidth="251.0" text="Faktura er sendt til idrettlagets leder" visible="false" />
    </children>
 </AnchorPane>
