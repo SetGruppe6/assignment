@@ -19,6 +19,7 @@ public class LagTest {
     Person TestErik = new Person("Erik","Ericcson");
 
 
+    // Krav 3.2.9
     @Test
     public void meldPaaArrangementTest(){
         ArrayList<Arrangement> paameldteArrangement = new ArrayList<>();
@@ -27,6 +28,7 @@ public class LagTest {
         assertEquals(paameldteArrangement,TestLag.getArrangementerLagetErPaameldt());
     }
 
+    // Krav 3.2.12
     @Test
     public void avmeldArrangementTest(){
         ArrayList<Arrangement> paameldteArrangement = new ArrayList<>();
@@ -47,11 +49,13 @@ public class LagTest {
         assertEquals(paameldteArrangementTest, TestLag.paameldteArrangementer(paameldteArrangementTest));
     }
 
+    // Krav 3.6.9
     @Test
     public void erEttLagmedlemLagtTilTest(){
         TestLag.getMedlemmer().add(TestJon);
         assertEquals(TestLag.getMedlemmer(), TestLag.leggTilDummyMedlemmer(TestLag));
     }
+
 
     @Test
     public void erFlereLagmedlemLagtTilTest(){

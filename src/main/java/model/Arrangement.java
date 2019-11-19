@@ -145,8 +145,8 @@ public abstract class Arrangement {
         if(kapasitet == 0) {
             return "Deltakerkapasitet maa vaere storre enn 0";
         }
-        else if (kapasitet < 1 || kapasitet > 1000){
-            return "Kapasitet under 0 eller over 1000";
+        else if (kapasitet < 1 || kapasitet > 500){
+            return "Kapasitet under 0 eller over 500";
         }
         return "";
     }

@@ -11,27 +11,33 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArrangementTest {
 
-    Lop TestArrangementKorrekt = new Lop("Oslo Maraton", "Oslo, Rådhusplassen", LocalDate.of(2020, 9, 19), LocalTime.of(13,0), LocalTime.of(19,0), 900, 299, "Oslo Maraton er Norges største maraton og arrangeres hver høst i Oslos gater av Sportsklubben Vidar", new ArrayList<>());
+    /*
+    * Oppretter instanser som skal brukes i testingen.
+    * */
+    Lop TestArrangementKorrekt = new Lop("Oslo Maraton", "Oslo, Rådhusplassen", LocalDate.of(2020, 9, 19), LocalTime.of(13,0), LocalTime.of(19,0), 477, 299, "Oslo Maraton er Norges største maraton og arrangeres hver høst i Oslos gater av Sportsklubben Vidar", new ArrayList<>());
     Ski TestArrangementFeilVerdier = new Ski("Birk", "", LocalDate.of(2018, 2, 3), LocalTime.of(20,30), LocalTime.of(10,30), 0, -200, "", new ArrayList<>());
     Sykkel FeilVerdierSykkelTest = new Sykkel("Tour de la France Global Cycling Tour", "", LocalDate.of(2019, 12,1), LocalTime.of(10,30), LocalTime.of(10,30), 2000, 2000, "", new ArrayList<>());
     Person TestJon = new Person("Jon","Jonsen");
     Person TestPer = new Person("Per", "Persson");
     Person TestErik = new Person("Erik","Ericcson");
+
+
+    // Krav 3.1.1
     @Test
     public void erTittelOkTest(){
-
-
         assertEquals("", TestArrangementKorrekt.erTittelOk(TestArrangementKorrekt.getNavn()));
         assertEquals("Tittel for lang", FeilVerdierSykkelTest.erTittelOk(FeilVerdierSykkelTest.getNavn()));
         assertEquals("Tittel for kort", TestArrangementFeilVerdier.erTittelOk(TestArrangementFeilVerdier.getNavn()));
     }
 
+    // Krav 3.1.9
     @Test
     public void erLokasjonOkTest(){
         assertEquals("Fyll inn lokasjon", TestArrangementFeilVerdier.erLokasjonGitt(TestArrangementFeilVerdier.getLokasjon()));
         assertEquals("", TestArrangementKorrekt.erLokasjonGitt(TestArrangementKorrekt.getLokasjon()));
     }
 
+    // Krav 3.1.5
     @Test
     public void erDatoOkTest(){
         assertEquals("", TestArrangementKorrekt.erDatoOK(TestArrangementKorrekt.getDato()));
@@ -39,6 +45,7 @@ class ArrangementTest {
         assertEquals("Arrangementets dato maa tidligst vaere om 30 dager", FeilVerdierSykkelTest.erDatoOK(FeilVerdierSykkelTest.getDato()));
     }
 
+    // Krav 3.1.6
     @Test
     public void erTidsromGittTest(){
         //Har ikke test for "vennligst skriv inn på riktig format"
@@ -47,20 +54,22 @@ class ArrangementTest {
         assertEquals("", TestArrangementKorrekt.erStartTidspunktOk(TestArrangementKorrekt.getStartTid(), TestArrangementKorrekt.getSluttTid()));
     }
 
+    // Krav 3.1.7
     @Test
     public void erDeltakerKapasitetOkTest(){
         assertEquals("Deltakerkapasitet maa vaere storre enn 0", TestArrangementFeilVerdier.erDeltakerKapasitetOk(TestArrangementFeilVerdier.getDeltakerKapasitet()));
-        assertEquals("Kapasitet under 0 eller over 1000", FeilVerdierSykkelTest.erDeltakerKapasitetOk(FeilVerdierSykkelTest.getDeltakerKapasitet()));
+        assertEquals("Kapasitet under 0 eller over 500", FeilVerdierSykkelTest.erDeltakerKapasitetOk(FeilVerdierSykkelTest.getDeltakerKapasitet()));
         assertEquals("", TestArrangementKorrekt.erDeltakerKapasitetOk(TestArrangementKorrekt.getDeltakerKapasitet()));
     }
 
-
+    // Krav 3.1.2
     @Test
     public void erBeskrivelseGittTest(){
         assertEquals("Beskrivelse ikke gitt", FeilVerdierSykkelTest.erBeskrivelseGitt(FeilVerdierSykkelTest.getBeskrivelse()));
         assertEquals("", TestArrangementKorrekt.erBeskrivelseGitt(TestArrangementKorrekt.getBeskrivelse()));
     }
 
+    // Krav 3.1.4 og 3.1.4.1
     @Test
     public void erPrisGittTest(){
         assertEquals("Arrangement er for dyrt", FeilVerdierSykkelTest.erPrisGitt(FeilVerdierSykkelTest.getPameldingsAvgift()));
@@ -68,7 +77,8 @@ class ArrangementTest {
         assertEquals("", TestArrangementKorrekt.erPrisGitt(TestArrangementKorrekt.getPameldingsAvgift()));
     }
 
-    @Test // Ikke ferdig. Blir dette riktig måte å sjekke om man legger til et arrangement??? Metoden benyttes.
+    // Krav 3.8.2
+    @Test
     public void leggTilArrangementTest(){
         ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
         TestArrangementer.add(TestArrangementKorrekt);
@@ -76,7 +86,8 @@ class ArrangementTest {
         assertEquals(TestArrangementer, Arrangement.getArrangementer());
     }
 
-    @Test //Bruke en ny arraylist i testen?
+    // Krav 3.2.1
+    @Test
     public void leggTilDeltakerTest(){
         ArrayList<Person> TestDeltakere = new ArrayList<>();
         TestDeltakere.add(TestJon);
@@ -88,6 +99,7 @@ class ArrangementTest {
         assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
     }
 
+    // Krav 3.2.11
     @Test
     public void fjerneDeltakerTest(){
         ArrayList<Person> TestDeltakere = new ArrayList<>();
@@ -99,16 +111,4 @@ class ArrangementTest {
         TestArrangementKorrekt.fjernDeltaker(TestErik);
         assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
     }
-/*
-    @Test
-    public void leggTilDummyArrangementer(){ ///Gjør denne bare det samme som leggtilarrangementer-metoden?
-        ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
-        TestArrangementer.add(TestArrangementKorrekt);
-        TestArrangementer.add(TestArrangementFeilVerdier);
-        TestArrangementer.add(FeilVerdierSykkelTest);
-        Arrangement.leggTilDummyArrangementer().add(TestArrangementKorrekt);
-        Arrangement.leggTilDummyArrangementer().add(TestArrangementFeilVerdier);
-        Arrangement.leggTilDummyArrangementer().add(FeilVerdierSykkelTest);
-        assertEquals(TestArrangementer, Arrangement.getArrangementer());
-    }*/
 }

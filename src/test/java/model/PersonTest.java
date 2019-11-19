@@ -10,18 +10,21 @@ class PersonTest {
     Person TestPer = new Person("", "","");
 
 
+    // Krav 3.4.1
     @Test
     public void erFornavnGittTest(){
         assertEquals("", TestJon.erFornavnGitt(TestJon.getFornavn()));
         assertEquals("Fornavn mangler", TestPer.erFornavnGitt(TestPer.getFornavn()));
     }
 
+    // Krav 3.4.1
     @Test
     public void erEtternavnGittTest(){
         assertEquals("Etternavn mangler", TestPer.erEtternavnGitt(TestPer.getEtternavn()));
         assertEquals("", TestJon.erEtternavnGitt(TestJon.getEtternavn()));
     }
 
+    // Krav 3.4.1
     @Test
     public void erEmailGittTest(){
         assertEquals("E-post mangler", TestPer.erEmailGitt(TestPer.getEmail()));
