@@ -54,15 +54,15 @@ public class MeldPaaController {
     private ArrayList<Person> medlemmerTufte = new ArrayList<Person>(Main.getApplication().getTufte().getMedlemmer());
     private ObservableList<Person> medlemmerGui = FXCollections.observableList(medlemmerTufte);
     //ObservableList som holder på påmeldte personer.
-    private Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
-    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(deltakerListe.getDeltakere());
+    private Arrangement arrangementTilPaamelding = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
+    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(arrangementTilPaamelding.getDeltakere());
 
 
     public void leggTilValgtePersoner(ActionEvent event) {
         Person lagspiller = lagspillereListView.getSelectionModel().getSelectedItem();
         Boolean finnesSpiller = Boolean.FALSE;
 
-        if (!deltakerListe.getDeltakere().contains(lagspiller) && lagspiller != null) {
+        if (!arrangementTilPaamelding.getDeltakere().contains(lagspiller) && lagspiller != null) {
 
             for(Person pers:valgteMedlemmerGui) {
                 if(lagspiller.getFornavn() == pers.getFornavn() && lagspiller.getEtternavn() == pers.getEtternavn()) {
@@ -79,8 +79,8 @@ public class MeldPaaController {
         /**Siden vi kun illustrer bruk av admin grensesnitt som et lag, blir dette logikken for hvordan man
          * melder "påloggede" lag på et arrangement
          */
-        if(!deltakerListe.getDeltakere().isEmpty() && !Main.getApplication().getTufte().getArrangementerLagetErPaameldt().contains(deltakerListe)) {
-            Main.getApplication().getTufte().meldPaaArrangement(deltakerListe);
+        if(!arrangementTilPaamelding.getDeltakere().isEmpty() && !Main.getApplication().getTufte().getArrangementerLagetErPaameldt().contains(arrangementTilPaamelding)) {
+            Main.getApplication().getTufte().meldPaaArrangement(arrangementTilPaamelding);
             System.out.println(Main.getApplication().getTufte().getArrangementerLagetErPaameldt());
         }
 
@@ -94,7 +94,7 @@ public class MeldPaaController {
         Person valgtMedlem = valgteMedlemmerListView.getSelectionModel().getSelectedItem();
         Boolean finnesSpiller = Boolean.FALSE;
 
-        if(deltakerListe.getDeltakere().contains(valgtMedlem)) {
+        if(arrangementTilPaamelding.getDeltakere().contains(valgtMedlem)) {
 
             if(!valgtMedlem.getHarLagTilknytning()) {
                 Alert advarsel = new Alert(Alert.AlertType.WARNING);
@@ -102,7 +102,7 @@ public class MeldPaaController {
                 advarsel.showAndWait();
             } else {
                 valgteMedlemmerGui.remove(valgtMedlem);
-                deltakerListe.fjernDeltaker(valgtMedlem);
+                arrangementTilPaamelding.fjernDeltaker(valgtMedlem);
 
                 for (Person pers : medlemmerGui) {
                     if (pers.getFornavn() == valgtMedlem.getFornavn() && valgtMedlem.getEtternavn() == pers.getEtternavn()) {
@@ -112,19 +112,25 @@ public class MeldPaaController {
 
                 if (finnesSpiller.equals(Boolean.FALSE)) {
                     medlemmerGui.add(valgtMedlem);
+                    returnerButton.setDisable(false);
                 }
             }
         }
 
         /** Avmelding fra arrangement**/
-        if(deltakerListe.getDeltakere().isEmpty()) {
-            Main.getApplication().getTufte().avmeldArrangement(deltakerListe);
+        Boolean finnesTufteMedlemmerIListen = Boolean.FALSE;
+        for(Person paameldtPerson:valgteMedlemmerGui) {
+            if(paameldtPerson.getHarLagTilknytning()) {
+                finnesTufteMedlemmerIListen = Boolean.TRUE;
+            }
+        }
+        if(!finnesTufteMedlemmerIListen) {
+            Main.getApplication().getTufte().avmeldArrangement(arrangementTilPaamelding);
         }
 
         lagspillereListView.setItems(medlemmerGui);
         valgteMedlemmerListView.setItems(valgteMedlemmerGui);
 
-        //disableReturnerKnappOmListenIkkeErTom();
     }
 
     @FXML
@@ -144,7 +150,7 @@ public class MeldPaaController {
             sendFakturaButton.setDisable(true);
         }
 
-        if(!deltakerListe.getDeltakere().isEmpty()) {
+        if(!arrangementTilPaamelding.getDeltakere().isEmpty()) {
             sendFakturaButton.setDisable(true);
         }
 
