@@ -43,8 +43,12 @@ public class MeldPaaBrukerController implements Initializable {
 
 
     public void betaltVipps(MouseEvent mouseEvent) {
-        betaling.harBetalt();
-        betaltText();
+        if(BrukersideController.brukersideController.prisforBrukerArrangement() == 0){
+            betalLabel.setText("Dette arrangementet er gratis. Betaling trengs ikke.");
+        }else{
+            betaling.harBetalt();
+            betaltText();
+        }
     }
 
     public void betaltText(){
@@ -52,8 +56,12 @@ public class MeldPaaBrukerController implements Initializable {
     }
 
     public void betaltVisa(MouseEvent mouseEvent) {
-        betaling.harBetalt();
-        betaltText();
+        if(BrukersideController.brukersideController.prisforBrukerArrangement() == 0){
+            betalLabel.setText("Dette arrangementet er gratis. Betaling trengs ikke.");
+        }else{
+            betaling.harBetalt();
+            betaltText();
+        }
     }
 
     Person dummyBruker = new Person("Per", "Sandfjeld");
@@ -69,7 +77,6 @@ public class MeldPaaBrukerController implements Initializable {
 
     public void brukerErMeldtPaa(ActionEvent event) {
         Arrangement deltakere = BrukersideController.brukersideController.getArrangementListView().getSelectionModel().getSelectedItem();
-        ArrayList<Person> listeBruker = BrukersideController.brukersideController.getBrukere();
 
         if (betaling.isBetalt() == true || BrukersideController.brukersideController.prisforBrukerArrangement() <= 0) {
 
@@ -88,7 +95,8 @@ public class MeldPaaBrukerController implements Initializable {
             Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
             vindu.setScene(scene);
             vindu.show();
-        }else{
+        }
+        else{
             betalLabel.setText("Du maa betale foer du kan registere deg. Vennligst velg betalingsmetode under:");
         }
     }

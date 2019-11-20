@@ -60,7 +60,6 @@ public class BrukersideController implements Initializable {
     @FXML
     private ComboBox<String> sorteringComboBox;
 
-
     public static BrukersideController brukersideController;
     public BrukersideController(){
         brukersideController = this; }
@@ -182,8 +181,10 @@ public class BrukersideController implements Initializable {
         return arrangementListView;
     }
 
-    //Avmelder Brukeren som er innlogget
+    //Avmelder Brukeren som er paameldt
     public void avmeldFraArrangement(ActionEvent event) {
-        deltakereComboBox.getItems().remove(MeldPaaBrukerController.meldPaaBrukerController.dummyBruker);
+        arrangementListView.getSelectionModel().getSelectedItem().getDeltakere().remove(MeldPaaBrukerController.meldPaaBrukerController.dummyBruker);
+        //Oppdaterer listen
+        deltakereComboBox.getItems().setAll(arrangementListView.getSelectionModel().getSelectedItem().getDeltakere());
     }
 }
