@@ -90,33 +90,29 @@ public class MeldPaaBrukerController implements Initializable {
             if (!deltakere.getDeltakere().contains(Main.getApplication().getDummyBruker())) {
                 deltakere.leggTilDeltaker(Main.getApplication().getDummyBruker());
             }
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/brukerside.fxml"));
-            try {
-                fxmlLoader.load();
-            } catch (IOException e) {
-                System.out.println(e);
-            }
-            Parent p = fxmlLoader.getRoot();
-            Scene scene = new Scene(p);
-            Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            vindu.setScene(scene);
-            vindu.show();
+
+            visFXML(event,"/brukerside.fxml");
         }else{
             betalLabel.setText("Du maa betale foer du kan registere deg. Vennligst velg betalingsmetode under:");
         }
     }
 
-    public void gaaTilbake(ActionEvent event) throws IOException {
-
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/brukerside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+    public void gaaTilbake(ActionEvent event) {
+        visFXML(event, "/brukerside.fxml");
     }
 
-    /*public ArrayList<Arrangement> getDummyMedlem() {
-        return dummyBruker.getArrangementerPersonErPameldt();
-    }*/
+    private void visFXML(ActionEvent event,String fxml) {
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+
+    }
 }

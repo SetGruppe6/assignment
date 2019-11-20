@@ -12,29 +12,29 @@ import java.io.IOException;
 public class StartsideController {
 
     public void byttTilBrukerScene(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/brukerside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+        visFXML(event, "/brukerside.fxml");
     }
 
     public void byttTilAdminScene(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+        visFXML(event,"/adminside.fxml");
     }
 
     public void byttTilGjestScene(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/gjestside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+        visFXML(event,"/gjestside.fxml");
     }
 
 
-
+    private void visFXML (ActionEvent event, String fxml){
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+    }
 }

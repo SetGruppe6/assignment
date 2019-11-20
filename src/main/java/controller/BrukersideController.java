@@ -69,24 +69,16 @@ public class BrukersideController implements Initializable {
     public BrukersideController(){
         brukersideController = this; }
 
-    public void gaaTilbake(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+    public void gaaTilbake(ActionEvent event) {
+        visFXML(event,"/startside.fxml");
     }
 
     public int prisforBrukerArrangement(){
         return arrangementListView.getSelectionModel().getSelectedItem().getPameldingsAvgift();
     }
 
-    public void meldpaa_bruker(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/meldpaaBruker.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+    public void meldpaa_bruker(ActionEvent event) {
+        visFXML(event,"/meldpaaBruker.fxml");
     }
 
 
@@ -190,5 +182,20 @@ public class BrukersideController implements Initializable {
 
     public ListView<Arrangement> getArrangementListView() {
         return arrangementListView;
+    }
+
+    private void visFXML(ActionEvent event,String fxml) {
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+
     }
 }

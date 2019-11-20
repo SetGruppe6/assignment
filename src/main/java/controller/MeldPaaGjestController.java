@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Arrangement;
@@ -21,6 +20,7 @@ import model.Person;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MeldPaaGjestController implements Initializable {
@@ -55,9 +55,6 @@ public class MeldPaaGjestController implements Initializable {
     private boolean betalt = false;
     Betaling betaling = new Betaling(betalt);
 
-    String fornavn;
-    String etternavn;
-    String email;
     Person gjestMedlem;
 
     public static MeldPaaGjestController meldPaaGjestController;
@@ -112,7 +109,7 @@ public class MeldPaaGjestController implements Initializable {
         String etternavn = etternavnTextField.getText();
         String email = emailTextField.getText();
 
-        gjestMedlem = new Person(fornavn, etternavn, email);
+        gjestMedlem = new Person(fornavn, etternavn, email, new ArrayList<>());
         Arrangement valgtArrangement = GjestsideController.gjestsideController.getArrangementListView().getSelectionModel().getSelectedItem();
 
         if (!inputValideringGjest(gjestMedlem).isEmpty()){
@@ -130,34 +127,29 @@ public class MeldPaaGjestController implements Initializable {
         }
     }
 
-        private void visFXML (ActionEvent event, String fxml){
-            Parent brukerParent = null;
-            try {
-                brukerParent = FXMLLoader.load(getClass().getResource(fxml));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            assert brukerParent != null;
-            Scene brukerScene = new Scene(brukerParent);
-            Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            vindu.setScene(brukerScene);
-            vindu.show();
+        public void gaaTilbake (ActionEvent event) {
+            visFXML(event, "/gjestside.fxml");
         }
 
 
-        public void gaaTilbake (ActionEvent event) throws IOException {
+    public ArrayList<Arrangement> getGjestMedlem () {
+        return gjestMedlem.getArrangementerPersonErPameldt();
+    }
 
-            Parent brukerParent = FXMLLoader.load(getClass().getResource("/gjestside.fxml"));
-            Scene brukerScene = new Scene(brukerParent);
-            Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            vindu.setScene(brukerScene);
-            vindu.show();
+    private void visFXML(ActionEvent event,String fxml) {
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
-        public ArrayList<Arrangement> getGjestMedlem () {
-            return gjestMedlem.getArrangementerPersonErPameldt();
-        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
 
     }
+
+}
 
