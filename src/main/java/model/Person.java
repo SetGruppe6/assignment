@@ -60,6 +60,10 @@ public class Person {
         arrangementerPersonErPameldt.add(arrangement);
     }
 
+    public void meldAvArrangement(Arrangement arrangement) {
+        arrangementerPersonErPameldt.remove(arrangement);
+    }
+
     public String erFornavnGitt(String fornavn) {
 
         if (fornavn.isEmpty()) {

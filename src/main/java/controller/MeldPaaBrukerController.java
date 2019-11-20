@@ -16,11 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Arrangement;
 import model.Betaling;
-import model.Person;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MeldPaaBrukerController implements Initializable {
@@ -96,20 +94,18 @@ public class MeldPaaBrukerController implements Initializable {
 
             if (!deltakere.getDeltakere().contains(Main.getApplication().getDummyBruker())) {
                 deltakere.leggTilDeltaker(Main.getApplication().getDummyBruker());
+                Main.getApplication().getDummyBruker().setArrangementerPersonErPameldt(deltakere);
             }
 
-            Parent p = fxmlLoader.getRoot();
+            /*Parent p = fxmlLoader.getRoot();
             Scene scene = new Scene(p);
             Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
             vindu.setScene(scene);
-            vindu.show();
-        }
-        else{
-
+            vindu.show();*/
 
             visFXML(event,"/brukerside.fxml");
-        }else{
-
+        }
+        else{
             betalLabel.setText("Du maa betale foer du kan registere deg. Vennligst velg betalingsmetode under:");
         }
     }

@@ -13,6 +13,7 @@ public class Bruker extends Person {
         this.passord = passord;
     }
 
+
     public static String erBrukernavnGitt(String brukernavn){
 
         if (brukernavn.isEmpty()) {

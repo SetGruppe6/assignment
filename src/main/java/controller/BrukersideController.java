@@ -15,12 +15,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import model.*;
+import model.Arrangement;
+import model.Lop;
+import model.Ski;
+import model.Sykkel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class BrukersideController implements Initializable {
@@ -175,9 +177,6 @@ public class BrukersideController implements Initializable {
         sorteringComboBox.getSelectionModel().selectFirst();
     }
 
-    public ArrayList<Person> getBrukere(){
-        return arrangementListView.getSelectionModel().getSelectedItem().getDeltakere();
-    }
 
     public ListView<Arrangement> getArrangementListView() {
         return arrangementListView;
@@ -185,9 +184,19 @@ public class BrukersideController implements Initializable {
   
     //Avmelder Brukeren som er paameldt
     public void avmeldFraArrangement(ActionEvent event) {
-        arrangementListView.getSelectionModel().getSelectedItem().getDeltakere().remove(MeldPaaBrukerController.meldPaaBrukerController.dummyBruker);
+        Arrangement valgt = arrangementListView.getSelectionModel().getSelectedItem();
+
+        if(valgt.getDeltakere().contains(Main.getApplication().getDummyBruker())) {
+            valgt.fjernDeltaker(Main.getApplication().getDummyBruker());
+            Main.getApplication().getDummyBruker().meldAvArrangement(valgt);
+        }
+
         //Oppdaterer listen
-        deltakereComboBox.getItems().setAll(arrangementListView.getSelectionModel().getSelectedItem().getDeltakere());
+        if(sorteringComboBox.getSelectionModel().isSelected(2)) {
+            sorteringComboBox.getSelectionModel().selectFirst();
+        }
+
+    }
 
     private void visFXML(ActionEvent event,String fxml) {
         Parent brukerParent = null;
