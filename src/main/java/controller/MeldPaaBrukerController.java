@@ -1,5 +1,6 @@
 package controller;
 
+import View.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +57,7 @@ public class MeldPaaBrukerController implements Initializable {
         betaltText();
     }
 
-    Person dummyBruker = new Person("Per", "Sandfjeld");
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,10 +72,10 @@ public class MeldPaaBrukerController implements Initializable {
         Arrangement deltakere = BrukersideController.brukersideController.getArrangementListView().getSelectionModel().getSelectedItem();
         ArrayList<Person> listeBruker = BrukersideController.brukersideController.getBrukere();
 
-        if (betaling.isBetalt() == true || BrukersideController.brukersideController.prisforBrukerArrangement() <= 0) {
+        if (betaling.isBetalt() || BrukersideController.brukersideController.prisforBrukerArrangement() <= 0) {
 
-            if (!deltakere.getDeltakere().contains(dummyBruker)) {
-                deltakere.leggTilDeltaker(dummyBruker);
+            if (!deltakere.getDeltakere().contains(Main.getApplication().getDummyBruker())) {
+                deltakere.leggTilDeltaker(Main.getApplication().getDummyBruker());
             }
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/brukerside.fxml"));
@@ -102,7 +103,7 @@ public class MeldPaaBrukerController implements Initializable {
         vindu.show();
     }
 
-    public ArrayList<Arrangement> getDummyMedlem() {
+    /*public ArrayList<Arrangement> getDummyMedlem() {
         return dummyBruker.getArrangementerPersonErPameldt();
-    }
+    }*/
 }

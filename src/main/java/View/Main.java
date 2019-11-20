@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Arrangement;
+import model.Bruker;
 import model.Lag;
 import model.Person;
 
@@ -18,9 +19,14 @@ public class Main extends Application {
     public static Main application;
     public Main() {application = this;}
 
+    /* Laget som er innlogget når man går inn på idrettslag*/
     private ArrayList<Person> medlemmerITufte = new ArrayList<>();
-    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
+    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<Arrangement>();
     private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
+
+    /*Bruker som er logget inn når man går inn på bruker*/
+    private ArrayList<Arrangement> arrangementerDummyErPaameldt = new ArrayList<>();
+    private Bruker dummyBruker = new Bruker("Per", "Sandfjeld","per.sandfjeld@sandfjeld.no",arrangementerDummyErPaameldt, "Persan76", "per76*jada");
 
 
     @Override
@@ -45,6 +51,10 @@ public class Main extends Application {
 
     public Lag getTufte() {
         return tufte;
+    }
+
+    public Bruker getDummyBruker() {
+        return dummyBruker;
     }
 
     public static Main getApplication() {

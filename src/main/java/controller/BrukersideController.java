@@ -1,5 +1,6 @@
 package controller;
 
+import View.Main;
 import datahandler.Datahandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -60,6 +61,9 @@ public class BrukersideController implements Initializable {
     @FXML
     private Label antallPaameldte;
 
+    @FXML
+    private Label velkomstLabel;
+
 
     public static BrukersideController brukersideController;
     public BrukersideController(){
@@ -88,6 +92,10 @@ public class BrukersideController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        StringBuilder velkomst = new StringBuilder();
+        velkomst.append("Velkommen ").append(Main.getApplication().getDummyBruker().getBrukernavn());
+        velkomstLabel.setText(velkomst.toString());
+
         sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Paameldte arrangementer");
         arrangementListView.setItems(Datahandler.getArrangementListe());
 
@@ -107,7 +115,7 @@ public class BrukersideController implements Initializable {
                 }
                 else if(newValue == "Paameldte arrangementer") {
                     try {
-                        arrangementListView.setItems(Datahandler.setArrangementListe(MeldPaaBrukerController.meldPaaBrukerController.getDummyMedlem()));
+                        arrangementListView.setItems(Datahandler.setArrangementListe(Main.getApplication().getDummyBruker().getArrangementerPersonErPameldt()));
                     } catch (NullPointerException nullify) {
                         Alert feil = new Alert(Alert.AlertType.ERROR);
                         feil.setHeaderText("ERROR: Listen er tom");
