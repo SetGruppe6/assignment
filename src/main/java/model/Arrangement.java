@@ -47,6 +47,10 @@ public abstract class Arrangement {
         this.distanse = distanse;
     }
 
+    public void avmeldPerson(Person person){
+        deltakere.remove(person);
+    }
+
     public Arrangement(String navn){
         this.navn = navn;
     }

@@ -58,9 +58,6 @@ public class AdminController implements Initializable {
     private ImageView bildeImageView;
 
     @FXML
-    private Label deltakereLabel;
-
-    @FXML
     private Button meldPaaButton;
 
     @FXML

@@ -64,7 +64,6 @@ public class BrukersideController implements Initializable {
     @FXML
     private Label velkomstLabel;
 
-
     public static BrukersideController brukersideController;
     public BrukersideController(){
         brukersideController = this; }
@@ -183,6 +182,12 @@ public class BrukersideController implements Initializable {
     public ListView<Arrangement> getArrangementListView() {
         return arrangementListView;
     }
+  
+    //Avmelder Brukeren som er paameldt
+    public void avmeldFraArrangement(ActionEvent event) {
+        arrangementListView.getSelectionModel().getSelectedItem().getDeltakere().remove(MeldPaaBrukerController.meldPaaBrukerController.dummyBruker);
+        //Oppdaterer listen
+        deltakereComboBox.getItems().setAll(arrangementListView.getSelectionModel().getSelectedItem().getDeltakere());
 
     private void visFXML(ActionEvent event,String fxml) {
         Parent brukerParent = null;
@@ -196,6 +201,7 @@ public class BrukersideController implements Initializable {
         Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
         vindu.setScene(brukerScene);
         vindu.show();
+
 
     }
 }
