@@ -2,19 +2,28 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BrukerTest {
 
-    @Test
+    private Bruker testbruker = new Bruker("test", "nilsen", "test@nilsen.no",Boolean.FALSE, new ArrayList<>(), "testnilsen", "aB!3bc");
+
+   @Test
     public void erBrukernavnGittTest(){
-        assertEquals("Brukernavn mangler", Bruker.erBrukernavnGitt(""));
-        assertEquals("", Bruker.erBrukernavnGitt("JesusLever"));
+        assertEquals("Brukernavn mangler", testbruker.erBrukernavnGitt(""));
+        assertEquals("", testbruker.erBrukernavnGitt(testbruker.getBrukernavn()));
     }
 
     @Test
     public void erPassordGittTest(){
-        assertEquals("Passord mangler", Bruker.erPassordGitt(""));
-        assertEquals("", Bruker.erPassordGitt("abc123"));
+        assertEquals("Passord mangler", testbruker.erPassordGitt(""));
+        assertEquals("", testbruker.erPassordGitt(testbruker.getPassord()));
+    }
+
+    @Test
+    public void hentBrukerNavnTest() {
+        assertEquals("testnilsen", testbruker.getBrukernavn());
     }
 }

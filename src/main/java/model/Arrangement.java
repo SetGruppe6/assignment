@@ -135,14 +135,6 @@ public abstract class Arrangement {
         this.distanse = distanse;
     }
 
-    public static ArrayList<Arrangement> getArrangementer() {
-        return arrangementer;
-    }
-
-    public static void setArrangementer(ArrayList<Arrangement> arrangementer) {
-        Arrangement.arrangementer = arrangementer;
-    }
-
 
     //METODER
 

@@ -13,7 +13,7 @@ public class Bruker extends Person {
         this.passord = passord;
     }
 
-    public static String erBrukernavnGitt(String brukernavn){
+    public String erBrukernavnGitt(String brukernavn){
 
         if (brukernavn.isEmpty()) {
             return "Brukernavn mangler";
@@ -21,7 +21,7 @@ public class Bruker extends Person {
         return "";
     }
 
-    public static String erPassordGitt(String passord){
+    public String erPassordGitt(String passord){
 
         if (passord.isEmpty()) {
             return "Passord mangler";
@@ -33,4 +33,5 @@ public class Bruker extends Person {
         return brukernavn;
     }
 
+    public String getPassord() { return passord; }
 }

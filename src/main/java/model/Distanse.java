@@ -14,21 +14,6 @@ public class Distanse {
         this.lengde = lengde;
     }
 
-    public String getKategori() {
-        return kategori;
-    }
-
-    public void setKategori(String kategori) {
-        this.kategori = kategori;
-    }
-
-    public int getLengde() {
-        return lengde;
-    }
-
-    public void setLengde(int lengde) {
-        this.lengde = lengde;
-    }
 
     @Override
     public String toString() {
