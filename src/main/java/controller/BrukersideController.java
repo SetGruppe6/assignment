@@ -181,4 +181,9 @@ public class BrukersideController implements Initializable {
     public ListView<Arrangement> getArrangementListView() {
         return arrangementListView;
     }
+
+    //Avmelder Brukeren som er innlogget
+    public void avmeldFraArrangement(ActionEvent event) {
+        deltakereComboBox.getItems().remove(MeldPaaBrukerController.meldPaaBrukerController.dummyBruker);
+    }
 }
