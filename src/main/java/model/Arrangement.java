@@ -45,9 +45,6 @@ public abstract class Arrangement {
         this.distanse = distanse;
     }
 
-    public void avmeldPerson(Person person){
-        deltakere.remove(person);
-    }
 
     public Arrangement(String navn){
         this.navn = navn;
@@ -123,17 +120,6 @@ public abstract class Arrangement {
         return deltakere;
     }
 
-    public void setDeltakere(ArrayList<Person> deltakere) {
-        this.deltakere = deltakere;
-    }
-
-    public Distanse getDistanse() {
-        return distanse;
-    }
-
-    public void setDistanse(Distanse distanse) {
-        this.distanse = distanse;
-    }
 
 
     //METODER
@@ -214,10 +200,6 @@ public abstract class Arrangement {
     }
 
 
-    public void leggTilDeltakere(ArrayList<Person> deltakerene) {
-        deltakere = deltakerene;
-    }
-
     public void leggTilDeltaker(Person person) {
         if(!deltakere.contains(person)) {
             deltakere.add(person);
@@ -227,8 +209,6 @@ public abstract class Arrangement {
     public void fjernDeltaker(Person person) {
         deltakere.remove(person);
     }
-
-    // FILTRERINGSLOGIKK
 
 
     @Override

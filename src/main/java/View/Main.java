@@ -46,7 +46,8 @@ public class Main extends Application {
 
 
         //Legger til noen dummy arrangementer bare for at sidene skal vise noe fra starten av
-        Datahandler.leggTilDummyArrangementer();
+        Datahandler.leggTilDummyArrangementer(Datahandler.getArrangementer());
+        //Legger til dummymedler til "innlogget lag"
         tufte.leggTilDummyMedlemmer(tufte);
     }
 

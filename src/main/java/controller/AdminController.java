@@ -71,21 +71,8 @@ public class AdminController implements Initializable {
 
     private ArrayList<Person> personer = new ArrayList<>();
 
-
     public static AdminController adminController;
     public AdminController() {adminController = this;}
-
-    public void gaaTilbake(ActionEvent event) {
-        visFXML(event,"/startside.fxml");
-    }
-
-    public void opprettArrangement(ActionEvent event)  {
-        visFXML(event,"/opprettarrangement.fxml");
-    }
-
-    public void meldPaa (ActionEvent event) {
-        visFXML(event,"/meldpaa.fxml");
-    }
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
@@ -101,12 +88,12 @@ public class AdminController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
                 if(newValue == "Kommende arrangementer") {
-                    arrangementListView.setItems(Datahandler.setArrangementListe(Datahandler.filtrerPaaDatoKommende()));
+                    arrangementListView.setItems(Datahandler.setArrangementListe(Datahandler.filtrerPaaDatoKommende(Datahandler.getArrangementer())));
                     meldPaaButton.setDisable(false);
 
                 }
                 else if(newValue == "Avsluttede arrangementer") {
-                    arrangementListView.setItems(Datahandler.setArrangementListe(Datahandler.filtrerPaaAvsluttede()));
+                    arrangementListView.setItems(Datahandler.setArrangementListe(Datahandler.filtrerPaaAvsluttede(Datahandler.getArrangementer())));
                     meldPaaButton.setDisable(true);
                 }
                 else if(newValue == "Paameldte arrangementer") {
@@ -194,6 +181,15 @@ public class AdminController implements Initializable {
 
     public ListView<Arrangement> getArrangementListView() {
         return arrangementListView;
+    }
+    public void gaaTilbake(ActionEvent event) {
+        visFXML(event,"/startside.fxml");
+    }
+    public void opprettArrangement(ActionEvent event)  {
+        visFXML(event,"/opprettarrangement.fxml");
+    }
+    public void meldPaa (ActionEvent event) {
+        visFXML(event,"/meldpaa.fxml");
     }
 
 

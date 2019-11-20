@@ -8,12 +8,6 @@ public class Lop extends Arrangement {
 
    private static Distanse[] lopsAvstander = new Distanse[5];
 
-   private boolean erValgt = false;
-
-
-    public Lop(String navn) {
-        super(navn);
-    }
 
     public Lop(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
         super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere);
