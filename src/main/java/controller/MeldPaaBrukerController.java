@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -32,6 +33,15 @@ public class MeldPaaBrukerController implements Initializable {
 
     @FXML
     private Label betalLabel;
+
+    @FXML
+    private TextField fornavnField;
+
+    @FXML
+    private TextField etternavnField;
+
+    @FXML
+    private TextField emailField;
 
     private boolean betalt = false;
 
@@ -61,6 +71,9 @@ public class MeldPaaBrukerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        fornavnField.setText(Main.getApplication().getDummyBruker().getFornavn());
+        etternavnField.setText(Main.getApplication().getDummyBruker().getEtternavn());
+        emailField.setText(Main.getApplication().getDummyBruker().getEmail());
 
         Image vipps = new Image("/vipps.png");
         Image visa = new Image("/visa.png");
