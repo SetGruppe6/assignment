@@ -100,12 +100,12 @@ public class GjestsideController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
                 if(newValue == "Kommende arrangementer") {
-                    arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaDatoKommende()));
+                    arrangementListView.setItems(Datahandler.setArrangementListe(Datahandler.filtrerPaaDatoKommende()));
                     meldPaaButton.setDisable(false);
 
                 }
                 else if(newValue == "Avsluttede arrangementer") {
-                    arrangementListView.setItems(Datahandler.setArrangementListe(Arrangement.filtrerPaaAvsluttede()));
+                    arrangementListView.setItems(Datahandler.setArrangementListe(Datahandler.filtrerPaaAvsluttede()));
                     meldPaaButton.setDisable(true);
                 }
                 else if(newValue == "Paameldte arrangementer") {

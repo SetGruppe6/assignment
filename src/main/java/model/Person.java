@@ -7,6 +7,7 @@ public class Person {
     private String fornavn;
     private String etternavn;
     private String email;
+    private Boolean harLagTilknytning;
     private ArrayList<Arrangement> arrangementerPersonErPameldt;
 
 
@@ -19,6 +20,20 @@ public class Person {
     public Person(String fornavn, String etternavn) {
         this.fornavn = fornavn;
         this.etternavn = etternavn;
+    }
+
+    public Person(String fornavn, String etternavn, String email, Boolean harLagTilknytning, ArrayList<Arrangement> arrangementerPersonErPameldt) {
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.email = email;
+        this.harLagTilknytning = harLagTilknytning;
+        this.arrangementerPersonErPameldt = arrangementerPersonErPameldt;
+    }
+
+    public Person(String fornavn, String etternavn, Boolean harLagTilknytning) {
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.harLagTilknytning = harLagTilknytning;
     }
 
     public Person(String fornavn, String etternavn, String email, ArrayList<Arrangement> arrangementerPersonErPameldt) {
@@ -50,6 +65,10 @@ public class Person {
 
     public String getEmail() {
         return email;
+    }
+
+    public Boolean getHarLagTilknytning() {
+        return harLagTilknytning;
     }
 
     public ArrayList<Arrangement> getArrangementerPersonErPameldt() {

@@ -1,5 +1,6 @@
 package View;
 
+import datahandler.Datahandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +27,7 @@ public class Main extends Application {
 
     /*Bruker som er logget inn når man går inn på bruker*/
     private ArrayList<Arrangement> arrangementerDummyErPaameldt = new ArrayList<>();
-    private Bruker dummyBruker = new Bruker("Per", "Sandfjeld","per.sandfjeld@sandfjeld.no",arrangementerDummyErPaameldt, "Persan76", "per76*jada");
+    private Bruker dummyBruker = new Bruker("Per", "Sandfjeld","per.sandfjeld@sandfjeld.no", Boolean.FALSE,arrangementerDummyErPaameldt, "Persan76", "per76*jada");
 
 
     @Override
@@ -45,7 +46,7 @@ public class Main extends Application {
 
 
         //Legger til noen dummy arrangementer bare for at sidene skal vise noe fra starten av
-        Arrangement.leggTilDummyArrangementer();
+        Datahandler.leggTilDummyArrangementer();
         tufte.leggTilDummyMedlemmer(tufte);
     }
 

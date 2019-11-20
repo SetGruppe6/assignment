@@ -38,23 +38,23 @@ public class Lag {
     public ArrayList<Person> leggTilDummyMedlemmer(Lag laget){
         if(laget.getMedlemmer().size() == 0) {
             ArrayList<Person> medl = new ArrayList<>(Arrays.asList(
-             new Person("Petter", "Northug"),
-             new Person("Daria", "Northug Jr"),
-             new Person("Jens", "Juul"),
-             new Person("Sander", "Fleece"),
-             new Person("Joakim", "Manedskog"),
-             new Person("Jarle", "MacMonday"),
-             new Person("Polly", "Esther"),
-             new Person("Donald", "Stump"),
-             new Person("Anne", "Blaa"),
-             new Person("Therese", "Dohaug"),
-             new Person("Silje", "Stikksag"),
-             new Person("Hans", "son-Mbop"),
-             new Person("Harald", "Haarfagre"),
-             new Person("Putin", "OnAShow"),
-             new Person("Henny", "Koppen"),
-             new Person("Siri", "Senkesett"),
-             new Person("Svein", "Charter")));
+             new Person("Petter", "Northug", Boolean.TRUE),
+             new Person("Daria", "Northug Jr", Boolean.TRUE),
+             new Person("Jens", "Juul", Boolean.TRUE),
+             new Person("Sander", "Fleece", Boolean.TRUE),
+             new Person("Joakim", "Manedskog", Boolean.TRUE),
+             new Person("Jarle", "MacMonday", Boolean.TRUE),
+             new Person("Polly", "Esther", Boolean.TRUE),
+             new Person("Donald", "Stump", Boolean.TRUE),
+             new Person("Anne", "Blaa", Boolean.TRUE),
+             new Person("Therese", "Dohaug", Boolean.TRUE),
+             new Person("Silje", "Stikksag", Boolean.TRUE),
+             new Person("Hans", "son-Mbop", Boolean.TRUE),
+             new Person("Harald", "Haarfagre", Boolean.TRUE),
+             new Person("Putin", "OnAShow", Boolean.TRUE),
+             new Person("Henny", "Koppen", Boolean.TRUE),
+             new Person("Siri", "Senkesett", Boolean.TRUE),
+             new Person("Svein", "Charter", Boolean.TRUE)));
 
             laget.setMedlemmer(medl);
         }

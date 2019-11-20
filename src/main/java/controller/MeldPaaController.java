@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -54,7 +55,7 @@ public class MeldPaaController {
     private ObservableList<Person> medlemmerGui = FXCollections.observableList(medlemmerTufte);
     //ObservableList som holder på påmeldte personer.
     private Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
-    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(deltakerListe.getDeltakere());;
+    private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(deltakerListe.getDeltakere());
 
 
     public void leggTilValgtePersoner(ActionEvent event) {
@@ -94,17 +95,24 @@ public class MeldPaaController {
         Boolean finnesSpiller = Boolean.FALSE;
 
         if(deltakerListe.getDeltakere().contains(valgtMedlem)) {
-            valgteMedlemmerGui.remove(valgtMedlem);
-            deltakerListe.fjernDeltaker(valgtMedlem);
 
-            for(Person pers:medlemmerGui) {
-                if(pers.getFornavn() == valgtMedlem.getFornavn() && valgtMedlem.getEtternavn() == pers.getEtternavn()) {
-                    finnesSpiller = Boolean.TRUE;
+            if(!valgtMedlem.getHarLagTilknytning()) {
+                Alert advarsel = new Alert(Alert.AlertType.WARNING);
+                advarsel.setContentText("Kan ikke melde av personer som ikke er en del av " + Main.getApplication().getTufte().getNavn());
+                advarsel.showAndWait();
+            } else {
+                valgteMedlemmerGui.remove(valgtMedlem);
+                deltakerListe.fjernDeltaker(valgtMedlem);
+
+                for (Person pers : medlemmerGui) {
+                    if (pers.getFornavn() == valgtMedlem.getFornavn() && valgtMedlem.getEtternavn() == pers.getEtternavn()) {
+                        finnesSpiller = Boolean.TRUE;
+                    }
                 }
-            }
 
-            if(finnesSpiller.equals(Boolean.FALSE)) {
-                medlemmerGui.add(valgtMedlem);
+                if (finnesSpiller.equals(Boolean.FALSE)) {
+                    medlemmerGui.add(valgtMedlem);
+                }
             }
         }
 
@@ -116,7 +124,7 @@ public class MeldPaaController {
         lagspillereListView.setItems(medlemmerGui);
         valgteMedlemmerListView.setItems(valgteMedlemmerGui);
 
-        disableReturnerKnappOmListenIkkeErTom();
+        //disableReturnerKnappOmListenIkkeErTom();
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package model;
 
+import datahandler.Datahandler;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -81,8 +82,8 @@ class ArrangementTest {
     public void leggTilArrangementTest(){
         ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
         TestArrangementer.add(TestArrangementKorrekt);
-        Arrangement.leggTilArrangement(TestArrangementKorrekt);
-        assertEquals(TestArrangementer, Arrangement.getArrangementer());
+        Datahandler.leggTilArrangement(TestArrangementKorrekt);
+        assertEquals(TestArrangementer, Datahandler.getArrangementer());
     }
 
     // Krav 3.2.1
