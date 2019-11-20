@@ -109,7 +109,7 @@ public class MeldPaaGjestController implements Initializable {
         String etternavn = etternavnTextField.getText();
         String email = emailTextField.getText();
 
-        gjestMedlem = new Person(fornavn, etternavn, email, new ArrayList<>());
+        gjestMedlem = new Person(fornavn, etternavn, email, Boolean.FALSE, new ArrayList<>());
         Arrangement valgtArrangement = GjestsideController.gjestsideController.getArrangementListView().getSelectionModel().getSelectedItem();
 
         if (!inputValideringGjest(gjestMedlem).isEmpty()){

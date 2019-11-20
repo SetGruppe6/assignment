@@ -7,12 +7,11 @@ public class Bruker extends Person {
     private String brukernavn;
     private String passord;
 
-    public Bruker(String fornavn, String etternavn, String email, ArrayList<Arrangement> arrangementerPersonErPameldt, String brukernavn, String passord) {
-        super(fornavn, etternavn, email, arrangementerPersonErPameldt);
+    public Bruker(String fornavn, String etternavn, String email, Boolean harLagTilknytning, ArrayList<Arrangement> arrangementerPersonErPameldt, String brukernavn, String passord) {
+        super(fornavn, etternavn, email, harLagTilknytning, arrangementerPersonErPameldt);
         this.brukernavn = brukernavn;
         this.passord = passord;
     }
-
 
     public static String erBrukernavnGitt(String brukernavn){
 
@@ -30,24 +29,8 @@ public class Bruker extends Person {
         return "";
     }
 
-
-
-
-    //////////////////////////////GETTERANDSETTER/////////////////////////////////////////////////////////
-
     public String getBrukernavn() {
         return brukernavn;
     }
-
-    public void setBrukernavn(String brukernavn) {
-        this.brukernavn = brukernavn;
-    }
-
-    public String getPassord() {
-        return passord;
-    }
-
-    //////////////////////////////GETTERANDSETTER/////////////////////////////////////////////////////////
-
 
 }

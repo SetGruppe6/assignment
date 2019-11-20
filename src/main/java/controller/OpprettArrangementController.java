@@ -1,5 +1,6 @@
 package controller;
 
+import datahandler.Datahandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -110,7 +111,7 @@ public class OpprettArrangementController {
             if(!intputValidering(sykkelLop).isEmpty()) {
                 setFeilMeldinger(sykkelLop);
             } else {
-                Arrangement.leggTilArrangement(sykkelLop);
+                Datahandler.leggTilArrangement(sykkelLop);
                 returnerTilAdminSide(event);
             }
         }
@@ -119,7 +120,7 @@ public class OpprettArrangementController {
             if(!intputValidering(skiLop).isEmpty()) {
                 setFeilMeldinger(skiLop);
             } else {
-                Arrangement.leggTilArrangement(skiLop);
+                Datahandler.leggTilArrangement(skiLop);
                 returnerTilAdminSide(event);
             }
         }
@@ -128,7 +129,7 @@ public class OpprettArrangementController {
             if(!intputValidering(lop).isEmpty()) {
                 setFeilMeldinger(lop);
             } else {
-                Arrangement.leggTilArrangement(lop);
+                Datahandler.leggTilArrangement(lop);
                 returnerTilAdminSide(event);
             }
         }
