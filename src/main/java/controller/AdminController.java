@@ -1,5 +1,6 @@
 package controller;
 
+import View.Main;
 import datahandler.Datahandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -60,13 +61,15 @@ public class AdminController implements Initializable {
     private Button meldPaaButton;
 
     @FXML
+    private Label antallPaameldte;
+
+    @FXML
     private ComboBox<Person> deltakereComboBox;
 
     @FXML
     private ComboBox<String> sorteringComboBox;
 
     private ArrayList<Person> personer = new ArrayList<>();
-    private Lag tufteIl = new Lag("Tufte");
 
 
     public static AdminController adminController;
@@ -87,7 +90,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
         StringBuilder velkommen = new StringBuilder();
-        velkommen.append("Velkommen ").append(tufteIl.getNavn());
+        velkommen.append("Velkommen ").append(Main.getApplication().getTufte().getNavn());
         velkommenLbl.setText(velkommen.toString());
         deltakereComboBox.getItems().addAll(personer);
         sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Paameldte arrangementer");
@@ -108,7 +111,7 @@ public class AdminController implements Initializable {
                 }
                 else if(newValue == "Paameldte arrangementer") {
                     MeldPaaController mpc = new MeldPaaController();
-                    arrangementListView.setItems(Datahandler.setArrangementListe(MeldPaaController.meldPaaController.getTufte().paameldteArrangementer(Arrangement.getArrangementer())));
+                    arrangementListView.setItems(Datahandler.setArrangementListe(Main.getApplication().getTufte().paameldteArrangementer(Arrangement.getArrangementer())));
                     meldPaaButton.setDisable(false);
                 }
                 arrangementListView.getSelectionModel().selectFirst();
@@ -133,6 +136,10 @@ public class AdminController implements Initializable {
                     deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
                     deltakereComboBox.getItems().addAll(ny.getDeltakere());
                     deltakereComboBox.getSelectionModel().selectFirst();
+
+                    StringBuilder kapasitet = new StringBuilder();
+                    kapasitet.append("Antall paameldte: ").append(ny.getDeltakere().size()).append(" / ").append(ny.getDeltakerKapasitet());
+                    antallPaameldte.setText(kapasitet.toString());
 
 
                     Runnable runnable = new Runnable() {

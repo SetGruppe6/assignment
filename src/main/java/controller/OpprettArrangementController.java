@@ -136,24 +136,7 @@ public class OpprettArrangementController {
         AdminController.adminController.getArrangementListView().getSelectionModel().selectLast();
     }
 
-    private void returnerTilAdminSide(ActionEvent event)  {
-        Parent brukerParent = null;
 
-        try {
-            brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            opprettAlert.setTitle("Error: innlasting av adminside feilet");
-            opprettAlert.setHeaderText("Noe gikk galt!");
-            opprettAlert.setContentText("Kunne ikke laste inn adminside! Kontakt systemadministrator");
-            opprettAlert.showAndWait();
-        }
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
-
-    }
 
     private String intputValidering(Arrangement arrangement) {
         StringBuilder inputResulat = new StringBuilder();
@@ -246,6 +229,25 @@ public class OpprettArrangementController {
                 }
             }
         });
+    }
+
+    private void returnerTilAdminSide(ActionEvent event)  {
+        Parent brukerParent = null;
+
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource("/adminside.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            opprettAlert.setTitle("Error: innlasting av adminside feilet");
+            opprettAlert.setHeaderText("Noe gikk galt!");
+            opprettAlert.setContentText("Kunne ikke laste inn adminside! Kontakt systemadministrator");
+            opprettAlert.showAndWait();
+        }
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+
     }
 
 }
