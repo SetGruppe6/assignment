@@ -63,7 +63,8 @@ public class AdminController implements Initializable {
     @FXML
     private Button meldPaaButton;
 
-    private Person person;
+    @FXML
+    private Label antallPaameldte;
 
     @FXML
     private ComboBox<Person> deltakereComboBox;
@@ -138,6 +139,10 @@ public class AdminController implements Initializable {
                     deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
                     deltakereComboBox.getItems().addAll(ny.getDeltakere());
                     deltakereComboBox.getSelectionModel().selectFirst();
+
+                    StringBuilder kapasitet = new StringBuilder();
+                    kapasitet.append("Antall paameldte: ").append(ny.getDeltakere().size()).append(" / ").append(ny.getDeltakerKapasitet());
+                    antallPaameldte.setText(kapasitet.toString());
 
 
                     Runnable runnable = new Runnable() {

@@ -55,10 +55,10 @@ public class BrukersideController implements Initializable {
     private ImageView bildeImageView;
 
     @FXML
-    private ComboBox<Person> deltakereComboBox;
+    private ComboBox<String> sorteringComboBox;
 
     @FXML
-    private ComboBox<String> sorteringComboBox;
+    private Label antallPaameldte;
 
 
     public static BrukersideController brukersideController;
@@ -139,8 +139,10 @@ public class BrukersideController implements Initializable {
                     kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
                     prisLabel.setText(String.valueOf(ny.getPameldingsAvgift()));
                     descriptionLabel.setText(ny.getBeskrivelse());
-                    deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
-                    deltakereComboBox.getItems().addAll(ny.getDeltakere());
+
+                    StringBuilder kapasitet = new StringBuilder();
+                    kapasitet.append("Antall paameldte: ").append(ny.getDeltakere().size()).append(" / ").append(ny.getDeltakerKapasitet());
+                    antallPaameldte.setText(kapasitet.toString());
 
                     Runnable runnable = new Runnable() {
                         @Override

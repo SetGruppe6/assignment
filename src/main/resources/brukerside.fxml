@@ -22,7 +22,6 @@
       </font>
    </Label>
    <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="228.0" layoutY="97.0" lineSpacing="1.5" prefHeight="163.0" prefWidth="138.0" wrapText="true" />
-   <ComboBox fx:id="deltakereComboBox" layoutX="440.0" layoutY="317.0" prefWidth="150.0" promptText="Deltakere" />
    <Label layoutX="440.0" layoutY="115.0" text="Dato:">
       <font>
          <Font name="System Bold" size="12.0" />
@@ -50,7 +49,7 @@
    <Label fx:id="prisLabel" layoutX="503.0" layoutY="268.0" text="50 spenn" />
    <ImageView fx:id="bildeImageView" fitHeight="52.0" fitWidth="89.0" layoutX="166.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
    <ComboBox fx:id="sorteringComboBox" layoutX="14.0" layoutY="60.0" prefHeight="25.0" prefWidth="200.0" />
-   <Label layoutX="441.0" layoutY="301.0" text="Deltakere:">
+   <Label fx:id="antallPaameldte" layoutX="226.0" layoutY="301.0" text="Label">
       <font>
          <Font name="System Bold" size="12.0" />
       </font>
