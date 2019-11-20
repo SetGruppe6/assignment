@@ -1,5 +1,6 @@
 package controller;
 
+import View.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Arrangement;
-import model.Lag;
 import model.Person;
 
 import java.io.IOException;
@@ -42,15 +42,16 @@ public class MeldPaaController {
     @FXML
     private Button returnerButton;
 
+    @FXML
+    private Button sendFakturaButton;
+
     public static MeldPaaController meldPaaController;
     public MeldPaaController() {meldPaaController = this;};
 
-    //Lager en instans av et lag, som opptrer som det laget som er innlogget.
-    private ArrayList<Person> medlemmerITufte = new ArrayList<>();
-    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
-    private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
+
     //ObservableList som holder på alle medlemmene fra tufte.
-    private ObservableList<Person> medlemmerGui = FXCollections.observableList(tufte.leggTilDummyMedlemmer(tufte));
+    private ArrayList<Person> medlemmerTufte = new ArrayList<Person>(Main.getApplication().getTufte().getMedlemmer());
+    private ObservableList<Person> medlemmerGui = FXCollections.observableList(medlemmerTufte);
     //ObservableList som holder på påmeldte personer.
     private Arrangement deltakerListe = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedItem();
     private ObservableList<Person> valgteMedlemmerGui = FXCollections.observableList(deltakerListe.getDeltakere());;
@@ -61,7 +62,6 @@ public class MeldPaaController {
         Boolean finnesSpiller = Boolean.FALSE;
 
         if (!deltakerListe.getDeltakere().contains(lagspiller) && lagspiller != null) {
-
 
             for(Person pers:valgteMedlemmerGui) {
                 if(lagspiller.getFornavn() == pers.getFornavn() && lagspiller.getEtternavn() == pers.getEtternavn()) {
@@ -75,9 +75,17 @@ public class MeldPaaController {
             }
         }
 
+        /**Siden vi kun illustrer bruk av admin grensesnitt som et lag, blir dette logikken for hvordan man
+         * melder "påloggede" lag på et arrangement
+         */
+        if(!deltakerListe.getDeltakere().isEmpty() && !Main.getApplication().getTufte().getArrangementerLagetErPaameldt().contains(deltakerListe)) {
+            Main.getApplication().getTufte().meldPaaArrangement(deltakerListe);
+            System.out.println(Main.getApplication().getTufte().getArrangementerLagetErPaameldt());
+        }
+
         lagspillereListView.setItems(medlemmerGui);
         valgteMedlemmerListView.setItems(valgteMedlemmerGui);
-
+        disableReturnerKnappOmListenIkkeErTom();
     }
 
     @FXML
@@ -102,31 +110,17 @@ public class MeldPaaController {
 
         /** Avmelding fra arrangement**/
         if(deltakerListe.getDeltakere().isEmpty()) {
-            tufte.avmeldArrangement(deltakerListe);
+            Main.getApplication().getTufte().avmeldArrangement(deltakerListe);
         }
 
         lagspillereListView.setItems(medlemmerGui);
         valgteMedlemmerListView.setItems(valgteMedlemmerGui);
+
+        disableReturnerKnappOmListenIkkeErTom();
     }
 
     @FXML
-    public void meldPaaValgte(ActionEvent event)  {
-
-        for (Person pers : valgteMedlemmerGui) {
-            if (!deltakerListe.getDeltakere().contains(pers)) {
-                deltakerListe.leggTilDeltaker(pers);
-                medlemmerGui.add(pers);
-            }
-        }
-
-        /**Siden vi kun illustrer bruk av admin grensesnitt som et lag, blir dette logikken for hvordan man
-         * melder "påloggede" lag på et arrangement
-         */
-        if(!deltakerListe.getDeltakere().isEmpty()) {
-            tufte.meldPaaArrangement(deltakerListe);
-            System.out.println(tufte.getArrangementerLagetErPaameldt());
-        }
-
+    public void returnerTilHovedside(ActionEvent event)  {
 
         visFXML(event,"/adminside.fxml");
         int valgte = AdminController.adminController.getArrangementListView().getSelectionModel().getSelectedIndex();
@@ -138,10 +132,16 @@ public class MeldPaaController {
 
     @FXML
     public void initialize(){
+        if(valgteMedlemmerGui.isEmpty()) {
+            sendFakturaButton.setDisable(true);
+        }
+
+        if(!deltakerListe.getDeltakere().isEmpty()) {
+            sendFakturaButton.setDisable(true);
+        }
 
         lagspillereListView.setItems(medlemmerGui);
         valgteMedlemmerListView.setItems(valgteMedlemmerGui);
-
 
     }
 
@@ -161,14 +161,20 @@ public class MeldPaaController {
     }
 
 
-    public Lag getTufte() {
-        return tufte;
-    }
-
     public void sendFaktura(ActionEvent actionEvent) {
 
         returnerButton.setDisable(false);
         sendFakturaLabel.setVisible(true);
 
+    }
+
+    public void disableReturnerKnappOmListenIkkeErTom() {
+        if(!valgteMedlemmerGui.isEmpty()) {
+            returnerButton.setDisable(true);
+            sendFakturaButton.setDisable(false);
+        } else {
+            returnerButton.setDisable(false);
+            sendFakturaButton.setDisable(true);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import View.Main;
 import datahandler.Datahandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,12 +15,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import model.*;
+import model.Arrangement;
+import model.Lop;
+import model.Ski;
+import model.Sykkel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class BrukersideController implements Initializable {
@@ -55,39 +58,37 @@ public class BrukersideController implements Initializable {
     private ImageView bildeImageView;
 
     @FXML
-    private ComboBox<Person> deltakereComboBox;
-
-    @FXML
     private ComboBox<String> sorteringComboBox;
 
+    @FXML
+    private Label antallPaameldte;
+
+    @FXML
+    private Label velkomstLabel;
 
     public static BrukersideController brukersideController;
     public BrukersideController(){
         brukersideController = this; }
 
-    public void gaaTilbake(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+    public void gaaTilbake(ActionEvent event) {
+        visFXML(event,"/startside.fxml");
     }
 
     public int prisforBrukerArrangement(){
         return arrangementListView.getSelectionModel().getSelectedItem().getPameldingsAvgift();
     }
 
-    public void meldpaa_bruker(ActionEvent event) throws IOException {
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/meldpaaBruker.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+    public void meldpaa_bruker(ActionEvent event) {
+        visFXML(event,"/meldpaaBruker.fxml");
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        StringBuilder velkomst = new StringBuilder();
+        velkomst.append("Velkommen ").append(Main.getApplication().getDummyBruker().getBrukernavn());
+        velkomstLabel.setText(velkomst.toString());
+
         sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Paameldte arrangementer");
         arrangementListView.setItems(Datahandler.getArrangementListe());
 
@@ -107,7 +108,7 @@ public class BrukersideController implements Initializable {
                 }
                 else if(newValue == "Paameldte arrangementer") {
                     try {
-                        arrangementListView.setItems(Datahandler.setArrangementListe(MeldPaaBrukerController.meldPaaBrukerController.getDummyMedlem()));
+                        arrangementListView.setItems(Datahandler.setArrangementListe(Main.getApplication().getDummyBruker().getArrangementerPersonErPameldt()));
                     } catch (NullPointerException nullify) {
                         Alert feil = new Alert(Alert.AlertType.ERROR);
                         feil.setHeaderText("ERROR: Listen er tom");
@@ -139,8 +140,10 @@ public class BrukersideController implements Initializable {
                     kapasitetLabel.setText(String.valueOf(ny.getDeltakerKapasitet()));
                     prisLabel.setText(String.valueOf(ny.getPameldingsAvgift()));
                     descriptionLabel.setText(ny.getBeskrivelse());
-                    deltakereComboBox.getItems().removeAll(deltakereComboBox.getItems());
-                    deltakereComboBox.getItems().addAll(ny.getDeltakere());
+
+                    StringBuilder kapasitet = new StringBuilder();
+                    kapasitet.append("Antall paameldte: ").append(ny.getDeltakere().size()).append(" / ").append(ny.getDeltakerKapasitet());
+                    antallPaameldte.setText(kapasitet.toString());
 
                     Runnable runnable = new Runnable() {
                         @Override
@@ -174,11 +177,40 @@ public class BrukersideController implements Initializable {
         sorteringComboBox.getSelectionModel().selectFirst();
     }
 
-    public ArrayList<Person> getBrukere(){
-        return arrangementListView.getSelectionModel().getSelectedItem().getDeltakere();
-    }
 
     public ListView<Arrangement> getArrangementListView() {
         return arrangementListView;
+    }
+  
+    //Avmelder Brukeren som er paameldt
+    public void avmeldFraArrangement(ActionEvent event) {
+        Arrangement valgt = arrangementListView.getSelectionModel().getSelectedItem();
+
+        if(valgt.getDeltakere().contains(Main.getApplication().getDummyBruker())) {
+            valgt.fjernDeltaker(Main.getApplication().getDummyBruker());
+            Main.getApplication().getDummyBruker().meldAvArrangement(valgt);
+        }
+
+        //Oppdaterer listen
+        if(sorteringComboBox.getSelectionModel().isSelected(2)) {
+            sorteringComboBox.getSelectionModel().selectFirst();
+        }
+
+    }
+
+    private void visFXML(ActionEvent event,String fxml) {
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+
+
     }
 }
