@@ -7,17 +7,8 @@ public class Person {
     private String fornavn;
     private String etternavn;
     private String email;
-    private String passord;
-    private String tlf;
-    private ArrayList<Arrangement> arrangementerPersonErPameldt = new ArrayList<>();
+    private ArrayList<Arrangement> arrangementerPersonErPameldt;
 
-    public Person(String fornavn, String etternavn, String email, String passord, String mobilnr) {
-        this.fornavn = fornavn;
-        this.etternavn = etternavn;
-        this.email = email;
-        this.passord = passord;
-        this.tlf = mobilnr;
-    }
 
     public Person(String fornavn, String etternavn, String email) {
         this.fornavn = fornavn;

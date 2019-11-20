@@ -1,5 +1,6 @@
 package controller;
 
+import View.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +33,15 @@ public class MeldPaaBrukerController implements Initializable {
 
     @FXML
     private Label betalLabel;
+
+    @FXML
+    private TextField fornavnField;
+
+    @FXML
+    private TextField etternavnField;
+
+    @FXML
+    private TextField emailField;
 
     private boolean betalt = false;
 
@@ -56,10 +67,13 @@ public class MeldPaaBrukerController implements Initializable {
         betaltText();
     }
 
-    Person dummyBruker = new Person("Per", "Sandfjeld");
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        fornavnField.setText(Main.getApplication().getDummyBruker().getFornavn());
+        etternavnField.setText(Main.getApplication().getDummyBruker().getEtternavn());
+        emailField.setText(Main.getApplication().getDummyBruker().getEmail());
 
         Image vipps = new Image("/vipps.png");
         Image visa = new Image("/visa.png");
@@ -71,38 +85,34 @@ public class MeldPaaBrukerController implements Initializable {
         Arrangement deltakere = BrukersideController.brukersideController.getArrangementListView().getSelectionModel().getSelectedItem();
         ArrayList<Person> listeBruker = BrukersideController.brukersideController.getBrukere();
 
-        if (betaling.isBetalt() == true || BrukersideController.brukersideController.prisforBrukerArrangement() <= 0) {
+        if (betaling.isBetalt() || BrukersideController.brukersideController.prisforBrukerArrangement() <= 0) {
 
-            if (!deltakere.getDeltakere().contains(dummyBruker)) {
-                deltakere.leggTilDeltaker(dummyBruker);
+            if (!deltakere.getDeltakere().contains(Main.getApplication().getDummyBruker())) {
+                deltakere.leggTilDeltaker(Main.getApplication().getDummyBruker());
             }
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/brukerside.fxml"));
-            try {
-                fxmlLoader.load();
-            } catch (IOException e) {
-                System.out.println(e);
-            }
-            Parent p = fxmlLoader.getRoot();
-            Scene scene = new Scene(p);
-            Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            vindu.setScene(scene);
-            vindu.show();
+
+            visFXML(event,"/brukerside.fxml");
         }else{
             betalLabel.setText("Du maa betale foer du kan registere deg. Vennligst velg betalingsmetode under:");
         }
     }
 
-    public void gaaTilbake(ActionEvent event) throws IOException {
-
-        Parent brukerParent = FXMLLoader.load(getClass().getResource("/brukerside.fxml"));
-        Scene brukerScene = new Scene(brukerParent);
-        Stage vindu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        vindu.setScene(brukerScene);
-        vindu.show();
+    public void gaaTilbake(ActionEvent event) {
+        visFXML(event, "/brukerside.fxml");
     }
 
-    public ArrayList<Arrangement> getDummyMedlem() {
-        return dummyBruker.getArrangementerPersonErPameldt();
+    private void visFXML(ActionEvent event,String fxml) {
+        Parent brukerParent = null;
+        try {
+            brukerParent = FXMLLoader.load(getClass().getResource(fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert brukerParent != null;
+        Scene brukerScene = new Scene(brukerParent);
+        Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        vindu.setScene(brukerScene);
+        vindu.show();
+
     }
 }

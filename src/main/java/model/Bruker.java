@@ -1,16 +1,17 @@
 package model;
 
-public class Bruker {
+import java.util.ArrayList;
+
+public class Bruker extends Person {
 
     private String brukernavn;
     private String passord;
 
-    public Bruker (String brukernavn, String passord){
+    public Bruker(String fornavn, String etternavn, String email, ArrayList<Arrangement> arrangementerPersonErPameldt, String brukernavn, String passord) {
+        super(fornavn, etternavn, email, arrangementerPersonErPameldt);
         this.brukernavn = brukernavn;
         this.passord = passord;
     }
-
-
 
     public static String erBrukernavnGitt(String brukernavn){
 
