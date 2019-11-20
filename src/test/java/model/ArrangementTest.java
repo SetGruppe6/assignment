@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.Test;
 
 import java.awt.image.AreaAveragingScaleFilter;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -110,5 +111,50 @@ class ArrangementTest {
         TestArrangementKorrekt.leggTilDeltaker(TestErik);
         TestArrangementKorrekt.fjernDeltaker(TestErik);
         assertEquals(TestDeltakere, TestArrangementKorrekt.getDeltakere());
+    }
+
+    @Test
+    public void oppretteNyttArrangementMedValideringTest(){
+
+        Lop hornindal = new Lop();
+        String tittel = "Hornindallopet";
+        String lokasjon = "Hornindal, More og Romsdal";
+        LocalDate dato = LocalDate.of(2020, 5,18);
+        LocalTime start = LocalTime.of(13, 00);
+        LocalTime slutt = LocalTime.of(20, 00);
+        int deltaker = 10;
+        int pris = 200;
+        String beskrivelse = "Hornindallopet er et lop blant hoye fjell og en av de dypeste fjordene på planeten vaar. Onsker du aa teste deg til det maskimale, delta!";
+
+
+        StringBuilder tilbakemelding = new StringBuilder();
+
+        tilbakemelding.append(hornindal.erTittelOk(tittel));
+        tilbakemelding.append(hornindal.erLokasjonGitt(lokasjon));
+        tilbakemelding.append(hornindal.erDatoOK(dato));
+        tilbakemelding.append(hornindal.erStartTidspunktOk(start, slutt));
+        tilbakemelding.append(hornindal.erDeltakerKapasitetOk(deltaker));
+        tilbakemelding.append(hornindal.erPrisGitt(pris));
+        tilbakemelding.append(hornindal.erBeskrivelseGitt(beskrivelse));
+
+        if(tilbakemelding.toString().isEmpty()){
+            hornindal.setNavn(tittel);
+            hornindal.setLokasjon(lokasjon);
+            hornindal.setDato(dato);
+            hornindal.setStartTid(start);
+            hornindal.setSluttTid(slutt);
+            hornindal.setDeltakerKapasitet(deltaker);
+            hornindal.setPameldingsAvgift(pris);
+            hornindal.setBeskrivelse(beskrivelse);
+        }
+
+        assertEquals(tittel, hornindal.getNavn());
+        assertEquals(lokasjon, hornindal.getLokasjon());
+        assertEquals(dato, hornindal.getDato());
+        assertEquals(start, hornindal.getStartTid());
+        assertEquals(slutt, hornindal.getSluttTid());
+        assertEquals(deltaker, hornindal.getDeltakerKapasitet());
+        assertEquals(pris, hornindal.getPameldingsAvgift());
+        assertEquals(beskrivelse, hornindal.getBeskrivelse());
     }
 }

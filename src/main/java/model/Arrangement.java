@@ -20,6 +20,7 @@ public abstract class Arrangement {
 
     public static Arrangement arrangementStatic;
 
+    public Arrangement(){}
 
     public Arrangement(String navn, String lokasjon, LocalDate dato, LocalTime startTid, LocalTime sluttTid, int deltakerKapasitet, int pameldingsAvgift, String beskrivelse, ArrayList<Person> deltakere) {
 
@@ -57,41 +58,90 @@ public abstract class Arrangement {
         return navn;
     }
 
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
     public String getLokasjon() {
         return lokasjon;
+    }
+
+    public void setLokasjon(String lokasjon) {
+        this.lokasjon = lokasjon;
     }
 
     public LocalDate getDato() {
         return dato;
     }
 
+    public void setDato(LocalDate dato) {
+        this.dato = dato;
+    }
+
     public LocalTime getStartTid() {
         return startTid;
+    }
+
+    public void setStartTid(LocalTime startTid) {
+        this.startTid = startTid;
     }
 
     public LocalTime getSluttTid() {
         return sluttTid;
     }
 
+    public void setSluttTid(LocalTime sluttTid) {
+        this.sluttTid = sluttTid;
+    }
+
     public int getDeltakerKapasitet() {
         return deltakerKapasitet;
+    }
+
+    public void setDeltakerKapasitet(int deltakerKapasitet) {
+        this.deltakerKapasitet = deltakerKapasitet;
     }
 
     public int getPameldingsAvgift() {
         return pameldingsAvgift;
     }
 
+    public void setPameldingsAvgift(int pameldingsAvgift) {
+        this.pameldingsAvgift = pameldingsAvgift;
+    }
+
     public String getBeskrivelse() {
         return beskrivelse;
+    }
+
+    public void setBeskrivelse(String beskrivelse) {
+        this.beskrivelse = beskrivelse;
+    }
+
+    public ArrayList<Person> getDeltakere() {
+        return deltakere;
+    }
+
+    public void setDeltakere(ArrayList<Person> deltakere) {
+        this.deltakere = deltakere;
+    }
+
+    public Distanse getDistanse() {
+        return distanse;
+    }
+
+    public void setDistanse(Distanse distanse) {
+        this.distanse = distanse;
     }
 
     public static ArrayList<Arrangement> getArrangementer() {
         return arrangementer;
     }
 
-    public ArrayList<Person> getDeltakere() {
-        return deltakere;
+    public static void setArrangementer(ArrayList<Arrangement> arrangementer) {
+        Arrangement.arrangementer = arrangementer;
     }
+
 
     //METODER
 

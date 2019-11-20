@@ -23,6 +23,10 @@ public class Lop extends Arrangement {
         super(navn, lokasjon, dato, startTid, sluttTid, deltakerKapasitet, pameldingsAvgift, beskrivelse, deltakere, distanse);
     }
 
+    public Lop() {
+
+    }
+
     public static Distanse[] getLopsAvstander() {
         return lopsAvstander;
     }
