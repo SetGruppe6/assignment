@@ -121,7 +121,18 @@ public class MeldPaaGjestController implements Initializable {
             if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
                 valgtArrangement.leggTilDeltaker(gjestMedlem);
                 gjestMedlem.setArrangementerPersonErPameldt(valgtArrangement);
-                visFXML(event, "/gjestside.fxml");
+
+                Parent brukerParent = null;
+                try {
+                    brukerParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("gjestside.fxml")));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                assert brukerParent != null;
+                Scene brukerScene = new Scene(brukerParent);
+                Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                vindu.setScene(brukerScene);
+                vindu.show();
             }
 
         }
