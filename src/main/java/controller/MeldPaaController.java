@@ -29,15 +29,6 @@ public class MeldPaaController {
     private ListView<Person> valgteMedlemmerListView;
 
     @FXML
-    private Button leggTilValgtButton;
-
-    @FXML
-    private Button fjernValgtButton;
-
-    @FXML
-    private Button leggTilFlereButton;
-
-    @FXML
     private Label sendFakturaLabel;
 
     @FXML
@@ -81,7 +72,6 @@ public class MeldPaaController {
          */
         if(!arrangementTilPaamelding.getDeltakere().isEmpty() && !Main.getApplication().getTufte().getArrangementerLagetErPaameldt().contains(arrangementTilPaamelding)) {
             Main.getApplication().getTufte().meldPaaArrangement(arrangementTilPaamelding);
-            System.out.println(Main.getApplication().getTufte().getArrangementerLagetErPaameldt());
         }
 
         lagspillereListView.setItems(medlemmerGui);
