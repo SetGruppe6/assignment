@@ -62,4 +62,9 @@ public class Main extends Application {
     public static Main getApplication() {
         return application;
     }
+
+    public static void main(String[] args) {
+        Application.launch(args);
+
+    }
 }
