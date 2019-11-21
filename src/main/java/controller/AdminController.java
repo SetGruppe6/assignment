@@ -83,7 +83,6 @@ public class AdminController implements Initializable {
         sorteringComboBox.getItems().addAll("Kommende arrangementer", "Avsluttede arrangementer","Paameldte arrangementer");
 
         sorteringComboBox.valueProperty().addListener(new ChangeListener<String>() {
-
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
@@ -105,6 +104,7 @@ public class AdminController implements Initializable {
             }
         });
 
+        // oppdaterer variabler som tittel osv når man trykker på de ulike arrangementene
         arrangementListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
             @Override
             public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement old, Arrangement ny) {
@@ -129,6 +129,7 @@ public class AdminController implements Initializable {
                     antallPaameldte.setText(kapasitet.toString());
 
 
+                    // Ulike ikoner som samsvarer med arrangementets instans (ski, sykkel, lop)
                     Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
@@ -164,6 +165,7 @@ public class AdminController implements Initializable {
         arrangementListView.refresh();
     }
 
+    //Metode for å bytte fxml sider
     private void visFXML(ActionEvent event,String fxml) {
         Parent brukerParent = null;
         try {

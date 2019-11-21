@@ -124,7 +124,7 @@ public class BrukersideController implements Initializable {
             }
         });
 
-
+        // oppdaterer variabler som tittel osv når man trykker på de ulike arrangementene
         arrangementListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
             @Override
             public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement arrangement, Arrangement ny) {
@@ -145,6 +145,7 @@ public class BrukersideController implements Initializable {
                     kapasitet.append("Antall paameldte: ").append(ny.getDeltakere().size()).append(" / ").append(ny.getDeltakerKapasitet());
                     antallPaameldte.setText(kapasitet.toString());
 
+                    // Ulike ikoner som samsvarer med arrangementets instans (ski, sykkel, lop)
                     Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
@@ -195,12 +196,15 @@ public class BrukersideController implements Initializable {
         if(sorteringComboBox.getSelectionModel().isSelected(2)) {
             sorteringComboBox.getSelectionModel().selectFirst();
         }
+
+        //Unselect og select for å oppdatere antall deltakere
         arrangementListView.getSelectionModel().select(-1);
         arrangementListView.getSelectionModel().select(valgt);
 
 
     }
 
+    //Metode for å bytte fxml sider
     private void visFXML(ActionEvent event,String fxml) {
         Parent brukerParent = null;
         try {

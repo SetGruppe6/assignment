@@ -72,8 +72,6 @@ public class MeldPaaBrukerController implements Initializable {
         }
     }
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fornavnField.setText(Main.getApplication().getDummyBruker().getFornavn());
@@ -86,6 +84,7 @@ public class MeldPaaBrukerController implements Initializable {
         vippsImageView.setImage(vipps);
     }
 
+    //Melder på brukeren som er logget inn dersom arrangementet er betalt eller arrangementet er gratis
     public void brukerErMeldtPaa(ActionEvent event) {
         Arrangement deltakere = BrukersideController.brukersideController.getArrangementListView().getSelectionModel().getSelectedItem();
 
@@ -95,13 +94,6 @@ public class MeldPaaBrukerController implements Initializable {
                 deltakere.leggTilDeltaker(Main.getApplication().getDummyBruker());
                 Main.getApplication().getDummyBruker().setArrangementerPersonErPameldt(deltakere);
             }
-
-            /*Parent p = fxmlLoader.getRoot();
-            Scene scene = new Scene(p);
-            Stage vindu = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            vindu.setScene(scene);
-            vindu.show();*/
-
             visFXML(event,"/brukerside.fxml");
         }
         else{
@@ -113,6 +105,7 @@ public class MeldPaaBrukerController implements Initializable {
         visFXML(event, "/brukerside.fxml");
     }
 
+    //Metode for å bytte fxml sider
     private void visFXML(ActionEvent event,String fxml) {
         Parent brukerParent = null;
         try {
