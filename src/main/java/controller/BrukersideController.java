@@ -195,6 +195,9 @@ public class BrukersideController implements Initializable {
         if(sorteringComboBox.getSelectionModel().isSelected(2)) {
             sorteringComboBox.getSelectionModel().selectFirst();
         }
+        arrangementListView.getSelectionModel().select(-1);
+        arrangementListView.getSelectionModel().select(valgt);
+
 
     }
 
