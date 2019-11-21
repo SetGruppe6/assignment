@@ -22,7 +22,7 @@ public class Main extends Application {
 
     /* Laget som er innlogget når man går inn på idrettslag*/
     private ArrayList<Person> medlemmerITufte = new ArrayList<>();
-    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<Arrangement>();
+    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
     private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
 
     /*Bruker som er logget inn når man går inn på bruker*/
