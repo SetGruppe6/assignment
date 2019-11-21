@@ -117,7 +117,6 @@ class ArrangementTest {
         int pris = 200;
         String beskrivelse = "Hornindallopet er et lop blant hoye fjell og en av de dypeste fjordene på planeten vaar. Onsker du aa teste deg til det maskimale, delta!";
 
-
         StringBuilder tilbakemelding = new StringBuilder();
 
         tilbakemelding.append(hornindal.erTittelOk(tittel));

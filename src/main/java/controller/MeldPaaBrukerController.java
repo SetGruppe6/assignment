@@ -94,7 +94,7 @@ public class MeldPaaBrukerController implements Initializable {
 
             if (!deltakere.getDeltakere().contains(Main.getApplication().getDummyBruker())) {
                 deltakere.leggTilDeltaker(Main.getApplication().getDummyBruker());
-                Main.getApplication().getDummyBruker().setArrangementerPersonErPameldt(deltakere);
+                Main.getApplication().getDummyBruker().meldPaaArrangement(deltakere);
             }
 
             /*Parent p = fxmlLoader.getRoot();
