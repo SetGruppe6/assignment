@@ -22,7 +22,7 @@ public class Main extends Application {
 
     /* Laget som er innlogget når man går inn på idrettslag*/
     private ArrayList<Person> medlemmerITufte = new ArrayList<>();
-    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<Arrangement>();
+    private ArrayList<Arrangement> arrangementerTufteErMeldtPaa = new ArrayList<>();
     private Lag tufte = new Lag("Tufte IL", medlemmerITufte, arrangementerTufteErMeldtPaa);
 
     /*Bruker som er logget inn når man går inn på bruker*/
@@ -46,7 +46,8 @@ public class Main extends Application {
 
 
         //Legger til noen dummy arrangementer bare for at sidene skal vise noe fra starten av
-        Datahandler.leggTilDummyArrangementer();
+        Datahandler.leggTilDummyArrangementer(Datahandler.getArrangementer());
+        //Legger til dummymedler til "innlogget lag"
         tufte.leggTilDummyMedlemmer(tufte);
     }
 
@@ -60,5 +61,10 @@ public class Main extends Application {
 
     public static Main getApplication() {
         return application;
+    }
+
+    public static void main(String[] args) {
+        Application.launch(args);
+
     }
 }

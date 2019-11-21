@@ -1,6 +1,5 @@
 package model;
 
-import datahandler.Datahandler;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -77,14 +76,7 @@ class ArrangementTest {
         assertEquals("", TestArrangementKorrekt.erPrisGitt(TestArrangementKorrekt.getPameldingsAvgift()));
     }
 
-    // Krav 3.8.2
-    @Test
-    public void leggTilArrangementTest(){
-        ArrayList<Arrangement> TestArrangementer = new ArrayList<>();
-        TestArrangementer.add(TestArrangementKorrekt);
-        Datahandler.leggTilArrangement(TestArrangementKorrekt);
-        assertEquals(TestArrangementer, Datahandler.getArrangementer());
-    }
+
 
     // Krav 3.2.1
     @Test

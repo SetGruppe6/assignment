@@ -43,18 +43,6 @@ public class Person {
         this.arrangementerPersonErPameldt = arrangementerPersonErPameldt;
     }
 
-    public ArrayList<Arrangement> paameldteArrangementerPerson(ArrayList<Arrangement> arrangementer, Person person) {
-        ArrayList<Arrangement> paameldteArrangement = new ArrayList<>();
-
-        for(Arrangement arr: arrangementer) {
-            if(arr.getDeltakere().contains(person)) {
-                paameldteArrangement.add(arr);
-            }
-        }
-
-        return paameldteArrangement;
-    }
-
     public String getFornavn() {
         return fornavn;
     }
