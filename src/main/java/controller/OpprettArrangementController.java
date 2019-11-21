@@ -46,12 +46,6 @@ public class OpprettArrangementController {
     private TextArea beskrivelseTextArea;
 
     @FXML
-    private Button ferdigButton;
-
-    @FXML
-    private Button avbrytButton;
-
-    @FXML
     private ComboBox<String> typeTextField;
 
     @FXML
@@ -67,16 +61,10 @@ public class OpprettArrangementController {
     private Label distanseLabel;
 
     @FXML
-    private Label datoLabel;
-
-    @FXML
     private Label stedLabel;
 
     @FXML
     private Label startLabel;
-
-    @FXML
-    private Label sluttLabel;
 
     @FXML
     private Label kapasitetLbl;

@@ -129,7 +129,7 @@ public abstract class Arrangement {
 
          if (tittel.length() >= 30){
             return "Tittel for lang";
-        } else if (tittel.length() <= 5){
+        } else if (tittel.length() <= 4){
             return "Tittel for kort";
         }
         return "";

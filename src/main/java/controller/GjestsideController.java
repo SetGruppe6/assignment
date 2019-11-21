@@ -63,13 +63,6 @@ public class GjestsideController implements Initializable {
     public static GjestsideController gjestsideController;
     public GjestsideController() {gjestsideController = this;}
 
-    AdminController adminController = new AdminController();
-
-
-    public int prisforarr(){
-        return arrangementListView.getSelectionModel().getSelectedItem().getPameldingsAvgift();
-    }
-
     public void gaaTilbake(ActionEvent event) throws IOException {
 
         Parent brukerParent = FXMLLoader.load(getClass().getResource("/startside.fxml"));
@@ -178,10 +171,6 @@ public class GjestsideController implements Initializable {
         });
 
         sorteringComboBox.getSelectionModel().selectFirst();
-    }
-
-    public Label getPrisLabel() {
-        return prisLabel;
     }
 
     public ListView<Arrangement> getArrangementListView() {
