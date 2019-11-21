@@ -48,6 +48,7 @@ class DatahandlerTest {
         assertEquals(testListe2.size(), testListe.size());
     }
 
+    //Krav 3.11.12
     @Test
     public void filtrerKommendeArrangementerTest() {
         ArrayList<Arrangement> kommende = new ArrayList<>();
@@ -67,6 +68,7 @@ class DatahandlerTest {
         assertEquals(Boolean.TRUE, arrangeresEtterDagensDato);
     }
 
+    //Krav 3.11.11
     @Test
     public void filtrerTidligereArrangementerTest() {
         ArrayList<Arrangement> tidligere = new ArrayList<>();

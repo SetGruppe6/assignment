@@ -50,7 +50,6 @@ public class MeldPaaBrukerController implements Initializable {
     Betaling betaling = new Betaling(betalt);
 
 
-
     public void betaltVipps(MouseEvent mouseEvent) {
         if(BrukersideController.brukersideController.prisforBrukerArrangement() == 0){
             betalLabel.setText("Dette arrangementet er gratis. Betaling trengs ikke.");
