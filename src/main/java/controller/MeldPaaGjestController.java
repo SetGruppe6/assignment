@@ -120,7 +120,7 @@ public class MeldPaaGjestController implements Initializable {
         } else if (inputValideringGjest(gjestMedlem).isEmpty() && betaling.isBetalt()) {
             if (!valgtArrangement.getDeltakere().contains(gjestMedlem)) {
                 valgtArrangement.leggTilDeltaker(gjestMedlem);
-                gjestMedlem.setArrangementerPersonErPameldt(valgtArrangement);
+                gjestMedlem.meldPaaArrangement(valgtArrangement);
 
                 Parent brukerParent = null;
                 try {

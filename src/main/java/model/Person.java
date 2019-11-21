@@ -43,8 +43,24 @@ public class Person {
         this.arrangementerPersonErPameldt = arrangementerPersonErPameldt;
     }
 
+    public Person() {
+
+    }
+
     public String getFornavn() {
         return fornavn;
+    }
+
+    public void setFornavn(String fornavn) {
+        this.fornavn = fornavn;
+    }
+
+    public void setEtternavn(String etternavn) {
+        this.etternavn = etternavn;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getEtternavn() {
@@ -63,8 +79,12 @@ public class Person {
         return arrangementerPersonErPameldt;
     }
 
-    public void setArrangementerPersonErPameldt(Arrangement arrangement) {
+    public void meldPaaArrangement(Arrangement arrangement) {
         arrangementerPersonErPameldt.add(arrangement);
+    }
+
+    public void setArrangementerPersonErPameldt(ArrayList<Arrangement> arrangementerPersonErPameldt) {
+        this.arrangementerPersonErPameldt = arrangementerPersonErPameldt;
     }
 
     public void meldAvArrangement(Arrangement arrangement) {
